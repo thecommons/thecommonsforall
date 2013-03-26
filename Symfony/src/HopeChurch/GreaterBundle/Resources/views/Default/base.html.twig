@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      {% block title %}Something Greater - {{ active_page|title }}{% endblock %}
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Alistair King">
+    
+    <link href="{{ asset('libs/bootstrap/css/bootstrap.css') }}" 
+	  rel="stylesheet">
+    <style>
+      body {
+      padding-top: 60px;
+      }
+      @media (max-width: 979px) {
+      body {
+      padding-top: 0;
+      }
+      }
+    </style>
+  </head>
+  
+  <body>
+    
+    <div class="navbar navbar-fixed-top navbar-inverse">
+      <div class="navbar-inner">
+        <div class="container">
+          <ul class="nav">
+
+	    {% for page in nav_pages %}
+	    <li {% if page == active_page %} class="active" {% endif %}>
+	      <a href="{{ path(route, {'page': page}) }}">
+		{{ page|title }}
+	      </a>
+	    </li>
+	    {% endfor %}
+
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container">
+      {% block body %}{% endblock %}
+    </div> <!-- end container -->
+    
+</div>
+
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="{{ asset('libs/bootstrap/js/bootstrap.js') }}"></script>
+</body>
+</html>
+
+
