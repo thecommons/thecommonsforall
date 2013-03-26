@@ -1,3 +1,6 @@
 hope_church_greater_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: HopeChurchGreaterBundle:Default:index }
+    path:  /{page}
+    defaults: { 
+      _controller: HopeChurchGreaterBundle:Default:index,
+      page: home
+    }
