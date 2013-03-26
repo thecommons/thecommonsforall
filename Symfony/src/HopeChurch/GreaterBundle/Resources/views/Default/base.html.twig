@@ -33,7 +33,7 @@
 
 	    {% for page in nav_pages %}
 	    <li {% if page == active_page %} class="active" {% endif %}>
-	      <a href="{{ path(route, {'page': page}) }}">
+	      <a href="{{ path(route, {'page': page, '_format': 'html'}) }}">
 		{{ page|title }}
 	      </a>
 	    </li>
