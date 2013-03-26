@@ -8,6 +8,8 @@ DROP TABLE IF EXISTS smallgroup;
 DROP TABLE IF EXISTS action;
 DROP TABLE IF EXISTS action_required;
 
+ALTER DATABASE hope_np charset=utf8;
+
 -- Individuals Table
 ---- This is the core of the system, and almost all other tables will reference
 ---- an individual (a 'person') by their ID number.

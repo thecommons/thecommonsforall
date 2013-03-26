@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="HopeChurch\GreaterBundle\Entity\Person" table="person">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nameFirst" type="string" column="name_first" length="128" nullable="false"/>
+    <field name="nameLast" type="string" column="name_last" length="128" nullable="true"/>
+    <field name="dateCreated" type="date" column="date_created" nullable="false"/>
+    <field name="phoneCell" type="string" column="phone_cell" length="20" nullable="true"/>
+    <field name="phoneHome" type="string" column="phone_home" length="20" nullable="true"/>
+    <field name="addrFirst" type="string" column="addr_first" length="128" nullable="true"/>
+    <field name="addrSecond" type="string" column="addr_second" length="128" nullable="true"/>
+    <field name="addrCity" type="string" column="addr_city" length="128" nullable="true"/>
+    <field name="addrState" type="string" column="addr_state" length="128" nullable="true"/>
+    <field name="addrZip" type="string" column="addr_zip" length="128" nullable="true"/>
+    <field name="addrCountry" type="string" column="addr_country" length="128" nullable="true"/>
+    <field name="facebook" type="boolean" column="facebook" nullable="true"/>
+    <field name="familyId" type="integer" column="family_id" nullable="true"/>
+    <field name="smallgroupId" type="integer" column="smallgroup_id" nullable="true"/>
+    <field name="leaderId" type="integer" column="leader_id" nullable="true"/>
+  </entity>
+</doctrine-mapping>
