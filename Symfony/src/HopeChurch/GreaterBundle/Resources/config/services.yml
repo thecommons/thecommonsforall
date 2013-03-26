@@ -1,0 +1,7 @@
+parameters:
+#    hope_church_greater.example.class: HopeChurch\GreaterBundle\Example
+
+services:
+#    hope_church_greater.example:
+#        class: %hope_church_greater.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

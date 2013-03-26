@@ -1,0 +1,3 @@
+hope_church_greater_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: HopeChurchGreaterBundle:Default:index }

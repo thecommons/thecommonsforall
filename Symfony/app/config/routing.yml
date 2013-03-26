@@ -1,0 +1,4 @@
+hope_church_greater:
+    resource: "@HopeChurchGreaterBundle/Resources/config/routing.yml"
+    prefix:   /
+
