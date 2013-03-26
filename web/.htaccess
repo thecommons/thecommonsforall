@@ -1,6 +1,0 @@
-AuthUserFile /home/bellstreet/hope-ss/.htpasswd
-AuthGroupFile /dev/null
-AuthName "Hope Church North Park - Testing"
-AuthType Basic
-
-require valid-user
