@@ -1,4 +1,4 @@
 */logs/*
 */cache/*
-web/uploads/*
-web/bundles/*
+Symfony/web/uploads/*
+Symfony/web/bundles/*
