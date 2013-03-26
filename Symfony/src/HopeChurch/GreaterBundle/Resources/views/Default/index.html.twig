@@ -7,7 +7,8 @@
     <meta name="description" content="">
     <meta name="author" content="Alistair King">
     
-    <link href="libs/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="{{ asset('libs/bootstrap/css/bootstrap.css') }}" 
+	  rel="stylesheet">
     <style>
       body {
       padding-top: 60px;
@@ -63,7 +64,7 @@
 	  <!-- this is the home page content -->
 	  <div class="row">
 	    <div class="span3">
-	      <img src="img/hope-logo.png"/>
+	      <img src="{{ asset('img/hope-logo.png') }}"/>
 	    </div>
 	    <div class="span9">
 	      <div class="page-header">
@@ -72,7 +73,7 @@
 		  <br>
 		  <small>
 		    This is the shell of the new Hope Church North Park
-		    management interface
+		    management interface {{ page }}
 		  </small>
 		</h1>
 	      </div> <!-- end page-header -->
@@ -137,7 +138,7 @@
 </div>
 
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script src="libs/bootstrap/js/bootstrap.js"></script>
+<script src="{{ asset('libs/bootstrap/js/bootstrap.js') }}"></script>
 </body>
 </html>
 

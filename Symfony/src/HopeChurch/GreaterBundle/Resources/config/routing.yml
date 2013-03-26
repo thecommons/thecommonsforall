@@ -1,6 +1,5 @@
 hope_church_greater_homepage:
     path:  /{page}
-    defaults: { 
-      _controller: HopeChurchGreaterBundle:Default:index,
+    defaults: 
+      _controller: HopeChurchGreaterBundle:Default:index
       page: home
-    }
