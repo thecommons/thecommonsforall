@@ -62,18 +62,24 @@ class Family
     /**
      * @var integer
      */
-    private $smallgroupId;
+    private $smallgroup;
 
     /**
      * @var integer
      */
-    private $leaderId;
+    private $leader;
 
     /**
      * @var integer
      */
     private $id;
 
+    private $people;
+
+    public function __construct()
+    {
+      $this->people = new ArrayCollection();
+    }
 
     /**
      * Set name
@@ -306,52 +312,6 @@ class Family
     }
 
     /**
-     * Set smallgroupId
-     *
-     * @param integer $smallgroupId
-     * @return Family
-     */
-    public function setSmallgroupId($smallgroupId)
-    {
-        $this->smallgroupId = $smallgroupId;
-    
-        return $this;
-    }
-
-    /**
-     * Get smallgroupId
-     *
-     * @return integer 
-     */
-    public function getSmallgroupId()
-    {
-        return $this->smallgroupId;
-    }
-
-    /**
-     * Set leaderId
-     *
-     * @param integer $leaderId
-     * @return Family
-     */
-    public function setLeaderId($leaderId)
-    {
-        $this->leaderId = $leaderId;
-    
-        return $this;
-    }
-
-    /**
-     * Get leaderId
-     *
-     * @return integer 
-     */
-    public function getLeaderId()
-    {
-        return $this->leaderId;
-    }
-
-    /**
      * Get id
      *
      * @return integer 
@@ -359,5 +319,84 @@ class Family
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set leader
+     *
+     * @param \HopeChurch\GreaterBundle\Entity\Person $leader
+     * @return Family
+     */
+    public function setLeader(\HopeChurch\GreaterBundle\Entity\Person $leader = null)
+    {
+        $this->leader = $leader;
+    
+        return $this;
+    }
+
+    /**
+     * Get leader
+     *
+     * @return \HopeChurch\GreaterBundle\Entity\Person 
+     */
+    public function getLeader()
+    {
+        return $this->leader;
+    }
+
+    /**
+     * Add people
+     *
+     * @param \HopeChurch\GreaterBundle\Entity\Person $people
+     * @return Family
+     */
+    public function addPeople(\HopeChurch\GreaterBundle\Entity\Person $people)
+    {
+        $this->people[] = $people;
+    
+        return $this;
+    }
+
+    /**
+     * Remove people
+     *
+     * @param \HopeChurch\GreaterBundle\Entity\Person $people
+     */
+    public function removePeople(\HopeChurch\GreaterBundle\Entity\Person $people)
+    {
+        $this->people->removeElement($people);
+    }
+
+    /**
+     * Get people
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPeople()
+    {
+        return $this->people;
+    }
+
+    /**
+     * Set smallgroup
+     *
+     * @param \HopeChurch\GreaterBundle\Entity\Smallgroup $smallgroup
+     * @return Family
+     */
+    public function setSmallgroup(\HopeChurch\GreaterBundle\Entity\Smallgroup $smallgroup = null)
+    {
+        $this->smallgroup = $smallgroup;
+    
+        return $this;
+    }
+
+    /**
+     * Get smallgroup
+     *
+     * @return \HopeChurch\GreaterBundle\Entity\Smallgroup 
+     */
+    public function getSmallgroup()
+    {
+        return $this->smallgroup;
     }
 }

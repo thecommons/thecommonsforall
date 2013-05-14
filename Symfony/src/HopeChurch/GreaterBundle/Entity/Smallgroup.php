@@ -62,13 +62,22 @@ class Smallgroup
     /**
      * @var integer
      */
-    private $leaderId;
+    private $leader;
 
     /**
      * @var integer
      */
     private $id;
 
+    private $families;
+
+    private $people;
+
+    public function __construct()
+    {
+      $this->families = new ArrayCollection();
+      $this->people = new ArrayCollection();
+    }
 
     /**
      * Set name
@@ -331,5 +340,61 @@ class Smallgroup
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set leader
+     *
+     * @param \HopeChurch\GreaterBundle\Entity\Person $leader
+     * @return Smallgroup
+     */
+    public function setLeader(\HopeChurch\GreaterBundle\Entity\Person $leader = null)
+    {
+        $this->leader = $leader;
+    
+        return $this;
+    }
+
+    /**
+     * Get leader
+     *
+     * @return \HopeChurch\GreaterBundle\Entity\Person 
+     */
+    public function getLeader()
+    {
+        return $this->leader;
+    }
+
+    /**
+     * Add people
+     *
+     * @param \HopeChurch\GreaterBundle\Entity\Person $people
+     * @return Smallgroup
+     */
+    public function addPeople(\HopeChurch\GreaterBundle\Entity\Person $people)
+    {
+        $this->people[] = $people;
+    
+        return $this;
+    }
+
+    /**
+     * Remove people
+     *
+     * @param \HopeChurch\GreaterBundle\Entity\Person $people
+     */
+    public function removePeople(\HopeChurch\GreaterBundle\Entity\Person $people)
+    {
+        $this->people->removeElement($people);
+    }
+
+    /**
+     * Get people
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPeople()
+    {
+        return $this->people;
     }
 }

@@ -7,13 +7,27 @@
     <field name="name" type="string" column="name" length="128" nullable="false"/>
     <field name="dateCreated" type="date" column="date_created" nullable="false"/>
     <field name="meetTime" type="datetime" column="meet_time" nullable="true"/>
-    <field name="meetLocation" type="string" column="meet_location" length="128" nullable="true"/>
-    <field name="addrFirst" type="string" column="addr_first" length="128" nullable="true"/>
-    <field name="addrSecond" type="string" column="addr_second" length="128" nullable="true"/>
-    <field name="addrCity" type="string" column="addr_city" length="128" nullable="true"/>
-    <field name="addrState" type="string" column="addr_state" length="128" nullable="true"/>
-    <field name="addrZip" type="string" column="addr_zip" length="128" nullable="true"/>
-    <field name="addrCountry" type="string" column="addr_country" length="128" nullable="true"/>
-    <field name="leaderId" type="integer" column="leader_id" nullable="true"/>
+    <field name="meetLocation" type="string" column="meet_location" length="128" 
+	   nullable="true"/>
+    <field name="addrFirst" type="string" column="addr_first" length="128" 
+	   nullable="true"/>
+    <field name="addrSecond" type="string" column="addr_second" length="128" 
+	   nullable="true"/>
+    <field name="addrCity" type="string" column="addr_city" length="128" 
+	   nullable="true"/>
+    <field name="addrState" type="string" column="addr_state" length="128" 
+	   nullable="true"/>
+    <field name="addrZip" type="string" column="addr_zip" length="128" 
+	   nullable="true"/>
+    <field name="addrCountry" type="string" column="addr_country" length="128" 
+	   nullable="true"/>
+
+    <one-to-one field="leader" target-entity="Person">
+      <join-column name="leader_id" referenced-column-name="id"/>
+    </one-to-one>
+
+    <one-to-many field="people" target-entity="Person" mapped-by="smallgroup"/>
+
+    <one-to-many field="families" target-entity="Family" mapped-by="smallgroup"/>
   </entity>
 </doctrine-mapping>

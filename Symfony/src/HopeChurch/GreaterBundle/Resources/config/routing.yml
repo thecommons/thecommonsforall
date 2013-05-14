@@ -1,5 +1,10 @@
-hope_church_backend:
-  path: /{action}/{type}
+hope_church_backstage_get:
+  path: /backstage/get/{type}/{record_id}
+  defaults:
+    _controller: HopeChurchGreaterBundle:Backstage:get
+    # the type of objects that can be retrieved
+    type: people
+    #methods: [POST]
 
 hope_church_greater:
   path:  /{page}.{_format}

@@ -70,25 +70,52 @@ class Person
     private $facebook;
 
     /**
-     * @var integer
+     * @var Family
      */
-    private $familyId;
+    private $family;
 
     /**
-     * @var integer
+     * @var Smallgroup
      */
-    private $smallgroupId;
+    private $smallgroup;
 
     /**
-     * @var integer
+     * @var Leader
      */
-    private $leaderId;
+    private $leader;
 
     /**
      * @var integer
      */
     private $id;
 
+    /** Convert object to array
+     *
+     * @return Array
+     */
+    public function toArray()
+    {
+      $dc = ($this->getDateCreated()) ? 
+	$this->getDateCreated()->getTimestamp() :
+	0;
+      return array(
+		   'nameFirst' => $this->getNameFirst(),
+		   'nameLast' => $this->getNameLast(),
+		   'dateCreated' => $dc,
+		   'phoneCell' => $this->getPhoneCell(),
+		   'phoneHome' => $this->getPhoneHome(),
+		   'addrFirst' => $this->getAddrFirst(),
+		   'addrSecond' => $this->getAddrSecond(),
+		   'addrCity' => $this->getAddrCity(),
+		   'addrState' => $this->getAddrState(),
+		   'addrZip' => $this->getAddrZip(),
+		   'addrCountry' => $this->getAddrCountry(),
+		   'family' => $this->getFamily(),
+		   'smallgroup' => $this->getSmallgroup(),
+		   'leader' => $this->getLeader(),
+		   'id' => $this->getId()
+		      );
+    }
 
     /**
      * Set nameFirst
@@ -367,75 +394,6 @@ class Person
     }
 
     /**
-     * Set familyId
-     *
-     * @param integer $familyId
-     * @return Person
-     */
-    public function setFamilyId($familyId)
-    {
-        $this->familyId = $familyId;
-    
-        return $this;
-    }
-
-    /**
-     * Get familyId
-     *
-     * @return integer 
-     */
-    public function getFamilyId()
-    {
-        return $this->familyId;
-    }
-
-    /**
-     * Set smallgroupId
-     *
-     * @param integer $smallgroupId
-     * @return Person
-     */
-    public function setSmallgroupId($smallgroupId)
-    {
-        $this->smallgroupId = $smallgroupId;
-    
-        return $this;
-    }
-
-    /**
-     * Get smallgroupId
-     *
-     * @return integer 
-     */
-    public function getSmallgroupId()
-    {
-        return $this->smallgroupId;
-    }
-
-    /**
-     * Set leaderId
-     *
-     * @param integer $leaderId
-     * @return Person
-     */
-    public function setLeaderId($leaderId)
-    {
-        $this->leaderId = $leaderId;
-    
-        return $this;
-    }
-
-    /**
-     * Get leaderId
-     *
-     * @return integer 
-     */
-    public function getLeaderId()
-    {
-        return $this->leaderId;
-    }
-
-    /**
      * Get id
      *
      * @return integer 
@@ -443,5 +401,74 @@ class Person
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set leader
+     *
+     * @param \HopeChurch\GreaterBundle\Entity\Person $leader
+     * @return Person
+     */
+    public function setLeader(\HopeChurch\GreaterBundle\Entity\Person $leader = null)
+    {
+        $this->leader = $leader;
+    
+        return $this;
+    }
+
+    /**
+     * Get leader
+     *
+     * @return \HopeChurch\GreaterBundle\Entity\Person 
+     */
+    public function getLeader()
+    {
+        return $this->leader;
+    }
+
+    /**
+     * Set family
+     *
+     * @param \HopeChurch\GreaterBundle\Entity\Family $family
+     * @return Person
+     */
+    public function setFamily(\HopeChurch\GreaterBundle\Entity\Family $family = null)
+    {
+        $this->family = $family;
+    
+        return $this;
+    }
+
+    /**
+     * Get family
+     *
+     * @return \HopeChurch\GreaterBundle\Entity\Family 
+     */
+    public function getFamily()
+    {
+        return $this->family;
+    }
+
+    /**
+     * Set smallgroup
+     *
+     * @param \HopeChurch\GreaterBundle\Entity\Smallgroup $smallgroup
+     * @return Person
+     */
+    public function setSmallgroup(\HopeChurch\GreaterBundle\Entity\Smallgroup $smallgroup = null)
+    {
+        $this->smallgroup = $smallgroup;
+    
+        return $this;
+    }
+
+    /**
+     * Get smallgroup
+     *
+     * @return \HopeChurch\GreaterBundle\Entity\Smallgroup 
+     */
+    public function getSmallgroup()
+    {
+        return $this->smallgroup;
     }
 }
