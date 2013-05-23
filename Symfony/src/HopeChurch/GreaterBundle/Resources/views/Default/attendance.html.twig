@@ -31,12 +31,12 @@ var attendanceUrl = "{{ path('hope_church_backstage_get_attendees') }}";
 {% endblock %}
 
 {% block body %}
-<form class="form-inline">
+<form class="form-inline" id="attendance-form">
 <div class="row">
   <div class="span12">
     <span class="help-inline">Attendance Date:</span>
     <div class="input-append date datepicker">
-      <input type="text"/>
+      <input type="text" id="date">
       <span class="add-on"><i class="icon-th"></i></span>
     </div>
   </div>
@@ -45,6 +45,8 @@ var attendanceUrl = "{{ path('hope_church_backstage_get_attendees') }}";
   <div class="span12">
     <table class="table table-bordered table-striped table-hover">
       <thead id="attendance-head">
+	<tr>
+	</tr>
       </thead>
       <tbody id="attendance-body">
       </tbody>
@@ -53,7 +55,8 @@ var attendanceUrl = "{{ path('hope_church_backstage_get_attendees') }}";
 </div>
 <div class="form-actions">
   <button class="btn btn-primary" id="update-btn"
-	  data-loading-text="Loading...">Update</button>
+	  data-loading-text="Loading..."
+	  data-saving-text="Saving...">Save</button>
   <button class="btn" id="reset-btn">Reset</button>
 </div>
 </form>
