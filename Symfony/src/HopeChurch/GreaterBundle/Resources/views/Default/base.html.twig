@@ -10,8 +10,14 @@
     <meta name="description" content="">
     <meta name="author" content="Alistair King">
     
-    <link href="{{ asset('libs/bootstrap/css/bootstrap.css') }}" 
-	  rel="stylesheet">
+    {% block styleblock %}
+    {% stylesheets 
+    'bundles/hopechurchgreater/libs/bootstrap/css/bootstrap.css'
+    filter='cssrewrite' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+    {% endblock %}
+
     <style>
       body {
       padding-top: 60px;
@@ -22,10 +28,13 @@
       }
       }
     </style>
+
+    <script type="text/javascript">
+      {% block head_js %}{% endblock %}
+    </script>
   </head>
   
   <body>
-    
     <div class="navbar navbar-fixed-top navbar-inverse">
       <div class="navbar-inner">
         <div class="container">
@@ -46,12 +55,18 @@
     
     <div class="container">
       {% block body %}{% endblock %}
-    </div> <!-- end container -->
+    </div>
     
 </div>
 
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script src="{{ asset('libs/bootstrap/js/bootstrap.js') }}"></script>
+{% block jsblock %}
+{% javascripts 
+'bundles/hopechurchgreater/libs/jquery/js/jquery-1.9.1.min.js'
+'bundles/hopechurchgreater/libs/bootstrap/js/bootstrap.js' 
+%}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+{% endblock %}
 </body>
 </html>
 

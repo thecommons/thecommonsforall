@@ -15,14 +15,14 @@ class Attendance
     private $date;
 
     /**
-     * @var integer
+     * @var Person
      */
-    private $personId;
+    private $person;
 
     /**
-     * @var integer
+     * @var Event
      */
-    private $eventId;
+    private $event;
 
     /**
      * @var integer
@@ -54,37 +54,37 @@ class Attendance
     }
 
     /**
-     * Set personId
+     * Set person
      *
-     * @param integer $personId
+     * @param \HopeChurch\GreaterBundle\Entity\Person $person
      * @return Attendance
      */
-    public function setPersonId($personId)
+    public function setPerson(\HopeChurch\GreaterBundle\Entity\Person $person)
     {
-        $this->personId = $personId;
+        $this->person = $person;
     
         return $this;
     }
 
     /**
-     * Get personId
+     * Get person
      *
-     * @return integer 
+     * @return  \HopeChurch\GreaterBundle\Entity\Person
      */
-    public function getPersonId()
+    public function getPerson()
     {
-        return $this->personId;
+        return $this->person;
     }
 
     /**
-     * Set eventId
+     * Set event
      *
-     * @param integer $eventId
+     * @param \HopeChurch\GreaterBundle\Entity\Event $event
      * @return Attendance
      */
-    public function setEventId($eventId)
+    public function setEvent(\HopeChurch\GreaterBundle\Entity\Event $event)
     {
-        $this->eventId = $eventId;
+        $this->event = $event;
     
         return $this;
     }
@@ -92,11 +92,11 @@ class Attendance
     /**
      * Get eventId
      *
-     * @return integer 
+     * @return \HopeChurch\GreaterBundle\Entity\Event
      */
-    public function getEventId()
+    public function getEvent()
     {
-        return $this->eventId;
+        return $this->event;
     }
 
     /**

@@ -41,5 +41,7 @@
     <one-to-one field="leader" target-entity="Person">
       <join-column name="leader_id" referenced-column-name="id"/>
     </one-to-one>
+
+    <one-to-many field="attended" target-entity="attendance" mapped-by="person"/>
   </entity>
 </doctrine-mapping>

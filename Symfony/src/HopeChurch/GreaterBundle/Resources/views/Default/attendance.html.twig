@@ -1,41 +1,60 @@
 {% extends 'HopeChurchGreaterBundle:Default:base.html.twig' %}
 
+{% block styleblock %}
+{{ parent() }}
+
+{% stylesheets 
+'bundles/hopechurchgreater/libs/datepicker/css/datepicker.css'
+filter='cssrewrite' %}
+<link rel="stylesheet" href="{{ asset_url }}" />
+{% endstylesheets %}
+
+{% endblock %}
+
+{% block head_js %}
+{{ parent() }}
+
+var attendanceUrl = "{{ path('hope_church_backstage_get_attendees') }}";
+{% endblock %}
+
+{% block jsblock %}
+{{ parent() }}
+
+{% javascripts 
+'bundles/hopechurchgreater/libs/moment/js/moment.min.js'
+'bundles/hopechurchgreater/libs/datepicker/js/bootstrap-datepicker.js'
+'bundles/hopechurchgreater/libs/d3/js/d3.v3.min.js'
+'@HopeChurchGreaterBundle/Resources/public/js/attendance.js' %}
+<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
+{% endblock %}
+
 {% block body %}
-<table class="table table-bordered table-striped">
-  <!-- this will all be replaced by dynamic content -->
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Last Visit</th>
-      <th># Visits</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Alistair King</td>
-      <td>24 Mar 2013</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <td>Alistair King</td>
-      <td>24 Mar 2013</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <td>Alistair King</td>
-      <td>24 Mar 2013</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <td>Alistair King</td>
-      <td>24 Mar 2013</td>
-      <td>11</td>
-    </tr>
-    <tr>
-      <td>Alistair King</td>
-      <td>24 Mar 2013</td>
-      <td>11</td>
-    </tr>
-  </tbody>
-</table>
+<form class="form-inline">
+<div class="row">
+  <div class="span12">
+    <span class="help-inline">Attendance Date:</span>
+    <div class="input-append date datepicker">
+      <input type="text"/>
+      <span class="add-on"><i class="icon-th"></i></span>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="span12">
+    <table class="table table-bordered table-striped table-hover">
+      <thead id="attendance-head">
+      </thead>
+      <tbody id="attendance-body">
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="form-actions">
+  <button class="btn btn-primary" id="update-btn"
+	  data-loading-text="Loading...">Update</button>
+  <button class="btn" id="reset-btn">Reset</button>
+</div>
+</form>
 {% endblock %}

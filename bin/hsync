@@ -1,0 +1,1 @@
+rsync --exclude=Symfony/app/logs/ --exclude=Symfony/app/cache/ --exclude=.git -av ~/projects/hope/ bellstreet:hope.isthewayforward.com/

@@ -19,6 +19,15 @@ class Event
      */
     private $id;
 
+    /** 
+     * @var ArrayCollection
+     */
+    private $attendees;
+
+    public function __construct()
+    {
+      $this->attendees = new ArrayCollection();
+    }
 
     /**
      * Set eventName
@@ -51,5 +60,40 @@ class Event
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Add attendees
+     *
+     * @param \HopeChurch\GreaterBundle\Entity\Attendance $attendance
+     * @return People
+     */
+    public function addAttendees(\HopeChurch\GreaterBundle\Entity\Attendance 
+				$attendees)
+    {
+        $this->attendees[] = $attendees;
+    
+        return $this;
+    }
+
+    /**
+     * Remove attendees
+     *
+     * @param \HopeChurch\GreaterBundle\Entity\Person $people
+     */
+    public function removeAttendees(\HopeChurch\GreaterBundle\Entity\Attendance 
+				   $attendees)
+    {
+        $this->attendees->removeElement($attendees);
+    }
+
+    /**
+     * Get attendees
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAttendees()
+    {
+        return $this->attendees;
     }
 }

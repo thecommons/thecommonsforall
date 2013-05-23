@@ -84,10 +84,20 @@ class Person
      */
     private $leader;
 
+    /** 
+     * @var ArrayCollection
+     */
+    private $attended;
+
     /**
      * @var integer
      */
     private $id;
+
+    public function __contruct()
+    {
+      $this->attended = new ArrayCollection();
+    }
 
     /** Convert object to array
      *
@@ -471,4 +481,40 @@ class Person
     {
         return $this->smallgroup;
     }
+
+    /**
+     * Add attended
+     *
+     * @param \HopeChurch\GreaterBundle\Entity\Attendance $attendance
+     * @return People
+     */
+    public function addAttended(\HopeChurch\GreaterBundle\Entity\Attendance 
+				$attended)
+    {
+        $this->attended[] = $attended;
+    
+        return $this;
+    }
+
+    /**
+     * Remove attended
+     *
+     * @param \HopeChurch\GreaterBundle\Entity\Person $people
+     */
+    public function removeAttended(\HopeChurch\GreaterBundle\Entity\Attendance 
+				   $attended)
+    {
+        $this->attended->removeElement($attended);
+    }
+
+    /**
+     * Get attended
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAttended()
+    {
+        return $this->attended;
+    }
+
 }
