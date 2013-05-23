@@ -15,9 +15,10 @@ class AttendanceRepository extends EntityRepository
 			." max(a.date) as a_latest "
 			." FROM HopeChurchGreaterBundle:Attendance a "
 			." JOIN a.person p "
-			." JOIN a.event e WHERE e.id = $event_id"
+			." JOIN a.event e WHERE e.id = :event_id"
 			." GROUP BY p.id "
 			." ORDER BY a_cnt DESC")
+	  ->setParameter('event_id', $event_id)
 	  ->getResult();
     }
 
@@ -28,8 +29,10 @@ class AttendanceRepository extends EntityRepository
 			." FROM HopeChurchGreaterBundle:Attendance a "
 			." JOIN a.person p "
 			." JOIN a.event e "
-			." WHERE e.id = $event_id "
-			." AND a.date = '$date'")
+			." WHERE e.id = :event_id "
+			." AND a.date = :date")
+	  ->setParameter('event_id', $event_id)
+	  ->setParameter('date', $date)
 	  ->getResult();
     }
 }
