@@ -39,15 +39,31 @@
       <div class="navbar-inner">
         <div class="container">
           <ul class="nav">
-
-	    {% for page in nav_pages %}
+	    {% for page, subpages in nav_pages %}
+            {% if subpages|length > 0 %}
+            <li class="dropdown {% if page == active_page %}active{% endif %}">
+	      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		{{ page|title }}
+                <b class="caret"></b>
+	      </a>
+              <ul class="dropdown-menu">
+                {% for subpage in subpages %}
+                <li {% if page == active_page and subpage == active_subpage %}class="active"{% endif %}>
+	          <a href="{{ path(route, {'page': page, 'subpage': subpage}) }}">
+		    {{ subpage|title }}
+	          </a>
+                </li>
+                {% endfor %}
+              </ul>
+	    </li>
+            {% else %}
 	    <li {% if page == active_page %} class="active" {% endif %}>
-	      <a href="{{ path(route, {'page': page, '_format': 'html'}) }}">
+	      <a href="{{ path(route, {'page': page}) }}">
 		{{ page|title }}
 	      </a>
 	    </li>
+            {% endif %}
 	    {% endfor %}
-
           </ul>
         </div>
       </div>

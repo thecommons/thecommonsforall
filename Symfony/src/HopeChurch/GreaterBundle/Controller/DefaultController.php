@@ -3,6 +3,7 @@
 namespace HopeChurch\GreaterBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 use HopeChurch\GreaterBundle\Form\Type\AddPersonType;
 use HopeChurch\GreaterBundle\Entity\Person;
@@ -10,43 +11,68 @@ use HopeChurch\GreaterBundle\Entity\Person;
 class DefaultController extends Controller
 {
   private $pages = array(
-    'home',
-    'attendance',
-    'add',
-    'edit'
+    'home' => array(),
+    'attendance' => array(),
+    'add' => array('person'),
+    'edit' => array()
   );
   
-  public function indexAction($page, $_format, $_route)
+  public function indexAction($page, $subpage, $_route)
   {
     /* if they have asked for 'index', send them to 'home' */
-    if($page == 'index')
-    {
+    if($page == 'index') {
       $page = 'home';
-    }		    
+    }
 
-    return $this->render("HopeChurchGreaterBundle:Default:$page.$_format.twig", 
+    return $this->render("HopeChurchGreaterBundle:Default:$page.html.twig", 
 			 array(
 	'route' => $_route,
 	'active_page' => $page,
-	'format' => $_format,
+        'active_subpage' => '',
 	'nav_pages' => $this->pages
       ));
   }
   
-  public function addPersonAction($_route)
+  public function addPersonAction(Request $request, $_route)
   {
     $person = new Person();
 
     $form = $this->createForm(new AddPersonType(), $person);
 
+    if ($request->isMethod('POST')) {
+      $form->bind($request);
+      
+      if ($form->isValid()) {
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($person);
+        $em->flush();
+
+        $nameFirst = $form->get('nameFirst')->getData();
+        $this->get('session')->getFlashBag()->add('success', 
+                                                  "$nameFirst was added successfully");
+        
+        return $this->redirect($this->generateUrl(
+            'hope_church_greater_add_person'));
+      }
+      else
+      {
+        $this->get('session')->getFlashBag()->add('error', 
+                                                  'Failed to add person');
+      }
+    }
+
     return $this->render(
       'HopeChurchGreaterBundle:Default:addPerson.html.twig', 
       array(
         'form' => $form->createView(),
-	'route' => $_route,
+	'route' => 'hope_church_greater',
         'active_page' => 'add',
-	'format' => '',
-        'nav_pages' => $this->pages
+        'active_subpage' => 'person',
+        'nav_pages' => $this->pages,
+        'csrf_protection' => true,
+        'csrf_field_name' => '_token',
+        // a unique key to help generate the secret token
+        'intention'       => 'new_person',
       )
     );
   }

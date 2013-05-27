@@ -6,13 +6,11 @@ hope_church_greater_add_person:
     _controller: HopeChurchGreaterBundle:Default:addPerson
 
 hope_church_greater:
-  path:  /{page}.{_format}
+  path:  /{page}/{subpage}
   defaults: 
     _controller: HopeChurchGreaterBundle:Default:index
     page: home
-    _format: html
-  requirements:
-    _format: html
+    subpage: 
 
 ########## Back-end Routes ##########
 
@@ -28,6 +26,12 @@ hope_church_backstage_update_attendees:
   path: /backstage/update/attendees
   defaults:
     _controller: HopeChurchGreaterBundle:Backstage:updateAttendees
+
+#---------- Leaders Page Routes ----------#
+hope_church_backstage_get_leaders:
+  path: /backstage/get/leaders
+  defaults:
+    _controller: HopeChurchGreaterBundle:Backstage:getLeaders
 
 #---------- Add-Person Page Routes ----------#
 

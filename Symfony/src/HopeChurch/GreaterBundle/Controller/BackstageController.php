@@ -153,9 +153,27 @@ class BackstageController extends Controller
   public function updatePersonAction($_route)
   {
     $person = new Person();
-
     
     throw $this->createNotFoundException("Person update not implemented");
+  }
+
+  public function getLeadersAction()
+  {
+    $em = $this->getDoctrine()->getManager();
+
+    $records = $em->getRepository('HopeChurchGreaterBundle:Person')
+	          ->findAllLeaders();
+
+    if(!$records)
+      {
+	// no leaders
+	$records = Array();
+      }
+    
+    $response = new Response(json_encode($records));
+    $response->headers->set('Content-Type', 'application/json');
+
+    return $response;
   }
 
 }

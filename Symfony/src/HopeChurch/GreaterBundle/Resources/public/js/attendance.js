@@ -150,7 +150,9 @@ d3.json(attendanceUrl,
 	    if (error) return console.warn(error);
 	    
 	    json.forEach(function (e) {
-		e.a_latest_format = dateFormat(sqlDateFormat.parse(e.a_latest));
+		e.a_latest_format = e.a_latest ? 
+		    dateFormat(sqlDateFormat.parse(e.a_latest)) :
+		    'Never Visited';
 		data[e.p_id] = e;
 	    });
 

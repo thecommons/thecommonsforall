@@ -104,11 +104,6 @@ class Person
    */
   private $id;
 
-  public function __contruct()
-  {
-    $this->attended = new ArrayCollection();
-  }
-
   /** Convert object to array
    *
    * @return Array
@@ -602,4 +597,44 @@ class Person
     return $this->attended;
   }
 
+    /**
+     * @var integer
+     */
+    private $leaderId;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->attended = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Set leaderId
+     *
+     * @param integer $leaderId
+     * @return Person
+     */
+    public function setLeaderId($leaderId)
+    {
+        $this->leaderId = $leaderId;
+    
+        return $this;
+    }
+
+    /**
+     * Get leaderId
+     *
+     * @return integer 
+     */
+    public function getLeaderId()
+    {
+        return $this->leaderId;
+    }
+
+    public function __toString()
+    {
+      return $this->getNameFirst()." ".$this->getNameLast();
+    }
 }

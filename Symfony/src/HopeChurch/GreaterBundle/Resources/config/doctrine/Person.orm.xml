@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity name="HopeChurch\GreaterBundle\Entity\Person" table="person">
+  <entity name="HopeChurch\GreaterBundle\Entity\Person" table="person"
+	  repository-class="HopeChurch\GreaterBundle\Entity\PersonRepository">
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
     </id>
@@ -42,6 +43,7 @@
       <join-column name="smallgroup_id" referenced-column-name="id"/>
     </many-to-one>
 
+    <field name="leaderId" type="integer" column="leader_id" nullable="true"/>
     <one-to-one field="leader" target-entity="Person">
       <join-column name="leader_id" referenced-column-name="id"/>
     </one-to-one>

@@ -1,0 +1,222 @@
+{% extends 'HopeChurchGreaterBundle:Default:base.html.twig' %}
+
+{% block styleblock %}
+{{ parent() }}
+{% stylesheets 
+'bundles/hopechurchgreater/libs/bootstrap-formhelpers/css/bootstrap-formhelpers.css'
+filter='cssrewrite' %}
+<link rel="stylesheet" href="{{ asset_url }}" />
+{% endstylesheets %}
+{% endblock %}
+
+{% block jsblock %}
+{{ parent() }}
+
+{% javascripts
+'bundles/hopechurchgreater/libs/bootstrap-formhelpers/js/bootstrap-formhelpers-phone.js'
+'bundles/hopechurchgreater/libs/bootstrap-formhelpers/js/bootstrap-formhelpers-phone.format.js'
+
+'bundles/hopechurchgreater/libs/bootstrap-formhelpers/js/bootstrap-formhelpers-countries.js'
+'bundles/hopechurchgreater/libs/bootstrap-formhelpers/js/bootstrap-formhelpers-countries.en_US.js'
+'bundles/hopechurchgreater/libs/bootstrap-formhelpers/js/bootstrap-formhelpers-states.js'
+'bundles/hopechurchgreater/libs/bootstrap-formhelpers/js/bootstrap-formhelpers-states.en_US.js'
+'@HopeChurchGreaterBundle/Resources/public/js/add.js'
+%}
+<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
+{% endblock %}
+
+{# style the elements in the form #}
+{% form_theme form _self %}
+{% block form_row %}
+    <div class="control-group">
+      {{ 
+      form_label(form, null, 
+      {'label_attr': {'class': 'control-label'}})
+      }}
+      <div class="controls">
+        {{ form_widget(form, {'attr': {'placeholder': placeholder | default(label)}}) }}
+        {% if help_inline is defined %}
+        <span class="help-inline">{{ help_inline }}</span>
+        {% endif %}
+        <span class="help-inline text-error">{{ form_errors(form) }}</span>
+        {% if help_blocks is defined %}
+        {% for help in help_blocks %}
+        <span class="help-block">{{ help }}</span>
+        {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+{% endblock form_row %}
+
+{% block body %}
+<div class="page-header">
+  <h1>Add a new person</h1>
+</div>
+
+{% for flashMessage in app.session.flashbag.get('success') %}
+<div class="alert alert-success">
+  {{ flashMessage }}
+</div>
+{% endfor %}
+
+{% for flashMessage in app.session.flashbag.get('error') %}
+<div class="alert alert-error">
+  {{ flashMessage }}
+</div>
+{% endfor %}
+
+<form class="form-horizontal"
+      action="{{ path('hope_church_greater_add_person') }}" 
+      method="post" {{ form_enctype(form) }}
+      >
+  <fieldset>
+    {# NAME #}
+    <legend>Basic Info</legend>
+    {{ 
+    form_row(form.nameFirst, 
+      {'help_blocks': 
+        [
+          'Even if you know nothing about this person, write the best description you can in here.',
+           'Once you find out who they are this can be updated.'
+        ]
+      }
+    )
+    }}
+    {{ form_row(form.nameLast) }}
+    <div class="control-group">
+      {{ 
+      form_label(form.notes, null, 
+      {'label_attr': {'class': 'control-label'}})
+      }}
+      <div class="controls">
+        <textarea class="input-xxlarge" rows="4" 
+                  id="{{ form.notes.vars.id }}" 
+                  name="{{ form.notes.vars.full_name }}"
+                  placeholder="Anything else?"></textarea>
+      </div>
+    </div>
+
+    {# EXPAND/COLLAPSE ALL INFO #}
+    <div class="control-group">
+      <div class="controls">
+        <button type="button" class="btn" id="btn-all-info" 
+                data-toggle="collapse" data-target="#all-info">
+          <i id="btn-all-info-icon" class="icon-plus"></i>
+          <span id="btn-all-info-text">More</span>
+        </button>
+        <span class="help-block">This is all we need, but if you have more 
+          details (like email, phone, etc.), please add them!</span>
+      </div>
+    </div>
+  </fieldset>
+
+  <div id="all-info" class="collapse out">
+
+    <fieldset>
+      <legend>Contact Details</legend>
+      {# EMAIL #}
+      {{ form_row(form.email) }}
+
+      {# PHONE #}
+      <div class="control-group">
+      {{ 
+      form_label(form.phoneCell, null, 
+      {'label_attr': {'class': 'control-label'}})
+      }}
+        <div class="controls">
+          <input type="text" 
+                 id="{{ form.phoneCell.vars.id }}" 
+                 name="{{ form.phoneCell.vars.full_name }}"
+                 placeholder="{{ form.phoneCell.vars.label }}"
+                 class="bfh-phone" data-country="US">
+        </div>
+      </div>
+      <div class="control-group">
+      {{ 
+      form_label(form.phoneHome, null, 
+      {'label_attr': {'class': 'control-label'}})
+      }}
+        <div class="controls">
+          <input type="text" 
+                 id="{{ form.phoneHome.vars.id }}" 
+                 name="{{ form.phoneHome.vars.full_name }}"
+                 placeholder="{{ form.phoneHome.vars.label }}"
+                 class="bfh-phone" data-country="US">
+        </div>
+      </div>
+      
+      {# FACEBOOK #}
+      {{ form_row(form.facebook, 
+      {help_inline: 
+      'Does at least one leader have this person added as a friend on FB?'}) }}
+    </fieldset>
+
+    <fieldset>
+      <legend>Snail-Mail</legend>
+      {# ADDRESS #}
+      {{ form_row(form.addrFirst, {'placeholder': "Address #1"}) }}
+      {{ form_row(form.addrSecond, {'placeholder': "Address #2"}) }}
+      {{ form_row(form.addrCity) }}
+      {{ form_row(form.addrZip) }}
+      <div class="control-group">
+        {{ form_label(form.addrCountry, null, 
+        {'label_attr': {'class': 'control-label'}}) }}
+        <div class="controls">
+          <select class="bfh-countries" 
+                  data-country="US"
+                  id="{{ form.addrCountry.vars.id }}" 
+                  name="{{ form.addrCountry.vars.full_name }}"
+                  ></select>
+        </div>
+      </div>
+      <div class="control-group">
+        {{ form_label(form.addrState, null, 
+        {'label_attr': {'class': 'control-label'}}) }}
+        <div class="controls">
+          <select class="bfh-states" 
+                  data-country="{{ form.addrCountry.vars.id }}" 
+                  data-state="CA"
+                  id="{{ form.addrState.vars.id }}" 
+                  name="{{ form.addrState.vars.full_name }}"
+                  ></select>
+        </div>
+      </div>
+    </fieldset>
+
+    {# RELATIONSHIPS #}
+    <fieldset>
+      <legend>Relationships</legend>
+      {{
+      form_row(form.leader, {'help_blocks': 
+      ['Who greeted this person and may know more about them?']
+      })
+      }}
+      
+      {# TODO - ADD THESE #}
+      <div class="control-group">
+        <label class="control-label" for="inputFamily">Family</label>
+        <div class="controls">
+          <input type="text" id="inputSmallgroup" 
+                 placeholder="Coming soon..." disabled/>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputSmallgroup">Community Group</label>
+        <div class="controls">
+          <input type="text" id="inputSmallgroup" 
+                 placeholder="Coming soon..." disabled/>
+        </div>
+      </div>
+    </fieldset>
+    
+  </div> {# end all-info div #}
+
+  <div class="form-actions">
+    <button type="submit" class="btn btn-primary">Create Person</button>
+    <button type="button" class="btn">Reset</button>
+  </div>
+  {{ form_row(form._token) }}
+</form>
+{% endblock %}
