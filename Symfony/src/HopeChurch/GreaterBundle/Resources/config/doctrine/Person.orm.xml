@@ -8,6 +8,8 @@
 	   nullable="false"/>
     <field name="nameLast" type="string" column="name_last" length="128" 
 	   nullable="true"/>
+    <field name="notes" type="string" column="notes"
+	   nullable="true"/>
     <field name="dateCreated" type="date" column="date_created" 
 	   nullable="false"/>
     <field name="email" type="string" column="email" length="256"
@@ -44,6 +46,11 @@
       <join-column name="leader_id" referenced-column-name="id"/>
     </one-to-one>
 
-    <one-to-many field="attended" target-entity="Attendance" mapped-by="person"/>
+    <one-to-many field="attended" target-entity="Attendance"
+		 mapped-by="person"/>
+
+    <lifecycle-callbacks>
+      <lifecycle-callback type="prePersist" method="setDateCreatedValue" />
+    </lifecycle-callbacks>
   </entity>
 </doctrine-mapping>

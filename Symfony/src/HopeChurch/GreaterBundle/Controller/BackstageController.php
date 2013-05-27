@@ -150,4 +150,12 @@ class BackstageController extends Controller
     throw $this->createNotFoundException("Attendance update not implemented");
   }
 
+  public function updatePersonAction($_route)
+  {
+    $person = new Person();
+
+    
+    throw $this->createNotFoundException("Person update not implemented");
+  }
+
 }

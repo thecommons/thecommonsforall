@@ -1,5 +1,10 @@
 ########## Front-end Routes ##########
 
+hope_church_greater_add_person:
+  path: /add/person
+  defaults:
+    _controller: HopeChurchGreaterBundle:Default:addPerson
+
 hope_church_greater:
   path:  /{page}.{_format}
   defaults: 
@@ -24,6 +29,12 @@ hope_church_backstage_update_attendees:
   defaults:
     _controller: HopeChurchGreaterBundle:Backstage:updateAttendees
 
+#---------- Add-Person Page Routes ----------#
+
+hope_church_backstage_update_person:
+  path: /backstage/update/person
+  defaults:
+    _controller: HopeChurchGreaterBundle:Backstage:updatePerson
 
 # this is the generic get route, it must be last
 hope_church_backstage_get_generic:

@@ -9,6 +9,12 @@ filter='cssrewrite' %}
 {% endstylesheets %}
 {% endblock %}
 
+{% block head_js %}
+{{ parent() }}
+
+var leadersUrl = "{{ path('hope_church_backstage_get_generic', {'type': 'person-brief', 'record_id': 'all'}) }}";
+{% endblock %}
+
 {% block jsblock %}
 {{ parent() }}
 
@@ -20,6 +26,7 @@ filter='cssrewrite' %}
 'bundles/hopechurchgreater/libs/bootstrap-formhelpers/js/bootstrap-formhelpers-countries.en_US.js'
 'bundles/hopechurchgreater/libs/bootstrap-formhelpers/js/bootstrap-formhelpers-states.js'
 'bundles/hopechurchgreater/libs/bootstrap-formhelpers/js/bootstrap-formhelpers-states.en_US.js'
+'bundles/hopechurchgreater/libs/d3/js/d3.v3.min.js'
 '@HopeChurchGreaterBundle/Resources/public/js/add.js'
 %}
 <script type="text/javascript" src="{{ asset_url }}"></script>
@@ -157,12 +164,9 @@ filter='cssrewrite' %}
       <div class="control-group">
         <label class="control-label" for="inputLeader">Leader</label>
         <div class="controls">
-          <select>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
+          <select id="select-leader">
+            <option id="select-leader-def" value="" disabled selected>
+              Loading...</option>
           </select>
           <span class="help-block">Who greeted this person and may know more about them?</span>
         </div>
