@@ -40,7 +40,7 @@ filter='cssrewrite' %}
         {% if help_inline is defined %}
         <span class="help-inline">{{ help_inline }}</span>
         {% endif %}
-        <span class="help-inline text-error">{{ form_errors(form) }}</span>
+        {{ form_errors(form) }}
         {% if help_blocks is defined %}
         {% for help in help_blocks %}
         <span class="help-block">{{ help }}</span>
@@ -49,6 +49,23 @@ filter='cssrewrite' %}
       </div>
     </div>
 {% endblock form_row %}
+
+{# form_errors.html.twig #}
+{% block form_errors %}
+    {% spaceless %}
+    {% if errors|length > 0 %}
+    {% for error in errors %}
+    <span class="help-inline"><p class="text-error">
+    {{
+    error.messagePluralization is null
+    ? error.messageTemplate|trans(error.messageParameters, 'validators')
+    : error.messageTemplate|transchoice(error.messagePluralization, error.messageParameters, 'validators')
+    }}
+    </p></span>
+    {% endfor %}
+    {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}
 
 {% block body %}
 <div class="page-header">

@@ -3,6 +3,9 @@
 namespace HopeChurch\GreaterBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Type;
 
 /**
  * Person
@@ -636,5 +639,10 @@ class Person
     public function __toString()
     {
       return $this->getNameFirst()." ".$this->getNameLast();
+    }
+
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+      $metadata->addPropertyConstraint('nameFirst', new NotBlank());
     }
 }

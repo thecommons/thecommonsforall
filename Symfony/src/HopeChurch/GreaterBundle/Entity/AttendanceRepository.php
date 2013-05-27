@@ -18,7 +18,7 @@ class AttendanceRepository extends EntityRepository
 			     ." LEFT JOIN a.event e "
                              ." WHERE e.id = :event_id OR e.id is NULL"
 			     ." GROUP BY p.id "
-			     ." ORDER BY a_cnt DESC")
+			     ." ORDER BY a_cnt DESC, a_latest DESC, p.nameFirst ASC, p.nameLast ASC")
 	        ->setParameter('event_id', $event_id)
 	        ->getResult();
   }

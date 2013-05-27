@@ -57,7 +57,7 @@ class DefaultController extends Controller
       else
       {
         $this->get('session')->getFlashBag()->add('error', 
-                                                  'Failed to add person');
+                                                  'Failed to add person. Please correct the issues noted');
       }
     }
 
