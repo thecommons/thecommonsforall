@@ -11,6 +11,12 @@ $('#btn-all-info').click(function(){
     $('#btn-all-info-icon').toggleClass("icon-plus icon-minus");
 });
 
+$('#btn-reset').click(function(){
+
+    $("#form-person").trigger('reset');
+
+});
+
 /*
 // populate the leader select box using d3
 d3.json(leadersUrl, function(error, json) {

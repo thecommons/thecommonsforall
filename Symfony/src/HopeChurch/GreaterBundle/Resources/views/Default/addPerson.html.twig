@@ -87,6 +87,7 @@ filter='cssrewrite' %}
 <form class="form-horizontal"
       action="{{ path('hope_church_greater_add_person') }}" 
       method="post" {{ form_enctype(form) }}
+      id="form-person"
       >
   <fieldset>
     {# NAME #}
@@ -232,7 +233,7 @@ filter='cssrewrite' %}
 
   <div class="form-actions">
     <button type="submit" class="btn btn-primary">Create Person</button>
-    <button type="button" class="btn">Reset</button>
+    <button type="button" class="btn" id="btn-reset">Reset</button>
   </div>
   {{ form_row(form._token) }}
 </form>
