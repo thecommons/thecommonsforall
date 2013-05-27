@@ -10,6 +10,8 @@
 	   nullable="true"/>
     <field name="dateCreated" type="date" column="date_created" 
 	   nullable="false"/>
+    <field name="email" type="string" column="email" length="256"
+	   nullable="true"/>
     <field name="phoneCell" type="string" column="phone_cell" length="20" 
 	   nullable="true"/>
     <field name="phoneHome" type="string" column="phone_home" length="20" 
@@ -42,6 +44,6 @@
       <join-column name="leader_id" referenced-column-name="id"/>
     </one-to-one>
 
-    <one-to-many field="attended" target-entity="attendance" mapped-by="person"/>
+    <one-to-many field="attended" target-entity="Attendance" mapped-by="person"/>
   </entity>
 </doctrine-mapping>

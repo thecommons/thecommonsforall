@@ -2,13 +2,11 @@
 
 {% block styleblock %}
 {{ parent() }}
-
 {% stylesheets 
 'bundles/hopechurchgreater/libs/datepicker/css/datepicker.css'
 filter='cssrewrite' %}
 <link rel="stylesheet" href="{{ asset_url }}" />
 {% endstylesheets %}
-
 {% endblock %}
 
 {% block head_js %}

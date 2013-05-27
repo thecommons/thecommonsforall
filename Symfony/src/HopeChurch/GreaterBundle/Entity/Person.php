@@ -27,6 +27,11 @@ class Person
     /**
      * @var string
      */
+    private $email;
+
+    /**
+     * @var string
+     */
     private $phoneCell;
 
     /**
@@ -112,6 +117,7 @@ class Person
 		   'nameFirst' => $this->getNameFirst(),
 		   'nameLast' => $this->getNameLast(),
 		   'dateCreated' => $dc,
+		   'email' => $this->getEmail(),
 		   'phoneCell' => $this->getPhoneCell(),
 		   'phoneHome' => $this->getPhoneHome(),
 		   'addrFirst' => $this->getAddrFirst(),
@@ -123,6 +129,20 @@ class Person
 		   'family' => $this->getFamily(),
 		   'smallgroup' => $this->getSmallgroup(),
 		   'leader' => $this->getLeader(),
+		   'id' => $this->getId()
+		      );
+    }
+
+    /** Convert object to array
+     * but only include First and Last name
+     *
+     * @return Array
+     */
+    public function toArrayBrief()
+    {
+      return array(
+		   'nameFirst' => $this->getNameFirst(),
+		   'nameLast' => $this->getNameLast(),
 		   'id' => $this->getId()
 		      );
     }
@@ -194,6 +214,29 @@ class Person
     public function getDateCreated()
     {
         return $this->dateCreated;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     * @return Person
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
     }
 
     /**

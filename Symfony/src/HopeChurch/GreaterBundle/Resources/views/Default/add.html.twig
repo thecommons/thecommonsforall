@@ -1,5 +1,193 @@
 {% extends 'HopeChurchGreaterBundle:Default:base.html.twig' %}
 
+{% block styleblock %}
+{{ parent() }}
+{% stylesheets 
+'bundles/hopechurchgreater/libs/bootstrap-formhelpers/css/bootstrap-formhelpers.css'
+filter='cssrewrite' %}
+<link rel="stylesheet" href="{{ asset_url }}" />
+{% endstylesheets %}
+{% endblock %}
+
+{% block jsblock %}
+{{ parent() }}
+
+{% javascripts
+'bundles/hopechurchgreater/libs/bootstrap-formhelpers/js/bootstrap-formhelpers-phone.js'
+'bundles/hopechurchgreater/libs/bootstrap-formhelpers/js/bootstrap-formhelpers-phone.format.js'
+
+'bundles/hopechurchgreater/libs/bootstrap-formhelpers/js/bootstrap-formhelpers-countries.js'
+'bundles/hopechurchgreater/libs/bootstrap-formhelpers/js/bootstrap-formhelpers-countries.en_US.js'
+'bundles/hopechurchgreater/libs/bootstrap-formhelpers/js/bootstrap-formhelpers-states.js'
+'bundles/hopechurchgreater/libs/bootstrap-formhelpers/js/bootstrap-formhelpers-states.en_US.js'
+'@HopeChurchGreaterBundle/Resources/public/js/add.js'
+%}
+<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
+{% endblock %}
+
 {% block body %}
-<p>-- this is where you can add new people --</p>
+<form class="form-horizontal">
+
+  <fieldset>
+    {# NAME #}
+    <legend>Basic Info</legend>
+    <div class="control-group">
+      <label class="control-label" for="inputNameFirst">First Name</label>
+      <div class="controls">
+        <input type="text" id="inputNameFirst" placeholder="First Name" required>
+        <span class="help-block">Even if you know nothing about this person, 
+          write the best description you can in here.</span>
+        <span class="help-block">Once you find out who they are this can be 
+          updated.</span>
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="inputNameLast">Last Name</label>
+      <div class="controls">
+        <input type="text" id="inputNameLast" placeholder="Last Name">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="inputNotes">Notes</label>
+      <div class="controls">
+        <textarea class="input-xxlarge" rows="4" id="inputNameLast" 
+                  placeholder="Anything else?"></textarea>
+      </div>
+    </div>
+
+    {# EXPAND/COLLAPSE ALL INFO #}
+    <div class="control-group">
+      <div class="controls">
+        <button type="button" class="btn" id="btn-all-info" 
+                data-toggle="collapse" data-target="#all-info">
+          <i id="btn-all-info-icon" class="icon-plus"></i>
+          <span id="btn-all-info-text">More</span>
+        </button>
+        <span class="help-block">This is all we need, but if you have more 
+          details (like email, phone, etc.), please add them!</span>
+      </div>
+    </div>
+  </fieldset>
+
+  <div id="all-info" class="collapse out">
+
+    <fieldset>
+      <legend>Contact Details</legend>
+      {# EMAIL #}
+      <div class="control-group">
+        <label class="control-label" for="inputEmail">Email</label>
+        <div class="controls">
+          <input type="text" id="inputEmail" placeholder="Email">
+        </div>
+      </div>  
+
+      {# PHONE #}
+      <div class="control-group">
+        <label class="control-label" for="inputCell">Cell Phone</label>
+        <div class="controls">
+          <input type="text" id="inputCell" placeholder="Cell Phone"
+                 class="bfh-phone" data-country="US">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputHome">Home Phone</label>
+        <div class="controls">
+          <input type="text" id="inputHome" placeholder="Home Phone"
+                 class="bfh-phone" data-country="US">
+        </div>
+      </div>
+      
+      {# FACEBOOK #}
+      <div class="control-group">
+        <label class="control-label" for="inputFacebook">Facebook?</label>
+        <div class="controls">
+          <input type="checkbox">
+          <span class="help-inline">Does at least one leader have this person as a friend?</span>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Snail-Mail</legend>
+      {# ADDRESS #}
+      <div class="control-group">
+        <label class="control-label" for="inputAddr1">Address</label>
+        <div class="controls">
+          <input type="text" id="inputAddr1" placeholder="Address #1">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputAddr2"></label>
+        <div class="controls">
+          <input type="text" id="inputAddr2" placeholder="Address #2">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputCity">City</label>
+        <div class="controls">
+          <input type="text" id="inputCity" placeholder="City">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputZip">Zip/Postal Code</label>
+        <div class="controls">
+          <input type="text" id="inputZip" placeholder="Zip/Postal Code">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputCountry">Country</label>
+        <div class="controls">
+          <select id="inputCountry" class="bfh-countries" data-country="US"></select>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputState">State/Province/Region</label>
+        <div class="controls">
+          <select id="inputState" class="bfh-states" data-country="inputCountry" 
+                  data-state="CA"></select>
+        </div>
+      </div>
+    </fieldset>
+
+    {# RELATIONSHIPS #}
+    <fieldset>
+      <legend>Relationships</legend>
+      <div class="control-group">
+        <label class="control-label" for="inputLeader">Leader</label>
+        <div class="controls">
+          <select>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+          <span class="help-block">Who greeted this person and may know more about them?</span>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputFamily">Family</label>
+        <div class="controls">
+          <input type="text" id="inputSmallgroup" 
+                 placeholder="Coming soon..." disabled/>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputSmallgroup">Community Group</label>
+        <div class="controls">
+          <input type="text" id="inputSmallgroup" 
+                 placeholder="Coming soon..." disabled/>
+        </div>
+      </div>
+    </fieldset>
+    
+  </div> {# end all-info div #}
+
+  <div class="form-actions">
+    <button type="submit" class="btn btn-primary">Create Person</button>
+    <button type="button" class="btn">Reset</button>
+  </div>
+</form>
 {% endblock %}

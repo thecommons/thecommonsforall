@@ -8,14 +8,23 @@ use Symfony\Component\HttpFoundation\Response;
 class BackstageController extends Controller
 {
 
-  private function arr2arr($array)
+  private function arr2arr($array, $type)
   {
-    $toArray = function($val)
-      {
-	return $val->toArray();
-      };
+    $toArray = function($val) 
+    {
+      return $val->toArray();
+    };
 
-    return array_map($toArray, $array);
+    $toArrayBrief = function($val) 
+    {
+      return $val->toArrayBrief();
+    };
+
+    if($type == "brief") {
+      return array_map($toArrayBrief, $array);
+    } else {
+      return array_map($toArray, $array);
+    }
   }
 
   public function getAction($type, $record_id, $_route)
@@ -26,7 +35,7 @@ class BackstageController extends Controller
       /* they have asked us to return the json data for this type */
 
       /* at the moment we only support type == people */
-      if($type == "person")
+      if($type == "person" || $type == "person-brief")
 	{
 	  if($record_id == "all")
 	    {
@@ -40,7 +49,11 @@ class BackstageController extends Controller
 		  createNotFoundException("No people found!");
 	      }
 
-	      $json_data = $this->arr2arr($result);
+              if($type == "person-brief") {
+                $json_data = $this->arr2arr($result, "brief");
+              } else {
+	        $json_data = $this->arr2arr($result, "full");
+              }
 	    }
 	  else
 	    {
