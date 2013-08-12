@@ -13,7 +13,7 @@ class DefaultController extends Controller
   private $pages = array(
     'home' => array(),
     'attendance' => array(),
-    'add' => array('person'),
+    'add' => array('person', 'family', 'community group'),
     'edit' => array()
   );
   
