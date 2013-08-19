@@ -6,11 +6,13 @@
       <generator strategy="IDENTITY"/>
     </id>
     <field name="date" type="date" column="date" nullable="false"/>
-    <many-to-one field="person" target-entity="Person" join-column="person">
+    <many-to-one field="person" target-entity="Person" join-column="person"
+		 inversed-by="attended">
       <join-column name="person_id" nullable="false"
 		   referenced-column-name="id" />
     </many-to-one>
-    <many-to-one field="event" target-entity="Event" join-column="event">
+    <many-to-one field="event" target-entity="Event"
+		 join-column="event" inversed-by="attendees">
       <join-column name="event_id" nullable="false"
 		   referenced-column-name="id" />
     </many-to-one>

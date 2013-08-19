@@ -6,6 +6,6 @@
     </id>
     <field name="eventName" type="string" column="event_name" length="128"
 	   nullable="true"/>
-    <one-to-many field="attendees" target-entity="attendance" mapped-by="event" />
+    <one-to-many field="attendees" target-entity="Attendance" mapped-by="event" />
   </entity>
 </doctrine-mapping>
