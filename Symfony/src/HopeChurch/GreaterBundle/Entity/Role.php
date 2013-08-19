@@ -29,14 +29,14 @@ class Role
     public function setRoleName($roleName)
     {
         $this->roleName = $roleName;
-    
+
         return $this;
     }
 
     /**
      * Get roleName
      *
-     * @return string 
+     * @return string
      */
     public function getRoleName()
     {
@@ -46,7 +46,7 @@ class Role
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {

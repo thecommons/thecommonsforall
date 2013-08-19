@@ -2,6 +2,7 @@
 
 namespace HopeChurch\GreaterBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -9,392 +10,431 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Smallgroup
 {
-    /**
-     * @var string
-     */
-    private $name;
+  /**
+   * @var string
+   */
+  private $name;
 
-    /**
-     * @var \DateTime
-     */
-    private $dateCreated;
+  /**
+   * @var \DateTime
+   */
+  private $dateCreated;
 
-    /**
-     * @var \DateTime
-     */
-    private $meetTime;
+  /**
+   * @var \DateTime
+   */
+  private $meetTime;
 
-    /**
-     * @var string
-     */
-    private $meetLocation;
+  /**
+   * @var string
+   */
+  private $meetLocation;
 
-    /**
-     * @var string
-     */
-    private $addrFirst;
+  /**
+   * @var string
+   */
+  private $addrFirst;
 
-    /**
-     * @var string
-     */
-    private $addrSecond;
+  /**
+   * @var string
+   */
+  private $addrSecond;
 
-    /**
-     * @var string
-     */
-    private $addrCity;
+  /**
+   * @var string
+   */
+  private $addrCity;
 
-    /**
-     * @var string
-     */
-    private $addrState;
+  /**
+   * @var string
+   */
+  private $addrState;
 
-    /**
-     * @var string
-     */
-    private $addrZip;
+  /**
+   * @var string
+   */
+  private $addrZip;
 
-    /**
-     * @var string
-     */
-    private $addrCountry;
+  /**
+   * @var string
+   */
+  private $addrCountry;
 
-    /**
-     * @var integer
-     */
-    private $leader;
+  /**
+   * @var integer
+   */
+  private $leader;
 
-    /**
-     * @var integer
-     */
-    private $id;
+  /**
+   * @var integer
+   */
+  private $id;
 
-    private $families;
+  /**
+   * @var ArrayCollection
+   */
+  private $families;
 
-    private $people;
+  /**
+   * @var ArrayCollection
+   */
+  private $people;
 
-    public function __construct()
-    {
-      $this->families = new ArrayCollection();
-      $this->people = new ArrayCollection();
-    }
+  public function __construct()
+  {
+    $this->families = new ArrayCollection();
+    $this->people = new ArrayCollection();
+  }
 
-    /**
-     * Set name
-     *
-     * @param string $name
-     * @return Smallgroup
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    
-        return $this;
-    }
+  /**
+   * Set name
+   *
+   * @param string $name
+   * @return Smallgroup
+   */
+  public function setName($name)
+  {
+    $this->name = $name;
 
-    /**
-     * Get name
-     *
-     * @return string 
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
+    return $this;
+  }
 
-    /**
-     * Set dateCreated
-     *
-     * @param \DateTime $dateCreated
-     * @return Smallgroup
-     */
-    public function setDateCreated($dateCreated)
-    {
-        $this->dateCreated = $dateCreated;
-    
-        return $this;
-    }
+  /**
+   * Get name
+   *
+   * @return string
+   */
+  public function getName()
+  {
+    return $this->name;
+  }
 
-    /**
-     * Get dateCreated
-     *
-     * @return \DateTime 
-     */
-    public function getDateCreated()
-    {
-        return $this->dateCreated;
-    }
+  /**
+   * Set dateCreated
+   *
+   * @param \DateTime $dateCreated
+   * @return Smallgroup
+   */
+  public function setDateCreated($dateCreated)
+  {
+    $this->dateCreated = $dateCreated;
 
-    /**
-     * Set meetTime
-     *
-     * @param \DateTime $meetTime
-     * @return Smallgroup
-     */
-    public function setMeetTime($meetTime)
-    {
-        $this->meetTime = $meetTime;
-    
-        return $this;
-    }
+    return $this;
+  }
 
-    /**
-     * Get meetTime
-     *
-     * @return \DateTime 
-     */
-    public function getMeetTime()
-    {
-        return $this->meetTime;
-    }
+  /**
+   * Get dateCreated
+   *
+   * @return \DateTime
+   */
+  public function getDateCreated()
+  {
+    return $this->dateCreated;
+  }
 
-    /**
-     * Set meetLocation
-     *
-     * @param string $meetLocation
-     * @return Smallgroup
-     */
-    public function setMeetLocation($meetLocation)
-    {
-        $this->meetLocation = $meetLocation;
-    
-        return $this;
-    }
+  /**
+   * Set meetTime
+   *
+   * @param \DateTime $meetTime
+   * @return Smallgroup
+   */
+  public function setMeetTime($meetTime)
+  {
+    $this->meetTime = $meetTime;
 
-    /**
-     * Get meetLocation
-     *
-     * @return string 
-     */
-    public function getMeetLocation()
-    {
-        return $this->meetLocation;
-    }
+    return $this;
+  }
 
-    /**
-     * Set addrFirst
-     *
-     * @param string $addrFirst
-     * @return Smallgroup
-     */
-    public function setAddrFirst($addrFirst)
-    {
-        $this->addrFirst = $addrFirst;
-    
-        return $this;
-    }
+  /**
+   * Get meetTime
+   *
+   * @return \DateTime
+   */
+  public function getMeetTime()
+  {
+    return $this->meetTime;
+  }
 
-    /**
-     * Get addrFirst
-     *
-     * @return string 
-     */
-    public function getAddrFirst()
-    {
-        return $this->addrFirst;
-    }
+  /**
+   * Set meetLocation
+   *
+   * @param string $meetLocation
+   * @return Smallgroup
+   */
+  public function setMeetLocation($meetLocation)
+  {
+    $this->meetLocation = $meetLocation;
 
-    /**
-     * Set addrSecond
-     *
-     * @param string $addrSecond
-     * @return Smallgroup
-     */
-    public function setAddrSecond($addrSecond)
-    {
-        $this->addrSecond = $addrSecond;
-    
-        return $this;
-    }
+    return $this;
+  }
 
-    /**
-     * Get addrSecond
-     *
-     * @return string 
-     */
-    public function getAddrSecond()
-    {
-        return $this->addrSecond;
-    }
+  /**
+   * Get meetLocation
+   *
+   * @return string
+   */
+  public function getMeetLocation()
+  {
+    return $this->meetLocation;
+  }
 
-    /**
-     * Set addrCity
-     *
-     * @param string $addrCity
-     * @return Smallgroup
-     */
-    public function setAddrCity($addrCity)
-    {
-        $this->addrCity = $addrCity;
-    
-        return $this;
-    }
+  /**
+   * Set addrFirst
+   *
+   * @param string $addrFirst
+   * @return Smallgroup
+   */
+  public function setAddrFirst($addrFirst)
+  {
+    $this->addrFirst = $addrFirst;
 
-    /**
-     * Get addrCity
-     *
-     * @return string 
-     */
-    public function getAddrCity()
-    {
-        return $this->addrCity;
-    }
+    return $this;
+  }
 
-    /**
-     * Set addrState
-     *
-     * @param string $addrState
-     * @return Smallgroup
-     */
-    public function setAddrState($addrState)
-    {
-        $this->addrState = $addrState;
-    
-        return $this;
-    }
+  /**
+   * Get addrFirst
+   *
+   * @return string
+   */
+  public function getAddrFirst()
+  {
+    return $this->addrFirst;
+  }
 
-    /**
-     * Get addrState
-     *
-     * @return string 
-     */
-    public function getAddrState()
-    {
-        return $this->addrState;
-    }
+  /**
+   * Set addrSecond
+   *
+   * @param string $addrSecond
+   * @return Smallgroup
+   */
+  public function setAddrSecond($addrSecond)
+  {
+    $this->addrSecond = $addrSecond;
 
-    /**
-     * Set addrZip
-     *
-     * @param string $addrZip
-     * @return Smallgroup
-     */
-    public function setAddrZip($addrZip)
-    {
-        $this->addrZip = $addrZip;
-    
-        return $this;
-    }
+    return $this;
+  }
 
-    /**
-     * Get addrZip
-     *
-     * @return string 
-     */
-    public function getAddrZip()
-    {
-        return $this->addrZip;
-    }
+  /**
+   * Get addrSecond
+   *
+   * @return string
+   */
+  public function getAddrSecond()
+  {
+    return $this->addrSecond;
+  }
 
-    /**
-     * Set addrCountry
-     *
-     * @param string $addrCountry
-     * @return Smallgroup
-     */
-    public function setAddrCountry($addrCountry)
-    {
-        $this->addrCountry = $addrCountry;
-    
-        return $this;
-    }
+  /**
+   * Set addrCity
+   *
+   * @param string $addrCity
+   * @return Smallgroup
+   */
+  public function setAddrCity($addrCity)
+  {
+    $this->addrCity = $addrCity;
 
-    /**
-     * Get addrCountry
-     *
-     * @return string 
-     */
-    public function getAddrCountry()
-    {
-        return $this->addrCountry;
-    }
+    return $this;
+  }
 
-    /**
-     * Set leaderId
-     *
-     * @param integer $leaderId
-     * @return Smallgroup
-     */
-    public function setLeaderId($leaderId)
-    {
-        $this->leaderId = $leaderId;
-    
-        return $this;
-    }
+  /**
+   * Get addrCity
+   *
+   * @return string
+   */
+  public function getAddrCity()
+  {
+    return $this->addrCity;
+  }
 
-    /**
-     * Get leaderId
-     *
-     * @return integer 
-     */
-    public function getLeaderId()
-    {
-        return $this->leaderId;
-    }
+  /**
+   * Set addrState
+   *
+   * @param string $addrState
+   * @return Smallgroup
+   */
+  public function setAddrState($addrState)
+  {
+    $this->addrState = $addrState;
 
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+    return $this;
+  }
 
-    /**
-     * Set leader
-     *
-     * @param \HopeChurch\GreaterBundle\Entity\Person $leader
-     * @return Smallgroup
-     */
-    public function setLeader(\HopeChurch\GreaterBundle\Entity\Person $leader = null)
-    {
-        $this->leader = $leader;
-    
-        return $this;
-    }
+  /**
+   * Get addrState
+   *
+   * @return string
+   */
+  public function getAddrState()
+  {
+    return $this->addrState;
+  }
 
-    /**
-     * Get leader
-     *
-     * @return \HopeChurch\GreaterBundle\Entity\Person 
-     */
-    public function getLeader()
-    {
-        return $this->leader;
-    }
+  /**
+   * Set addrZip
+   *
+   * @param string $addrZip
+   * @return Smallgroup
+   */
+  public function setAddrZip($addrZip)
+  {
+    $this->addrZip = $addrZip;
 
-    /**
-     * Add people
-     *
-     * @param \HopeChurch\GreaterBundle\Entity\Person $people
-     * @return Smallgroup
-     */
-    public function addPeople(\HopeChurch\GreaterBundle\Entity\Person $people)
-    {
-        $this->people[] = $people;
-    
-        return $this;
-    }
+    return $this;
+  }
 
-    /**
-     * Remove people
-     *
-     * @param \HopeChurch\GreaterBundle\Entity\Person $people
-     */
-    public function removePeople(\HopeChurch\GreaterBundle\Entity\Person $people)
-    {
-        $this->people->removeElement($people);
-    }
+  /**
+   * Get addrZip
+   *
+   * @return string
+   */
+  public function getAddrZip()
+  {
+    return $this->addrZip;
+  }
 
-    /**
-     * Get people
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getPeople()
-    {
-        return $this->people;
-    }
+  /**
+   * Set addrCountry
+   *
+   * @param string $addrCountry
+   * @return Smallgroup
+   */
+  public function setAddrCountry($addrCountry)
+  {
+    $this->addrCountry = $addrCountry;
+
+    return $this;
+  }
+
+  /**
+   * Get addrCountry
+   *
+   * @return string
+   */
+  public function getAddrCountry()
+  {
+    return $this->addrCountry;
+  }
+
+  /**
+   * Set leaderId
+   *
+   * @param integer $leaderId
+   * @return Smallgroup
+   */
+  public function setLeaderId($leaderId)
+  {
+    $this->leaderId = $leaderId;
+
+    return $this;
+  }
+
+  /**
+   * Get leaderId
+   *
+   * @return integer
+   */
+  public function getLeaderId()
+  {
+    return $this->leaderId;
+  }
+
+  /**
+   * Get id
+   *
+   * @return integer
+   */
+  public function getId()
+  {
+    return $this->id;
+  }
+
+  /**
+   * Set leader
+   *
+   * @param \HopeChurch\GreaterBundle\Entity\Person $leader
+   * @return Smallgroup
+   */
+  public function setLeader(\HopeChurch\GreaterBundle\Entity\Person $leader = null)
+  {
+    $this->leader = $leader;
+
+    return $this;
+  }
+
+  /**
+   * Get leader
+   *
+   * @return \HopeChurch\GreaterBundle\Entity\Person
+   */
+  public function getLeader()
+  {
+    return $this->leader;
+  }
+
+  /**
+   * Add people
+   *
+   * @param \HopeChurch\GreaterBundle\Entity\Person $person
+   * @return Smallgroup
+   */
+  public function addPerson(\HopeChurch\GreaterBundle\Entity\Person $person)
+  {
+    $this->people->addElement($person);
+
+    return $this;
+  }
+
+  /**
+   * Remove person
+   *
+   * @param \HopeChurch\GreaterBundle\Entity\Person $person
+   */
+  public function removePerson(\HopeChurch\GreaterBundle\Entity\Person $person)
+  {
+    $this->people->removeElement($people);
+  }
+
+  /**
+   * Get people
+   *
+   * @return \Doctrine\Common\Collections\Collection
+   */
+  public function getPeople()
+  {
+    return $this->people;
+  }
+
+  /**
+   * Add family
+   *
+   * @param \HopeChurch\GreaterBundle\Entity\Family $family
+   * @return Smallgroup
+   */
+  public function addFamily(\HopeChurch\GreaterBundle\Entity\Family $family)
+  {
+    $this->families->addElement($family);
+
+    return $this;
+  }
+
+  /**
+   * Remove families
+   *
+   * @param \HopeChurch\GreaterBundle\Entity\Family $family
+   */
+  public function removeFamily(\HopeChurch\GreaterBundle\Entity\Family $family)
+  {
+    $this->people->removeElement($family);
+  }
+
+  /**
+   * Get families
+   *
+   * @return \Doctrine\Common\Collections\Collection
+   */
+  public function getFamilies()
+  {
+    return $this->families;
+  }
 }
