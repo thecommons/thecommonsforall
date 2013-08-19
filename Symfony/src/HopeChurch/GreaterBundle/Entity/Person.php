@@ -2,6 +2,7 @@
 
 namespace HopeChurch\GreaterBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -97,10 +98,15 @@ class Person
    */
   private $leader;
 
-  /** 
+  /**
    * @var ArrayCollection
    */
   private $attended;
+
+  /**
+   * @var ArrayCollection
+   */
+  private $roles;
 
   /**
    * @var integer
@@ -113,28 +119,28 @@ class Person
    */
   public function toArray()
   {
-    $dc = ($this->getDateCreated()) ? 
-	                         $this->getDateCreated()->getTimestamp() :
-	                                                               0;
+    $dc = ($this->getDateCreated()) ?
+      $this->getDateCreated()->getTimestamp() :
+      0;
     return array(
-      'nameFirst' => $this->getNameFirst(),
-      'nameLast' => $this->getNameLast(),
-      'notes' => $this->getNotes(),
-      'dateCreated' => $dc,
-      'email' => $this->getEmail(),
-      'phoneCell' => $this->getPhoneCell(),
-      'phoneHome' => $this->getPhoneHome(),
-      'addrFirst' => $this->getAddrFirst(),
-      'addrSecond' => $this->getAddrSecond(),
-      'addrCity' => $this->getAddrCity(),
-      'addrState' => $this->getAddrState(),
-      'addrZip' => $this->getAddrZip(),
-      'addrCountry' => $this->getAddrCountry(),
-      'family' => $this->getFamily(),
-      'smallgroup' => $this->getSmallgroup(),
-      'leader' => $this->getLeader(),
-      'id' => $this->getId()
-    );
+		 'nameFirst' => $this->getNameFirst(),
+		 'nameLast' => $this->getNameLast(),
+		 'notes' => $this->getNotes(),
+		 'dateCreated' => $dc,
+		 'email' => $this->getEmail(),
+		 'phoneCell' => $this->getPhoneCell(),
+		 'phoneHome' => $this->getPhoneHome(),
+		 'addrFirst' => $this->getAddrFirst(),
+		 'addrSecond' => $this->getAddrSecond(),
+		 'addrCity' => $this->getAddrCity(),
+		 'addrState' => $this->getAddrState(),
+		 'addrZip' => $this->getAddrZip(),
+		 'addrCountry' => $this->getAddrCountry(),
+		 'family' => $this->getFamily(),
+		 'smallgroup' => $this->getSmallgroup(),
+		 'leader' => $this->getLeader(),
+		 'id' => $this->getId()
+		 );
   }
 
   /** Convert object to array
@@ -145,11 +151,11 @@ class Person
   public function toArrayBrief()
   {
     return array(
-      'nameFull' => $this->getNameFirst() . " " . $this->getNameLast(),
-      'nameFirst' => $this->getNameFirst(),
-      'nameLast' => $this->getNameLast(),
-      'id' => $this->getId()
-    );
+		 'nameFull' => $this->getNameFirst() . " " . $this->getNameLast(),
+		 'nameFirst' => $this->getNameFirst(),
+		 'nameLast' => $this->getNameLast(),
+		 'id' => $this->getId()
+		 );
   }
 
   /**
@@ -161,14 +167,14 @@ class Person
   public function setNameFirst($nameFirst)
   {
     $this->nameFirst = $nameFirst;
-    
+
     return $this;
   }
 
   /**
    * Get nameFirst
    *
-   * @return string 
+   * @return string
    */
   public function getNameFirst()
   {
@@ -184,14 +190,14 @@ class Person
   public function setNameLast($nameLast)
   {
     $this->nameLast = $nameLast;
-    
+
     return $this;
   }
 
   /**
    * Get nameLast
    *
-   * @return string 
+   * @return string
    */
   public function getNameLast()
   {
@@ -207,14 +213,14 @@ class Person
   public function setNotes($notes)
   {
     $this->notes = $notes;
-    
+
     return $this;
   }
 
   /**
    * Get notes
    *
-   * @return string 
+   * @return string
    */
   public function getNotes()
   {
@@ -230,7 +236,7 @@ class Person
   public function setDateCreated($dateCreated)
   {
     $this->dateCreated = $dateCreated;
-    
+
     return $this;
   }
 
@@ -242,14 +248,14 @@ class Person
   public function setDateCreatedValue()
   {
     $this->dateCreated = new \DateTime();
-    
+
     return $this;
   }
 
   /**
    * Get dateCreated
    *
-   * @return \DateTime 
+   * @return \DateTime
    */
   public function getDateCreated()
   {
@@ -265,14 +271,14 @@ class Person
   public function setEmail($email)
   {
     $this->email = $email;
-    
+
     return $this;
   }
 
   /**
    * Get email
    *
-   * @return string 
+   * @return string
    */
   public function getEmail()
   {
@@ -288,14 +294,14 @@ class Person
   public function setPhoneCell($phoneCell)
   {
     $this->phoneCell = $phoneCell;
-    
+
     return $this;
   }
 
   /**
    * Get phoneCell
    *
-   * @return string 
+   * @return string
    */
   public function getPhoneCell()
   {
@@ -311,14 +317,14 @@ class Person
   public function setPhoneHome($phoneHome)
   {
     $this->phoneHome = $phoneHome;
-    
+
     return $this;
   }
 
   /**
    * Get phoneHome
    *
-   * @return string 
+   * @return string
    */
   public function getPhoneHome()
   {
@@ -334,14 +340,14 @@ class Person
   public function setAddrFirst($addrFirst)
   {
     $this->addrFirst = $addrFirst;
-    
+
     return $this;
   }
 
   /**
    * Get addrFirst
    *
-   * @return string 
+   * @return string
    */
   public function getAddrFirst()
   {
@@ -357,14 +363,14 @@ class Person
   public function setAddrSecond($addrSecond)
   {
     $this->addrSecond = $addrSecond;
-    
+
     return $this;
   }
 
   /**
    * Get addrSecond
    *
-   * @return string 
+   * @return string
    */
   public function getAddrSecond()
   {
@@ -380,14 +386,14 @@ class Person
   public function setAddrCity($addrCity)
   {
     $this->addrCity = $addrCity;
-    
+
     return $this;
   }
 
   /**
    * Get addrCity
    *
-   * @return string 
+   * @return string
    */
   public function getAddrCity()
   {
@@ -403,14 +409,14 @@ class Person
   public function setAddrState($addrState)
   {
     $this->addrState = $addrState;
-    
+
     return $this;
   }
 
   /**
    * Get addrState
    *
-   * @return string 
+   * @return string
    */
   public function getAddrState()
   {
@@ -426,14 +432,14 @@ class Person
   public function setAddrZip($addrZip)
   {
     $this->addrZip = $addrZip;
-    
+
     return $this;
   }
 
   /**
    * Get addrZip
    *
-   * @return string 
+   * @return string
    */
   public function getAddrZip()
   {
@@ -449,14 +455,14 @@ class Person
   public function setAddrCountry($addrCountry)
   {
     $this->addrCountry = $addrCountry;
-    
+
     return $this;
   }
 
   /**
    * Get addrCountry
    *
-   * @return string 
+   * @return string
    */
   public function getAddrCountry()
   {
@@ -472,14 +478,14 @@ class Person
   public function setFacebook($facebook)
   {
     $this->facebook = $facebook;
-    
+
     return $this;
   }
 
   /**
    * Get facebook
    *
-   * @return boolean 
+   * @return boolean
    */
   public function getFacebook()
   {
@@ -489,7 +495,7 @@ class Person
   /**
    * Get id
    *
-   * @return integer 
+   * @return integer
    */
   public function getId()
   {
@@ -505,14 +511,14 @@ class Person
   public function setLeader(\HopeChurch\GreaterBundle\Entity\Person $leader = null)
   {
     $this->leader = $leader;
-    
+
     return $this;
   }
 
   /**
    * Get leader
    *
-   * @return \HopeChurch\GreaterBundle\Entity\Person 
+   * @return \HopeChurch\GreaterBundle\Entity\Person
    */
   public function getLeader()
   {
@@ -528,14 +534,14 @@ class Person
   public function setFamily(\HopeChurch\GreaterBundle\Entity\Family $family = null)
   {
     $this->family = $family;
-    
+
     return $this;
   }
 
   /**
    * Get family
    *
-   * @return \HopeChurch\GreaterBundle\Entity\Family 
+   * @return \HopeChurch\GreaterBundle\Entity\Family
    */
   public function getFamily()
   {
@@ -551,14 +557,14 @@ class Person
   public function setSmallgroup(\HopeChurch\GreaterBundle\Entity\Smallgroup $smallgroup = null)
   {
     $this->smallgroup = $smallgroup;
-    
+
     return $this;
   }
 
   /**
    * Get smallgroup
    *
-   * @return \HopeChurch\GreaterBundle\Entity\Smallgroup 
+   * @return \HopeChurch\GreaterBundle\Entity\Smallgroup
    */
   public function getSmallgroup()
   {
@@ -571,11 +577,11 @@ class Person
    * @param \HopeChurch\GreaterBundle\Entity\Attendance $attendance
    * @return People
    */
-  public function addAttended(\HopeChurch\GreaterBundle\Entity\Attendance 
+  public function addAttended(\HopeChurch\GreaterBundle\Entity\Attendance
 			      $attended)
   {
     $this->attended[] = $attended;
-    
+
     return $this;
   }
 
@@ -584,7 +590,7 @@ class Person
    *
    * @param \HopeChurch\GreaterBundle\Entity\Person $people
    */
-  public function removeAttended(\HopeChurch\GreaterBundle\Entity\Attendance 
+  public function removeAttended(\HopeChurch\GreaterBundle\Entity\Attendance
 				 $attended)
   {
     $this->attended->removeElement($attended);
@@ -593,56 +599,90 @@ class Person
   /**
    * Get attended
    *
-   * @return \Doctrine\Common\Collections\Collection 
+   * @return \Doctrine\Common\Collections\Collection
    */
   public function getAttended()
   {
     return $this->attended;
   }
 
-    /**
-     * @var integer
-     */
-    private $leaderId;
+  /**
+   * Add role
+   *
+   * @param \HopeChurch\GreaterBundle\Entity\Role $role
+   * @return Smallgroup
+   */
+  public function addRole(\HopeChurch\GreaterBundle\Entity\Role $role)
+  {
+    $this->roles->addElement($role);
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->attended = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
-    /**
-     * Set leaderId
-     *
-     * @param integer $leaderId
-     * @return Person
-     */
-    public function setLeaderId($leaderId)
-    {
-        $this->leaderId = $leaderId;
-    
-        return $this;
-    }
+    return $this;
+  }
 
-    /**
-     * Get leaderId
-     *
-     * @return integer 
-     */
-    public function getLeaderId()
-    {
-        return $this->leaderId;
-    }
+  /**
+   * Remove role
+   *
+   * @param \HopeChurch\GreaterBundle\Entity\Role $role
+   */
+  public function removeRole(\HopeChurch\GreaterBundle\Entity\Role $role)
+  {
+    $this->roles->removeElement($role);
+  }
 
-    public function __toString()
-    {
-      return $this->getNameFirst()." ".$this->getNameLast();
-    }
+  /**
+   * Get roles
+   *
+   * @return \Doctrine\Common\Collections\Collection
+   */
+  public function getRoles()
+  {
+    return $this->roles;
+  }
 
-    public static function loadValidatorMetadata(ClassMetadata $metadata)
-    {
-      $metadata->addPropertyConstraint('nameFirst', new NotBlank());
-    }
+  /**
+   * @var integer
+   */
+  private $leaderId;
+
+  /**
+   * Constructor
+   */
+  public function __construct()
+  {
+    $this->attended = new ArrayCollection();
+    $this->roles = new ArrayCollection();
+  }
+
+  /**
+   * Set leaderId
+   *
+   * @param integer $leaderId
+   * @return Person
+   */
+  public function setLeaderId($leaderId)
+  {
+    $this->leaderId = $leaderId;
+
+    return $this;
+  }
+
+  /**
+   * Get leaderId
+   *
+   * @return integer
+   */
+  public function getLeaderId()
+  {
+    return $this->leaderId;
+  }
+
+  public function __toString()
+  {
+    return $this->getNameFirst()." ".$this->getNameLast();
+  }
+
+  public static function loadValidatorMetadata(ClassMetadata $metadata)
+  {
+    $metadata->addPropertyConstraint('nameFirst', new NotBlank());
+  }
 }
