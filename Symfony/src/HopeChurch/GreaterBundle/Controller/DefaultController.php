@@ -16,7 +16,7 @@ class DefaultController extends Controller
     'add' => array('person', 'family', 'community group'),
     'edit' => array()
   );
-  
+
   public function indexAction($page, $subpage, $_route)
   {
     /* if they have asked for 'index', send them to 'home' */
@@ -24,7 +24,7 @@ class DefaultController extends Controller
       $page = 'home';
     }
 
-    return $this->render("HopeChurchGreaterBundle:Default:$page.html.twig", 
+    return $this->render("HopeChurchGreaterBundle:Default:$page.html.twig",
 			 array(
 	'route' => $_route,
 	'active_page' => $page,
@@ -32,7 +32,7 @@ class DefaultController extends Controller
 	'nav_pages' => $this->pages
       ));
   }
-  
+
   public function addPersonAction(Request $request, $_route)
   {
     $person = new Person();
@@ -41,28 +41,28 @@ class DefaultController extends Controller
 
     if ($request->isMethod('POST')) {
       $form->bind($request);
-      
+
       if ($form->isValid()) {
         $em = $this->getDoctrine()->getManager();
         $em->persist($person);
         $em->flush();
 
         $nameFirst = $form->get('nameFirst')->getData();
-        $this->get('session')->getFlashBag()->add('success', 
+        $this->get('session')->getFlashBag()->add('success',
                                                   "$nameFirst was added successfully");
-        
+
         return $this->redirect($this->generateUrl(
             'hope_church_greater_add_person'));
       }
       else
       {
-        $this->get('session')->getFlashBag()->add('error', 
+        $this->get('session')->getFlashBag()->add('error',
                                                   'Failed to add person. Please correct the issues noted');
       }
     }
 
     return $this->render(
-      'HopeChurchGreaterBundle:Default:addPerson.html.twig', 
+      'HopeChurchGreaterBundle:Default:addPerson.html.twig',
       array(
         'form' => $form->createView(),
 	'route' => 'hope_church_greater',

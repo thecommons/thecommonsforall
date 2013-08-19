@@ -10,12 +10,12 @@ class BackstageController extends Controller
 
   private function arr2arr($array, $type)
   {
-    $toArray = function($val) 
+    $toArray = function($val)
     {
       return $val->toArray();
     };
 
-    $toArrayBrief = function($val) 
+    $toArrayBrief = function($val)
     {
       return $val->toArrayBrief();
     };
@@ -43,7 +43,7 @@ class BackstageController extends Controller
 	      $result = $this->getDoctrine()
 		->getRepository('HopeChurchGreaterBundle:Person')
 		->findAll();
-	      
+
 	      if (!$result) {
 		throw $this->
 		  createNotFoundException("No people found!");
@@ -60,7 +60,7 @@ class BackstageController extends Controller
 	      $result = $this->getDoctrine()
 		->getRepository('HopeChurchGreaterBundle:Person')
 		->find($record_id);
-	      
+
 	      if (!$result) {
 		throw $this->
 		  createNotFoundException('No person found with id '.$record_id);
@@ -93,7 +93,7 @@ class BackstageController extends Controller
      * - # times attended total
      * - median time between attendances
      * - time since last attendance
-     * 
+     *
      * Examples:
      * - Jon, attended 70 times, median time: 1 wk, time since last: 1 wk
      * - Person Y, attended 5 times, median time: 3 wk, time since last 2 wk
@@ -101,7 +101,7 @@ class BackstageController extends Controller
 
     /* for now, just get the list of people and the number of times they
      have attended the sunday service */
-    
+
     $em = $this->getDoctrine()->getManager();
 
     if($date) {
@@ -121,7 +121,7 @@ class BackstageController extends Controller
 	// no attendees
 	$records = Array();
       }
-    
+
     $response = new Response(json_encode($records));
     $response->headers->set('Content-Type', 'application/json');
 
@@ -138,7 +138,7 @@ class BackstageController extends Controller
 	// no attendees
 	$records = Array();
       }
-    
+
     $response = new Response(json_encode($records));
     $response->headers->set('Content-Type', 'application/json');
 
@@ -153,7 +153,7 @@ class BackstageController extends Controller
   public function updatePersonAction($_route)
   {
     $person = new Person();
-    
+
     throw $this->createNotFoundException("Person update not implemented");
   }
 
@@ -169,7 +169,7 @@ class BackstageController extends Controller
 	// no leaders
 	$records = Array();
       }
-    
+
     $response = new Response(json_encode($records));
     $response->headers->set('Content-Type', 'application/json');
 
