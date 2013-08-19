@@ -16,6 +16,14 @@ class PersonRepository extends EntityRepository
 			     ." ORDER BY p.nameFirst, p.nameLast ASC")
 	        ->getResult();
   }
+
+  public function findByRoleName($role_name)
+  {
+    return $this->createQueryBuilder('p')
+      ->innerJoin('p.roles', 'r', 'WITH', 'r.roleName = :roleName')
+      ->setParameter('roleName', $role_name);
+  }
+
 }
 
 ?>
