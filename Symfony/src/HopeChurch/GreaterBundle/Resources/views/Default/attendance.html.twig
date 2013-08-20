@@ -2,7 +2,7 @@
 
 {% block styleblock %}
 {{ parent() }}
-{% stylesheets 
+{% stylesheets
 'bundles/hopechurchgreater/libs/datepicker/css/datepicker.css'
 filter='cssrewrite' %}
 <link rel="stylesheet" href="{{ asset_url }}" />
@@ -18,7 +18,7 @@ var attendanceUrl = "{{ path('hope_church_backstage_get_attendees') }}";
 {% block jsblock %}
 {{ parent() }}
 
-{% javascripts 
+{% javascripts
 'bundles/hopechurchgreater/libs/moment/js/moment.min.js'
 'bundles/hopechurchgreater/libs/datepicker/js/bootstrap-datepicker.js'
 'bundles/hopechurchgreater/libs/d3/js/d3.v3.min.js'
@@ -39,8 +39,11 @@ var attendanceUrl = "{{ path('hope_church_backstage_get_attendees') }}";
     </div>
   </div>
 </div>
+<div id="attendance-tables"></div>
+{#
 <div class="row">
   <div class="span12">
+    <h4 class="attendance-title"></h4>
     <table class="table table-bordered table-striped table-hover">
       <thead id="attendance-head">
 	<tr>
@@ -51,6 +54,7 @@ var attendanceUrl = "{{ path('hope_church_backstage_get_attendees') }}";
     </table>
   </div>
 </div>
+#}
 <div class="form-actions">
   <button class="btn btn-primary" id="update-btn"
 	  data-loading-text="Loading..."

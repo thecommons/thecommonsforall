@@ -84,7 +84,7 @@ class BackstageController extends Controller
       return $response;
     }
 
-  public function getAttendeesAction($event, $date, $_route)
+  public function getAttendeesAction($event, $role, $date, $_route)
   {
     /* this will eventually be a pretty complex formula for sorting
      * the list of "Person"s into most-common-first
@@ -102,14 +102,15 @@ class BackstageController extends Controller
     /* for now, just get the list of people and the number of times they
      have attended the sunday service */
 
-    $em = $this->getDoctrine()->getManager();
+    $repo = $this->getDoctrine()->getManager()
+      ->getRepository('HopeChurchGreaterBundle:Attendance');
 
     if($date) {
-      $records = $em->getRepository('HopeChurchGreaterBundle:Attendance')
-	->findAllAttendeesForEventByDate($event, $date);
+      $records = $repo->findAllAttendeesForEventByDate($event, $date);
+    } else if($role == "all") {
+      $records = $repo->findAllAttendeesForEvent($event);
     } else {
-      $records = $em->getRepository('HopeChurchGreaterBundle:Attendance')
-	->findAllAttendeesForEvent($event);
+      $records = $repo->findAllAttendeesForEventByRole($event, $role);
     }
 
     if(!$records)
@@ -118,23 +119,6 @@ class BackstageController extends Controller
 	// createNotFoundException("Could not get page $page of the potential "
 	//			  ."attendee list.");
 
-	// no attendees
-	$records = Array();
-      }
-
-    $response = new Response(json_encode($records));
-    $response->headers->set('Content-Type', 'application/json');
-
-    return $response;
-  }
-
-  public function getAttendeesByDateAction($event, $date, $_route)
-  {
-    $em = $this->getDoctrine()->getManager();
-
-
-    if(!$records)
-      {
 	// no attendees
 	$records = Array();
       }
