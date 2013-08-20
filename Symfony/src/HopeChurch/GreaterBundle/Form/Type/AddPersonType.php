@@ -25,6 +25,16 @@ class AddPersonType extends AbstractType
                                              'required' => false
                                              ));
 
+    $builder->add('roles', 'entity', array(
+					   'label' => 'Roles',
+					   'required' => true,
+					   'class' =>
+					   'HopeChurchGreaterBundle:Role',
+					   'property'     => 'roleName',
+					   'multiple'     => true,
+					   'expanded'     => true
+					   ));
+
     $builder->add('email', 'email', array(
                                           'label' => 'Email',
                                           'required' => false

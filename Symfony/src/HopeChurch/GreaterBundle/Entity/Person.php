@@ -681,8 +681,4 @@ class Person
     return $this->getNameFirst()." ".$this->getNameLast();
   }
 
-  public static function loadValidatorMetadata(ClassMetadata $metadata)
-  {
-    $metadata->addPropertyConstraint('nameFirst', new NotBlank());
-  }
 }

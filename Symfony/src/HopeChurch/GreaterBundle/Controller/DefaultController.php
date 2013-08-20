@@ -49,7 +49,7 @@ class DefaultController extends Controller
 
         $nameFirst = $form->get('nameFirst')->getData();
         $this->get('session')->getFlashBag()->add('success',
-                                                  "$nameFirst was added successfully");
+                                       "$nameFirst was added successfully");
 
         return $this->redirect($this->generateUrl(
             'hope_church_greater_add_person'));
@@ -57,7 +57,7 @@ class DefaultController extends Controller
       else
       {
         $this->get('session')->getFlashBag()->add('error',
-                                                  'Failed to add person. Please correct the issues noted');
+                      'Failed to add person. Please correct the issues noted');
       }
     }
 

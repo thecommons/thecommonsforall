@@ -17,29 +17,66 @@ $('#btn-reset').click(function(){
 
 });
 
-/*
-// populate the leader select box using d3
-d3.json(leadersUrl, function(error, json) {
-    if (error) return console.warn(error); 
+// some hackiness to enforce our roles
+// MUST MAKE THIS BETTER
+$('#person_roles input[type="checkbox"]').each(function() {
 
-    // add a default leader which is none (maybe this should be jon?)
-    json.unshift({'nameFirst': "--", nameLast: "None --"});
+    $(this).change(function() {
 
-    // remove the "Loading..." message
-    d3.select("#" + leaderSelectId)
-	.selectAll("option")
-	.remove();
-    
-    d3.select("#" + leaderSelectId)
-	.selectAll("option")
-	.data(json)
-    // update selection
+	// what is this?
+	var id = $(this).attr('id');
 
-    // enter selection
-	.enter()
-	.append("option")
-	.attr("value", function(d) {return d.id})
-	.text(function(d) {return d.nameFirst + " " + d.nameLast});
+	if($(this).is(':checked')) {
 
-}); //end leader json reading
-*/
+	    // actual roles
+	    if(id == "person_roles_1" ||
+	       id == "person_roles_2" ||
+	       id == "person_roles_3") {
+		// these roles only make sense for adults to have
+		// check "Adult" (person_roles_4)
+		$('#person_roles_4').prop('checked', true);
+		$('#person_roles_4').change();
+	    } else if(id == "person_roles_4") { // adult
+		// make sure the other two are unchecked
+		$('#person_roles_5').prop('checked', false);
+		$('#person_roles_6').prop('checked', false);
+	    } else if(id == "person_roles_5") { //child
+		$('#person_roles_1').prop('checked', false);
+		$('#person_roles_2').prop('checked', false);
+		$('#person_roles_3').prop('checked', false);
+		$('#person_roles_4').prop('checked', false);
+		$('#person_roles_6').prop('checked', false);
+	    } else if(id == "person_roles_6") { //infant
+		$('#person_roles_1').prop('checked', false);
+		$('#person_roles_2').prop('checked', false);
+		$('#person_roles_3').prop('checked', false);
+		$('#person_roles_4').prop('checked', false);
+		$('#person_roles_5').prop('checked', false);
+	    } else {
+		console.warn("Unknown Role " + id);
+	    }
+
+	} else {
+	    if(id == "person_roles_4") {
+		// uncheck the first three
+		$('#person_roles_1').prop('checked', false);
+		$('#person_roles_2').prop('checked', false);
+		$('#person_roles_3').prop('checked', false);
+	    }
+
+	    if(!$('#person_roles_4').is(':checked') &&
+	       !$('#person_roles_5').is(':checked') &&
+	       !$('#person_roles_6').is(':checked')) {
+		alert("One of 'Adult', 'Child', or 'Infant' must be selected");
+	    }
+	}
+
+
+	// if we have checked "Leader", "Staff", or "Member",
+	// then check "Adult", and uncheck "Child" and "Infant"
+	// if "Adult" is checked, uncheck "Child" and "Infant"
+	// if "Child" or "Infant" is checked, uncheck all others
+
+    });
+
+});

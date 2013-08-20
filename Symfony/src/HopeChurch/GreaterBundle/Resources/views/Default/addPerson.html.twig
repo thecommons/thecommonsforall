@@ -50,6 +50,24 @@ filter='cssrewrite' %}
     </div>
 {% endblock form_row %}
 
+{% block choice_widget_expanded %}
+{% spaceless %}
+    <div {{ block('widget_container_attributes') }}>
+    {% for child in form %}
+        {{ form_widget(child) }}
+    {% endfor %}
+    </div>
+{% endspaceless %}
+{% endblock choice_widget_expanded %}
+
+{% block checkbox_widget %}
+{% spaceless %}
+    <label class="checkbox inline">
+      <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />{{ form_label(form) }}
+    </label>
+{% endspaceless %}
+{% endblock checkbox_widget %}
+
 {# form_errors.html.twig #}
 {% block form_errors %}
     {% spaceless %}
@@ -102,7 +120,19 @@ filter='cssrewrite' %}
       }
     )
     }}
+
     {{ form_row(form.nameLast) }}
+
+    {{ form_row(form.roles,
+      {'help_blocks':
+        [
+          'What position(s) does this person hold?',
+          'One of "Adult", "Child", or "Infant" must always be selected'
+        ]
+      }
+    )
+    }}
+
     <div class="control-group">
       {{
       form_label(form.notes, null,
