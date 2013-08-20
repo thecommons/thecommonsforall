@@ -2,7 +2,7 @@
 
 {% block styleblock %}
 {{ parent() }}
-{% stylesheets 
+{% stylesheets
 'bundles/hopechurchgreater/libs/bootstrap-formhelpers/css/bootstrap-formhelpers.css'
 filter='cssrewrite' %}
 <link rel="stylesheet" href="{{ asset_url }}" />
@@ -31,8 +31,8 @@ filter='cssrewrite' %}
 {% form_theme form _self %}
 {% block form_row %}
     <div class="control-group">
-      {{ 
-      form_label(form, null, 
+      {{
+      form_label(form, null,
       {'label_attr': {'class': 'control-label'}})
       }}
       <div class="controls">
@@ -85,16 +85,16 @@ filter='cssrewrite' %}
 {% endfor %}
 
 <form class="form-horizontal"
-      action="{{ path('hope_church_greater_add_person') }}" 
+      action="{{ path('hope_church_greater_add_person') }}"
       method="post" {{ form_enctype(form) }}
       id="form-person"
       >
   <fieldset>
     {# NAME #}
     <legend>Basic Info</legend>
-    {{ 
-    form_row(form.nameFirst, 
-      {'help_blocks': 
+    {{
+    form_row(form.nameFirst,
+      {'help_blocks':
         [
           'Even if you know nothing about this person, write the best description you can in here.',
            'Once you find out who they are this can be updated.'
@@ -104,13 +104,13 @@ filter='cssrewrite' %}
     }}
     {{ form_row(form.nameLast) }}
     <div class="control-group">
-      {{ 
-      form_label(form.notes, null, 
+      {{
+      form_label(form.notes, null,
       {'label_attr': {'class': 'control-label'}})
       }}
       <div class="controls">
-        <textarea class="input-xxlarge" rows="4" 
-                  id="{{ form.notes.vars.id }}" 
+        <textarea class="input-xxlarge" rows="4"
+                  id="{{ form.notes.vars.id }}"
                   name="{{ form.notes.vars.full_name }}"
                   placeholder="Anything else?"></textarea>
       </div>
@@ -119,12 +119,12 @@ filter='cssrewrite' %}
     {# EXPAND/COLLAPSE ALL INFO #}
     <div class="control-group">
       <div class="controls">
-        <button type="button" class="btn" id="btn-all-info" 
+        <button type="button" class="btn" id="btn-all-info"
                 data-toggle="collapse" data-target="#all-info">
           <i id="btn-all-info-icon" class="icon-plus"></i>
           <span id="btn-all-info-text">More</span>
         </button>
-        <span class="help-block">This is all we need, but if you have more 
+        <span class="help-block">This is all we need, but if you have more
           details (like email, phone, etc.), please add them!</span>
       </div>
     </div>
@@ -139,35 +139,35 @@ filter='cssrewrite' %}
 
       {# PHONE #}
       <div class="control-group">
-      {{ 
-      form_label(form.phoneCell, null, 
+      {{
+      form_label(form.phoneCell, null,
       {'label_attr': {'class': 'control-label'}})
       }}
         <div class="controls">
-          <input type="text" 
-                 id="{{ form.phoneCell.vars.id }}" 
+          <input type="text"
+                 id="{{ form.phoneCell.vars.id }}"
                  name="{{ form.phoneCell.vars.full_name }}"
                  placeholder="{{ form.phoneCell.vars.label }}"
                  class="bfh-phone" data-country="US">
         </div>
       </div>
       <div class="control-group">
-      {{ 
-      form_label(form.phoneHome, null, 
+      {{
+      form_label(form.phoneHome, null,
       {'label_attr': {'class': 'control-label'}})
       }}
         <div class="controls">
-          <input type="text" 
-                 id="{{ form.phoneHome.vars.id }}" 
+          <input type="text"
+                 id="{{ form.phoneHome.vars.id }}"
                  name="{{ form.phoneHome.vars.full_name }}"
                  placeholder="{{ form.phoneHome.vars.label }}"
                  class="bfh-phone" data-country="US">
         </div>
       </div>
-      
+
       {# FACEBOOK #}
-      {{ form_row(form.facebook, 
-      {help_inline: 
+      {{ form_row(form.facebook,
+      {help_inline:
       'Does at least one leader have this person added as a friend on FB?'}) }}
     </fieldset>
 
@@ -179,24 +179,24 @@ filter='cssrewrite' %}
       {{ form_row(form.addrCity) }}
       {{ form_row(form.addrZip) }}
       <div class="control-group">
-        {{ form_label(form.addrCountry, null, 
+        {{ form_label(form.addrCountry, null,
         {'label_attr': {'class': 'control-label'}}) }}
         <div class="controls">
-          <select class="bfh-countries" 
+          <select class="bfh-countries"
                   data-country="US"
-                  id="{{ form.addrCountry.vars.id }}" 
+                  id="{{ form.addrCountry.vars.id }}"
                   name="{{ form.addrCountry.vars.full_name }}"
                   ></select>
         </div>
       </div>
       <div class="control-group">
-        {{ form_label(form.addrState, null, 
+        {{ form_label(form.addrState, null,
         {'label_attr': {'class': 'control-label'}}) }}
         <div class="controls">
-          <select class="bfh-states" 
-                  data-country="{{ form.addrCountry.vars.id }}" 
+          <select class="bfh-states"
+                  data-country="{{ form.addrCountry.vars.id }}"
                   data-state="CA"
-                  id="{{ form.addrState.vars.id }}" 
+                  id="{{ form.addrState.vars.id }}"
                   name="{{ form.addrState.vars.full_name }}"
                   ></select>
         </div>
@@ -207,28 +207,28 @@ filter='cssrewrite' %}
     <fieldset>
       <legend>Relationships</legend>
       {{
-      form_row(form.leader, {'help_blocks': 
+      form_row(form.leader, {'help_blocks':
       ['Who greeted this person and may know more about them?']
       })
       }}
-      
+
       {# TODO - ADD THESE #}
       <div class="control-group">
         <label class="control-label" for="inputFamily">Family</label>
         <div class="controls">
-          <input type="text" id="inputSmallgroup" 
+          <input type="text" id="inputSmallgroup"
                  placeholder="Coming soon..." disabled/>
         </div>
       </div>
       <div class="control-group">
         <label class="control-label" for="inputSmallgroup">Community Group</label>
         <div class="controls">
-          <input type="text" id="inputSmallgroup" 
+          <input type="text" id="inputSmallgroup"
                  placeholder="Coming soon..." disabled/>
         </div>
       </div>
     </fieldset>
-    
+
   </div> {# end all-info div #}
 
   <div class="form-actions">
