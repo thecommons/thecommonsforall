@@ -145,10 +145,14 @@ var updateTable = function(role) {
 	    return all_attendees[d.p_id].attended;
 	})
 	.on("click", function(d) {
+	    var now_attended = !d3.select(this).classed("success");
+
+	    // update the coloring of the row
 	    d3.select(this)
-		.classed("success",
-			 !d3.select(this).classed("success")
-			);
+		.classed("success", now_attended);
+
+	    // update the person info (for sending back to the server)
+	    all_attendees[d.p_id].attended = now_attended;
 	});
 
     var cols = rows.selectAll("td")
@@ -209,13 +213,17 @@ $('#reset-btn').on('click', function(e){
 $('#update-btn').on('click', function(e) {
     loading("Saving...");
 
-    // TODO
     // construct an array of the person IDs that are selected as attending
-    var tmpArr = [1,2,3,4,5];
+    var attended_ids = [];
+    d3.values(all_attendees).forEach(function(p) {
+	if(p.attended) attended_ids.push(p.p_id);
+    });
 
     var updateUrl = attendanceUpdateUrl + "/" + SUNDAY_ID + "/" + getSQLDate();
 
-    $.post(updateUrl, {attendees: tmpArr}, function (data) {
+    $.post(updateUrl, {attendees: attended_ids}, function (data) {
+	console.log("response: ");
+	console.log(data);
 	// TODO ensure that the update succeeded
 
 	// we are done, reset the button
