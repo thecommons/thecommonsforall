@@ -133,6 +133,16 @@ filter='cssrewrite' %}
     )
     }}
 
+    {{
+    form_row(form.howHeard,
+      {'help_blocks':
+        [
+          'How did this person hear about us?'
+        ]
+      }
+    )
+    }}
+
     <div class="control-group">
       {{
       form_label(form.notes, null,

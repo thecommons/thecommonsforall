@@ -20,6 +20,11 @@ class AddPersonType extends AbstractType
                                             'required' => false
                                             ));
 
+    $builder->add('howHeard', 'text', array(
+                                             'label' => 'How?',
+                                             'required' => false
+                                             ));
+
     $builder->add('notes', 'textarea', array(
                                              'label' => 'Notes',
                                              'required' => false
