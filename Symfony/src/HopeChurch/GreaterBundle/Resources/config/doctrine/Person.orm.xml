@@ -51,7 +51,7 @@
     <one-to-many field="attended" target-entity="Attendance"
 		 mapped-by="person"/>
 
-    <many-to-many field="roles" target-entity="Role">
+    <many-to-many field="roles" target-entity="Role" inversed-by="people">
       <join-table name="person_role">
         <join-columns>
           <join-column id="person_id" referenced-column-name="id" />
