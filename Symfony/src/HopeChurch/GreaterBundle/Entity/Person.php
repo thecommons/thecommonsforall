@@ -111,6 +111,11 @@ class Person
   /**
    * @var integer
    */
+  private $howHeard;
+
+  /**
+   * @var integer
+   */
   private $id;
 
   /** Convert object to array

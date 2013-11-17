@@ -13,6 +13,7 @@ hope_church_greater:
     subpage:
 
 ########## Back-end Routes ##########
+# TODO: Refactor this into a BackendBundle
 
 #--------- Attendees Page Routes ---------#
 hope_church_backstage_get_attendees:
@@ -27,6 +28,12 @@ hope_church_backstage_update_attendees:
   path: /backstage/update/attendees
   defaults:
     _controller: HopeChurchGreaterBundle:Backstage:updateAttendees
+
+#---------- Roles Routes ----------#
+hope_church_backstage_get_people_roles:
+  path: /backstage/get/roles/people
+  defaults:
+    _controller: HopeChurchGreaterBundle:Backstage:getRolesPeople
 
 #---------- Leaders Page Routes ----------#
 hope_church_backstage_get_leaders:

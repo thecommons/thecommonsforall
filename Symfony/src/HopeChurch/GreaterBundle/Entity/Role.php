@@ -15,6 +15,11 @@ class Role
     private $roleName;
 
     /**
+     * @var ArrayCollection
+     */
+    private $people;
+
+    /**
      * @var integer
      */
     private $id;
@@ -51,5 +56,38 @@ class Role
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Add person
+     *
+     * @param \HopeChurch\GreaterBundle\Entity\Person $person
+     * @return Smallgroup
+     */
+    public function addPerson(\HopeChurch\GreaterBundle\Entity\Person $person)
+    {
+      $this->people->addElement($person);
+
+      return $this;
+    }
+
+    /**
+     * Remove person
+     *
+     * @param \HopeChurch\GreaterBundle\Entity\Person $person
+     */
+    public function removePerson(\HopeChurch\GreaterBundle\Entity\Person $person)
+    {
+      $this->people->removeElement($person);
+    }
+
+    /**
+     * Get people
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPeople()
+    {
+      return $this->people;
     }
 }

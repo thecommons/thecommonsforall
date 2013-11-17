@@ -160,4 +160,23 @@ class BackstageController extends Controller
     return $response;
   }
 
+  public function getRolesPeopleAction()
+  {
+    $em = $this->getDoctrine()->getManager();
+
+    $records = $em->getRepository('HopeChurchGreaterBundle:Role')
+	          ->findAllPeople();
+
+    if(!$records)
+      {
+	// no people for roles
+	$records = Array();
+      }
+
+    $response = new Response(json_encode($records));
+    $response->headers->set('Content-Type', 'application/json');
+
+    return $response;
+  }
+
 }

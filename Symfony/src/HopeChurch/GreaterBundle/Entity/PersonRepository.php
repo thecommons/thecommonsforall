@@ -8,7 +8,7 @@ class PersonRepository extends EntityRepository
 {
   public function findAllLeaders()
   {
-    // TODO make this sort based on the number of people that have this person 
+    // TODO make this sort based on the number of people that have this person
     // set as their leader
     return $this->getEntityManager()
 	        ->createQuery("SELECT p.id, p.nameFirst, p.nameLast "
