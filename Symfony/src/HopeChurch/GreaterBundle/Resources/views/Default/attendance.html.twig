@@ -13,6 +13,7 @@ filter='cssrewrite' %}
 {{ parent() }}
 
 var attendanceUrl = "{{ path('hope_church_backstage_get_attendees') }}";
+var attendanceUpdateUrl = "{{ path('hope_church_backstage_update_attendees') }}";
 {% endblock %}
 
 {% block jsblock %}

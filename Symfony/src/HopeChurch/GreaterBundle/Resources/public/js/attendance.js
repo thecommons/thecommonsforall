@@ -90,16 +90,19 @@ var createTables = function() {
     });
 }
 
+var getSQLDate = function() {
+    // the bootstrap-datepicker really sucks
+    var d = $(".datepicker").data('datepicker').date;
+    var currentDate = new Date(d.getTime() + (d.getTimezoneOffset()*60000));
+    return sqlDateFormat(currentDate);
+}
+
 var updateDataForDate = function() {
     //enable the loading notice
     loading();
 
-    // the bootstrap-datepicker really sucks
-    var d = $(".datepicker").data('datepicker').date;
-    var currentDate = new Date(d.getTime() + (d.getTimezoneOffset()*60000));
-
     var dateUrl = attendanceUrl + "/" + SUNDAY_ID + "/all/"
-	+ sqlDateFormat(currentDate);
+	+ getSQLDate();
 
     d3.json(dateUrl,
 	function(error, json) {
@@ -197,7 +200,6 @@ $('.datepicker').datepicker()
 	updateDataForDate();
     });
 
-// make the reset button actually reset
 $('#reset-btn').on('click', function(e){
     updateDataForDate();
     return false;
@@ -208,12 +210,18 @@ $('#update-btn').on('click', function(e) {
     loading("Saving...");
 
     // TODO
-    // send a date, and a list of p.id's
-    // the server will need to create attendances for all those people
-    // and also remove attendances for all others
+    // construct an array of the person IDs that are selected as attending
+    var tmpArr = [1,2,3,4,5];
 
-    // we are done, reset the button
-    loadingDone();
+    var updateUrl = attendanceUpdateUrl + "/" + SUNDAY_ID + "/" + getSQLDate();
+
+    $.post(updateUrl, {attendees: tmpArr}, function (data) {
+	// TODO ensure that the update succeeded
+
+	// we are done, reset the button
+	loadingDone();
+    }, "json");
+
     return false;
 });
 
@@ -224,10 +232,11 @@ var bootstrapAttendees = function(role_idx) {
 
     // update tables as we get data, fakes the user into thinking that the load
     // really isn't taking all that long.
-    updateDataForDate();
+    if(role_idx > 0) updateTable(roles[role_idx-1]);
 
     // all the data is downloaded
     if(role_idx == roles.length) {
+	updateDataForDate();
 	return;
     }
 

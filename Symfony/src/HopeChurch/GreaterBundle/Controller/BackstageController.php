@@ -71,9 +71,19 @@ class BackstageController extends Controller
     return $response;
   }
 
-  public function updateAttendanceAction($type, $_route)
+  public function updateAttendeesAction($event, $date, $_route)
   {
-    throw $this->createNotFoundException("Attendance update not implemented");
+    $params = array();
+    $attendees = $this->get("request")->request->get("attendees");
+
+    // TODO remove all attendance for this event/date
+
+    // TODO take the list of attendees and add all as attendees for this
+    // event/date
+
+    $response = new Response(json_encode($attendees));
+    $response->headers->set('Content-Type', 'application/json');
+    return $response;
   }
 
   public function updatePersonAction($_route)
