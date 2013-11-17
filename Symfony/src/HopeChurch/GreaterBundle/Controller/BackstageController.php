@@ -8,25 +8,6 @@ use Symfony\Component\HttpFoundation\Response;
 class BackstageController extends Controller
 {
 
-  private function arr2arr($array, $type)
-  {
-    $toArray = function($val)
-    {
-      return $val->toArray();
-    };
-
-    $toArrayBrief = function($val)
-    {
-      return $val->toArrayBrief();
-    };
-
-    if($type == "brief") {
-      return array_map($toArrayBrief, $array);
-    } else {
-      return array_map($toArray, $array);
-    }
-  }
-
   public function getAction($type, $record_id, $_route)
     {
       // the default
@@ -34,48 +15,9 @@ class BackstageController extends Controller
 
       /* they have asked us to return the json data for this type */
 
-      /* at the moment we only support type == people */
-      if($type == "person" || $type == "person-brief")
-	{
-	  if($record_id == "all")
-	    {
-	      // get all the people!
-	      $result = $this->getDoctrine()
-		->getRepository('HopeChurchGreaterBundle:Person')
-		->findAll();
-
-	      if (!$result) {
-		throw $this->
-		  createNotFoundException("No people found!");
-	      }
-
-              if($type == "person-brief") {
-                $json_data = $this->arr2arr($result, "brief");
-              } else {
-	        $json_data = $this->arr2arr($result, "full");
-              }
-	    }
-	  else
-	    {
-	      $result = $this->getDoctrine()
-		->getRepository('HopeChurchGreaterBundle:Person')
-		->find($record_id);
-
-	      if (!$result) {
-		throw $this->
-		  createNotFoundException('No person found with id '.$record_id);
-	      }
-
-	      $json_data = $result->toArray();
-	    }
-	}
-      //check for other types here
-      else
-	{
-	  // error
-	  throw $this->
-	    createNotFoundException("Invalid get request type ($type)");
-	}
+      // error
+      throw $this->
+	createNotFoundException("Invalid get request type ($type)");
 
       // by here we should have the json object ready
       $response = new Response(json_encode($json_data));

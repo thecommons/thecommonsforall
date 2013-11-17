@@ -118,51 +118,6 @@ class Person
    */
   private $id;
 
-  /** Convert object to array
-   *
-   * @return Array
-   */
-  public function toArray()
-  {
-    $dc = ($this->getDateCreated()) ?
-      $this->getDateCreated()->getTimestamp() :
-      0;
-    return array(
-		 'nameFirst' => $this->getNameFirst(),
-		 'nameLast' => $this->getNameLast(),
-		 'notes' => $this->getNotes(),
-		 'dateCreated' => $dc,
-		 'email' => $this->getEmail(),
-		 'phoneCell' => $this->getPhoneCell(),
-		 'phoneHome' => $this->getPhoneHome(),
-		 'addrFirst' => $this->getAddrFirst(),
-		 'addrSecond' => $this->getAddrSecond(),
-		 'addrCity' => $this->getAddrCity(),
-		 'addrState' => $this->getAddrState(),
-		 'addrZip' => $this->getAddrZip(),
-		 'addrCountry' => $this->getAddrCountry(),
-		 'family' => $this->getFamily(),
-		 'smallgroup' => $this->getSmallgroup(),
-		 'leader' => $this->getLeader(),
-		 'id' => $this->getId()
-		 );
-  }
-
-  /** Convert object to array
-   * but only include First and Last name
-   *
-   * @return Array
-   */
-  public function toArrayBrief()
-  {
-    return array(
-		 'nameFull' => $this->getNameFirst() . " " . $this->getNameLast(),
-		 'nameFirst' => $this->getNameFirst(),
-		 'nameLast' => $this->getNameLast(),
-		 'id' => $this->getId()
-		 );
-  }
-
   /**
    * Set nameFirst
    *
