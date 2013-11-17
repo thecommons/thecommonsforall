@@ -29,6 +29,11 @@ class Person
   private $notes;
 
   /**
+   * @var string
+   */
+  private $howHeard;
+
+  /**
    * @var \DateTime
    */
   private $dateCreated;
@@ -111,11 +116,6 @@ class Person
   /**
    * @var integer
    */
-  private $howHeard;
-
-  /**
-   * @var integer
-   */
   private $id;
 
   /**
@@ -185,6 +185,29 @@ class Person
   public function getNotes()
   {
     return $this->notes;
+  }
+
+  /**
+   * Set howHeard
+   *
+   * @param string $howHeard
+   * @return Person
+   */
+  public function setHowHeard($howHeard)
+  {
+    $this->howHeard = $howHeard;
+
+    return $this;
+  }
+
+  /**
+   * Get howHeard
+   *
+   * @return string
+   */
+  public function getHowHeard()
+  {
+    return $this->howHeard;
   }
 
   /**
