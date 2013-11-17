@@ -222,9 +222,12 @@ $('#update-btn').on('click', function(e) {
 
 var bootstrapAttendees = function(role_idx) {
 
+    // update tables as we get data, fakes the user into thinking that the load
+    // really isn't taking all that long.
+    updateDataForDate();
+
     // all the data is downloaded
     if(role_idx == roles.length) {
-	updateDataForDate();
 	return;
     }
 
