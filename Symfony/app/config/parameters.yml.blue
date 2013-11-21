@@ -1,0 +1,15 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_driver: pdo_mysql
+    database_host: localhost
+    database_port: null
+    database_name: hopechu3_somethinggreater
+    database_user: hopechu3_sgr8
+    database_password: 'tVVqTOX2w;LQ'
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    locale: en
+    secret: 7e5babd8e2a0cc70f8c79fe154dc729d
+    database_path: null
