@@ -134,10 +134,11 @@ filter='cssrewrite' %}
     }}
 
     {{
-    form_row(form.howHeard,
+    form_row(form.referrer,
       {'help_blocks':
         [
-          'How did this person hear about us?'
+          'How did this person hear about us?',
+	  'If "Other", then please use the Notes field below to provide further info.'
         ]
       }
     )

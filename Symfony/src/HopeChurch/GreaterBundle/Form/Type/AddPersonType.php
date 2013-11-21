@@ -20,9 +20,13 @@ class AddPersonType extends AbstractType
                                             'required' => false
                                             ));
 
-    $builder->add('howHeard', 'text', array(
+    $builder->add('referrer', 'entity', array(
                                              'label' => 'Referrer',
-                                             'required' => false
+                                             'required' => false,
+					     'empty_value' => '-- Unknown --',
+					     'class' =>
+					     'HopeChurchGreaterBundle:Referrer',
+					     'property'    => 'name'
                                              ));
 
     $builder->add('notes', 'textarea', array(

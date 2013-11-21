@@ -29,9 +29,9 @@ class Person
   private $notes;
 
   /**
-   * @var string
+   * @var Referrer
    */
-  private $howHeard;
+  private $referrer;
 
   /**
    * @var \DateTime
@@ -188,26 +188,26 @@ class Person
   }
 
   /**
-   * Set howHeard
+   * Set referrer 
    *
-   * @param string $howHeard
-   * @return Person
+   * @param \HopeChurch\GreaterBundle\Entity\Referrer $referrer
+   * @return Referrer
    */
-  public function setHowHeard($howHeard)
+  public function setReferrer(\HopeChurch\GreaterBundle\Entity\Referrer $referrer= null)
   {
-    $this->howHeard = $howHeard;
+    $this->referrer = $referrer;
 
     return $this;
   }
 
   /**
-   * Get howHeard
+   * Get referrer 
    *
-   * @return string
+   * @return \HopeChurch\GreaterBundle\Entity\Referrer
    */
-  public function getHowHeard()
+  public function getReferrer()
   {
-    return $this->howHeard;
+    return $this->referrer;
   }
 
   /**

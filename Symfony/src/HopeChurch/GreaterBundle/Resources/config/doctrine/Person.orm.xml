@@ -11,8 +11,11 @@
 	   nullable="true"/>
     <field name="notes" type="string" column="notes"
 	   nullable="true"/>
-    <field name="howHeard" type="string" column="how_heard"
-	   nullable="true"/>
+
+    <one-to-one field="referrer" target-entity="Referrer">
+      <join-column name="referrer_id" referenced-column-name="id"/>
+    </one-to-one>
+
     <field name="dateCreated" type="date" column="date_created"
 	   nullable="false"/>
     <field name="email" type="string" column="email" length="256"
