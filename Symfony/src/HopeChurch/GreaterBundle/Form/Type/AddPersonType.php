@@ -21,7 +21,7 @@ class AddPersonType extends AbstractType
                                             ));
 
     $builder->add('howHeard', 'text', array(
-                                             'label' => 'How?',
+                                             'label' => 'Referrer',
                                              'required' => false
                                              ));
 
