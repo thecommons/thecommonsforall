@@ -113,12 +113,17 @@ var updateDataForDate = function() {
 	    // reset the attendance
 	    d3.keys(all_attendees).forEach(function(id) {
 		all_attendees[id].attended = false;
+		all_attendees[id].rm_attendance = false;
+		all_attendees[id].add_attendance = false;
 	    });
 
 	    // now set the new attendance
 	    // this MAY get slow if we are dealing with LOTS of attendees
 	    json.forEach(function(e) {
 		all_attendees[e.p_id].attended = true;
+
+		// rm and add attendance fields will be false until a row is
+		// clicked
 	    });
 
 	    roles.forEach(function(role) {
@@ -151,8 +156,23 @@ var updateTable = function(role) {
 	    d3.select(this)
 		.classed("success", now_attended);
 
+	    var person = all_attendees[d.p_id];
 	    // update the person info (for sending back to the server)
-	    all_attendees[d.p_id].attended = now_attended;
+	    // we check the current state against the original state, and if it
+	    // differs, then we set the appropriate field
+	    if(now_attended != person.attended)
+	    {
+		if(now_attended)
+		    {
+			person.add_attendance = true;
+			person.rm_attendance = false;
+		    }
+		else
+		    {
+			person.add_attendance = false;
+			person.rm_attendance = true;
+		    }
+	    }
 	});
 
     var cols = rows.selectAll("td")
@@ -213,22 +233,44 @@ $('#reset-btn').on('click', function(e){
 $('#update-btn').on('click', function(e) {
     loading("Saving...");
 
-    // construct an array of the person IDs that are selected as attending
+    // construct two arrays:
+    //  - one with those that are NOW attending
+    //  - one with those that are now NOT attending
     var attended_ids = [];
+    var not_attended_ids = [];
     d3.values(all_attendees).forEach(function(p) {
-	if(p.attended) attended_ids.push(p.p_id);
+	if(p.add_attendance)
+	{
+	    attended_ids.push(p.p_id);
+	}
+	if(p.rm_attendance)
+	{
+	    not_attended_ids.push(p.p_id);
+	}
     });
+
+    // short circuit if nothing was changed
+    if(attended_ids.length == 0 && not_attended_ids.length == 0) return;
 
     var updateUrl = attendanceUpdateUrl + "/" + SUNDAY_ID + "/" + getSQLDate();
 
-    $.post(updateUrl, {attendees: attended_ids}, function (data) {
-	console.log("response: ");
-	console.log(data);
-	// TODO ensure that the update succeeded
+    $.post(updateUrl,
+	   {add_attendees: attended_ids, rm_attendees: not_attended_ids},
+	   function (data) {
+	       if(!data ||
+		  data[1] != attended_ids.length ||
+		  data[0] != not_attended_ids.length)
+		   {
+		       // failed!
+		       // TODO add a nice error banner like on the add person
+		       // page
+		       alert("Failed to update attendance");
+		   }
 
-	// we are done, reset the button
-	loadingDone();
-    }, "json");
+	       // we are done, reload from db and reset the button
+	       updateDataForDate();
+	       loadingDone();
+	   }, "json");
 
     return false;
 });

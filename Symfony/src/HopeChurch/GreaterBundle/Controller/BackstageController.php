@@ -73,15 +73,23 @@ class BackstageController extends Controller
 
   public function updateAttendeesAction($event, $date, $_route)
   {
+    $results = Array();
+    $em = $this->getDoctrine()->getManager();
+    $attRepo = $em->getRepository('HopeChurchGreaterBundle:Attendance');
+
     $params = array();
-    $attendees = $this->get("request")->request->get("attendees");
+    $add_attendees = $this->get("request")->request->get("add_attendees");
+    $rm_attendees = $this->get("request")->request->get("rm_attendees");
 
-    // TODO remove all attendance for this event/date
+    // first, remove attendance for those that have been removed
+    $results[0] = $attRepo->removeAttendeesForEventByDate($event, $date,
+						      $rm_attendees);
 
-    // TODO take the list of attendees and add all as attendees for this
-    // event/date
+    // now, add attendance for those that have been added
+    $results[1] = $attRepo->addAttendeesForEventByDate($event, $date,
+						       $add_attendees);
 
-    $response = new Response(json_encode($attendees));
+    $response = new Response(json_encode($results));
     $response->headers->set('Content-Type', 'application/json');
     return $response;
   }

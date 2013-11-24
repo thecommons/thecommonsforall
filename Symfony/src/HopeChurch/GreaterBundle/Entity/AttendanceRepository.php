@@ -58,6 +58,65 @@ class AttendanceRepository extends EntityRepository
 	        ->setParameter('date', $date)
 	        ->getResult();
   }
+
+  public function removeAttendeesForEventByDate($event_id, $date, $attendees)
+  {
+    $em = $this->getEntityManager();
+    $to_rm = $em->createQuery("SELECT a "
+			      ." FROM HopeChurchGreaterBundle:Attendance a "
+			      ." JOIN a.person p "
+			      ." JOIN a.event e "
+			      ." WHERE e.id = :event_id "
+			      ." AND a.date = :date "
+			      ." AND p.id IN (:ids)")
+      ->setParameter('event_id', $event_id)
+      ->setParameter('date', $date)
+      ->setParameter('ids', $attendees)
+      ->getResult();
+
+    foreach($to_rm as $att)
+      {
+	$em->remove($att);
+      }
+
+    $em->flush();
+
+    return count($to_rm);
+  }
+
+  public function addAttendeesForEventByDate($event_id, $date, $attendees)
+  {
+    $em = $this->getEntityManager();
+
+    // get this event
+    $event = $em->createQuery("SELECT e "
+			      ." FROM HopeChurchGreaterBundle:Event e "
+			      ." WHERE e.id = :event_id")
+      ->setParameter('event_id', $event_id)
+      ->getSingleResult();
+
+    // get entities for each attendee
+    $persons = $em->createQuery("SELECT p "
+				." FROM HopeChurchGreaterBundle:Person p "
+				." WHERE p.id IN (:ids)")
+      ->setParameter('ids', $attendees)
+      ->getResult();
+
+    //create an attendance for each person
+    foreach($persons as $person)
+      {
+	$att = new Attendance;
+	$att->setPerson($person);
+	$att->setEvent($event);
+	$att->setDate(new \DateTime($date));
+	$em->persist($att);
+      }
+
+    $em->flush();
+
+    return count($persons);
+  }
+
 }
 
 ?>
