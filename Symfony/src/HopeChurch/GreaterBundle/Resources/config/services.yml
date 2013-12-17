@@ -2,6 +2,18 @@ parameters:
 #    hope_church_greater.example.class: HopeChurch\GreaterBundle\Example
 
 services:
+  hope_church_greater.menu_builder:
+    class: HopeChurch\GreaterBundle\Menu\Builder
+    arguments: ["@knp_menu.factory"]
+
+  hope_church_greater.menu.topNav:
+    class: Knp\Menu\MenuItem
+    factory_service: hope_church_greater.menu_builder
+    factory_method: topNavMenu
+    tags:
+      - { name: knp_menu.menu, alias: topNav }
+
+#services:
 #    hope_church_greater.example:
 #        class: %hope_church_greater.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]

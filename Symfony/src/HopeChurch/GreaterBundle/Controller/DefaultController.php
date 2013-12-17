@@ -14,7 +14,7 @@ class DefaultController extends Controller
     'home' => array(),
     'attendance' => array(),
     'add' => array('person', 'family', 'community group'),
-    'edit' => array()
+    'view' => array('people')
   );
 
   public function indexAction($page, $subpage, $_route)
@@ -24,13 +24,17 @@ class DefaultController extends Controller
       $page = 'home';
     }
 
-    return $this->render("HopeChurchGreaterBundle:Default:$page.html.twig",
-			 array(
-	'route' => $_route,
-	'active_page' => $page,
-        'active_subpage' => '',
-	'nav_pages' => $this->pages
-      ));
+    if(isset($subpage)) {
+      $twig = "HopeChurchGreaterBundle:Default:$page.$subpage.html.twig";
+    } else {
+      $twig = "HopeChurchGreaterBundle:Default:$page.html.twig";
+    }
+
+    return $this->render($twig,
+                         array(
+			       'route' => $_route
+			       )
+			 );
   }
 
   public function addPersonAction(Request $request, $_route)
