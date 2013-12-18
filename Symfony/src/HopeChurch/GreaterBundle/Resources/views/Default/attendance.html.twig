@@ -3,7 +3,7 @@
 {% block styleblock %}
 {{ parent() }}
 {% stylesheets
-'bundles/hopechurchgreater/libs/datepicker/css/datepicker.css'
+'bundles/hopechurchgreater/libs/datepicker/css/datepicker3.css'
 filter='cssrewrite' %}
 <link rel="stylesheet" href="{{ asset_url }}" />
 {% endstylesheets %}
@@ -30,16 +30,16 @@ var attendanceUpdateUrl = "{{ path('hope_church_backstage_update_attendees') }}"
 {% endblock %}
 
 {% block body %}
-<form class="form-inline" id="attendance-form">
-<div class="row">
-  <div class="span12">
-    <span class="help-inline">Attendance Date:</span>
-    <div class="input-append date datepicker">
-      <input type="text" id="date">
-      <span class="add-on"><i class="icon-th"></i></span>
+<form class="form-horizontal" id="attendance-form">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="input-group date datepicker">
+        <span class="input-group-addon">Date</span>
+        <input type="text" id="date" class="form-control">
+        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+      </div>
     </div>
   </div>
-</div>
 <div id="attendance-tables"></div>
 {#
 <div class="row">

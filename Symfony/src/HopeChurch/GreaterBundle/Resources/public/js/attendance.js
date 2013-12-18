@@ -55,10 +55,13 @@ var loading = function(text) {
     if(!text)
 	text = "Loading...";
 
+    console.log("button loading");
+
     $('#update-btn').data('loading-text', text).button('loading');
 }
 
 var loadingDone = function() {
+    console.log("button done");
     $("#update-btn").button('reset');
 }
 
@@ -68,16 +71,17 @@ var createTables = function() {
 	    .append("div")
 	    .classed("row", true)
 	    .append("div")
-	    .classed("span12", true);
+	    .classed("col-md-12", true);
 	span.append("h4")
 	    .text(r.title);
 
 	var table = span.append("table")
 	    .attr("id", r.name+"-table")
-	    .classed("table table-bordered tabled-striped table-hover", true);
+	    .classed("table table-bordered table-striped table-hover", true);
 
 	table.append("thead")
 	    .attr("id", r.name+"-head")
+	    .append("tr")
 	    .selectAll("th")
 	    .data(columns)
 	    .enter()
@@ -92,8 +96,9 @@ var createTables = function() {
 
 var getSQLDate = function() {
     // the bootstrap-datepicker really sucks
-    var d = $(".datepicker").data('datepicker').date;
-    var currentDate = new Date(d.getTime() + (d.getTimezoneOffset()*60000));
+    var currentDate = $(".datepicker").datepicker('getDate');
+    console.log(currentDate);
+    //var currentDate = new Date(d.getTime() + (d.getTimezoneOffset()*60000));
     return sqlDateFormat(currentDate);
 }
 
@@ -129,11 +134,13 @@ var updateDataForDate = function() {
 	    roles.forEach(function(role) {
 		updateTable(role);
 	    });
+
+	    loadingDone();
 	});
 }
 
 var updateTable = function(role) {
-
+    //loading();
     var rows = d3.select("#"+role.name+"-body")
 	.selectAll("tr")
 	.data(d3.values(data[role.name]), function(d) {return d.p_id})
@@ -185,7 +192,7 @@ var updateTable = function(role) {
 	.text(function(d) {return d});
 
     // tell the update button that we are done loading
-    loadingDone();
+    //loadingDone();
 };
 
 // start doing things!!
@@ -269,7 +276,6 @@ $('#update-btn').on('click', function(e) {
 
 	       // we are done, reload from db and reset the button
 	       updateDataForDate();
-	       loadingDone();
 	   }, "json");
 
     return false;

@@ -8,7 +8,7 @@ $('#btn-all-info').click(function(){
     }
 
     // change the icon
-    $('#btn-all-info-icon').toggleClass("icon-plus icon-minus");
+    $('#btn-all-info-icon').toggleClass("glyphicon-plus glyphicon-minus");
 });
 
 $('#btn-reset').click(function(){

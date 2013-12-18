@@ -30,20 +30,16 @@ filter='cssrewrite' %}
 {# style the elements in the form #}
 {% form_theme form _self %}
 {% block form_row %}
-    <div class="control-group">
-      {{
-      form_label(form, null,
-      {'label_attr': {'class': 'control-label'}})
-      }}
-      <div class="controls">
-        {{ form_widget(form, {'attr': {'placeholder': placeholder | default(label)}}) }}
-        {% if help_inline is defined %}
-        <span class="help-inline">{{ help_inline }}</span>
-        {% endif %}
+    <div class="form-group">
+        {{
+        form_label(form, null, {'label_attr': {'class': 'col-md-2 control-label'}})
+        }}
+      <div class="col-md-10">
+        {{ form_widget(form, {'attr': {'placeholder': placeholder | default(label), 'class': 'form-control'}}) }}
         {{ form_errors(form) }}
         {% if help_blocks is defined %}
         {% for help in help_blocks %}
-        <span class="help-block">{{ help }}</span>
+        <p class="help-block">{{ help }}</p>
         {% endfor %}
         {% endif %}
       </div>
@@ -52,7 +48,7 @@ filter='cssrewrite' %}
 
 {% block choice_widget_expanded %}
 {% spaceless %}
-    <div {{ block('widget_container_attributes') }}>
+    <div {% if id is defined %} id="{{ id }}" {% endif %}>
     {% for child in form %}
         {{ form_widget(child) }}
     {% endfor %}
@@ -62,7 +58,7 @@ filter='cssrewrite' %}
 
 {% block checkbox_widget %}
 {% spaceless %}
-    <label class="checkbox inline">
+    <label class="checkbox-inline">
       <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />{{ form_label(form) }}
     </label>
 {% endspaceless %}
@@ -73,7 +69,7 @@ filter='cssrewrite' %}
     {% spaceless %}
     {% if errors|length > 0 %}
     {% for error in errors %}
-    <span class="help-inline"><p class="text-error">
+    <span class="help-block"><p class="text-danger">
     {{
     error.messagePluralization is null
     ? error.messageTemplate|trans(error.messageParameters, 'validators')
@@ -97,7 +93,7 @@ filter='cssrewrite' %}
 {% endfor %}
 
 {% for flashMessage in app.session.flashbag.get('error') %}
-<div class="alert alert-error">
+<div class="alert alert-danger">
   {{ flashMessage }}
 </div>
 {% endfor %}
@@ -144,13 +140,12 @@ filter='cssrewrite' %}
     )
     }}
 
-    <div class="control-group">
-      {{
-      form_label(form.notes, null,
-      {'label_attr': {'class': 'control-label'}})
-      }}
-      <div class="controls">
-        <textarea class="input-xxlarge" rows="4"
+    <div class="form-group">
+        {{
+      form_label(form.notes, null, {'label_attr': {'class': 'col-md-2 control-label'}})
+        }}
+      <div class="col-md-10">
+        <textarea class="input-xxlarge form-control" rows="4"
                   id="{{ form.notes.vars.id }}"
                   name="{{ form.notes.vars.full_name }}"
                   placeholder="Anything else?"></textarea>
@@ -158,15 +153,15 @@ filter='cssrewrite' %}
     </div>
 
     {# EXPAND/COLLAPSE ALL INFO #}
-    <div class="control-group">
-      <div class="controls">
+    <div class="form-group">
+      <div class="col-md-offset-2 col-md-10">
         <button type="button" class="btn" id="btn-all-info"
                 data-toggle="collapse" data-target="#all-info">
-          <i id="btn-all-info-icon" class="icon-plus"></i>
+          <span id="btn-all-info-icon" class="glyphicon glyphicon-plus"></span>
           <span id="btn-all-info-text">More</span>
         </button>
-        <span class="help-block">This is all we need, but if you have more
-          details (like email, phone, etc.), please add them!</span>
+        <p class="help-block">This is all we need, but if you have more
+          details (like email, phone, etc.), please add them!</p>
       </div>
     </div>
   </fieldset>
@@ -179,37 +174,47 @@ filter='cssrewrite' %}
       {{ form_row(form.email) }}
 
       {# PHONE #}
-      <div class="control-group">
-      {{
-      form_label(form.phoneCell, null,
-      {'label_attr': {'class': 'control-label'}})
-      }}
-        <div class="controls">
+      <div class="form-group">
+        {{
+        form_label(form.phoneCell, null, {'label_attr': {'class': 'col-md-2 control-label'}})
+        }}
+        <div class="col-md-10">
           <input type="text"
                  id="{{ form.phoneCell.vars.id }}"
                  name="{{ form.phoneCell.vars.full_name }}"
                  placeholder="{{ form.phoneCell.vars.label }}"
-                 class="bfh-phone" data-country="US">
+                 class="bfh-phone form-control" data-country="US">
         </div>
       </div>
-      <div class="control-group">
-      {{
-      form_label(form.phoneHome, null,
-      {'label_attr': {'class': 'control-label'}})
-      }}
-        <div class="controls">
+
+      <div class="form-group">
+        {{
+        form_label(form.phoneHome, null, {'label_attr': {'class': 'col-md-2 control-label'}})
+        }}
+        <div class="col-md-10">
           <input type="text"
                  id="{{ form.phoneHome.vars.id }}"
                  name="{{ form.phoneHome.vars.full_name }}"
                  placeholder="{{ form.phoneHome.vars.label }}"
-                 class="bfh-phone" data-country="US">
+                 class="form-control bfh-phone" data-country="US">
         </div>
       </div>
 
       {# FACEBOOK #}
-      {{ form_row(form.facebook,
-      {help_inline:
-      'Does at least one leader have this person added as a friend on FB?'}) }}
+      <div class="form-group">
+        {{
+      form_label(form.facebook, null, {'label_attr': {'class': 'col-md-2 control-label'}})
+        }}
+      <div class="col-md-10">
+        <div class="checkbox">
+          <input type="checkbox"
+                 id="{{ form.facebook.vars.id }}"
+                 name="{{ form.facebook.vars.full_name }}"
+                 >
+        </div>
+        <p class="help-block">Does at least one leader have this person added as a friend on FB?</p>
+      </div>
+      </div>
     </fieldset>
 
     <fieldset>
@@ -219,22 +224,24 @@ filter='cssrewrite' %}
       {{ form_row(form.addrSecond, {'placeholder': "Address #2"}) }}
       {{ form_row(form.addrCity) }}
       {{ form_row(form.addrZip) }}
-      <div class="control-group">
-        {{ form_label(form.addrCountry, null,
-        {'label_attr': {'class': 'control-label'}}) }}
-        <div class="controls">
-          <select class="bfh-countries"
+      <div class="form-group">
+        {{
+        form_label(form.addrCountry, null, {'label_attr': {'class': 'col-md-2 control-label'}})
+        }}
+        <div class="col-md-10">
+          <select class="bfh-countries form-control"
                   data-country="US"
                   id="{{ form.addrCountry.vars.id }}"
                   name="{{ form.addrCountry.vars.full_name }}"
                   ></select>
         </div>
       </div>
-      <div class="control-group">
-        {{ form_label(form.addrState, null,
-        {'label_attr': {'class': 'control-label'}}) }}
-        <div class="controls">
-          <select class="bfh-states"
+      <div class="form-group">
+        {{
+        form_label(form.addrState, null, {'label_attr': {'class': 'col-md-2 control-label'}})
+        }}
+        <div class="col-md-10">
+          <select class="bfh-states form-control"
                   data-country="{{ form.addrCountry.vars.id }}"
                   data-state="CA"
                   id="{{ form.addrState.vars.id }}"
@@ -254,17 +261,18 @@ filter='cssrewrite' %}
       }}
 
       {# TODO - ADD THESE #}
-      <div class="control-group">
-        <label class="control-label" for="inputFamily">Family</label>
-        <div class="controls">
-          <input type="text" id="inputSmallgroup"
-                 placeholder="Coming soon..." disabled/>
-        </div>
+      <div class="form-group">
+          <label for="inputFamily" class="col-md-2 control-label">Family</label>
+          <div class="col-md-10">
+            <input class="form-control" type="text" id="inputSmallgroup"
+                   placeholder="Coming soon..." disabled/>
+          </div>
       </div>
-      <div class="control-group">
-        <label class="control-label" for="inputSmallgroup">Community Group</label>
-        <div class="controls">
-          <input type="text" id="inputSmallgroup"
+
+      <div class="form-group">
+        <label for="inputSmallgroup" class="col-md-2 control-label">Community Group</label>
+        <div class="col-md-10">
+          <input class="form-control" type="text" id="inputSmallgroup"
                  placeholder="Coming soon..." disabled/>
         </div>
       </div>

@@ -14,11 +14,21 @@
 
 {% block root %}
 {% set listAttributes = item.childrenAttributes %}
-<div class="navbar navbar-fixed-top navbar-inverse">
-  <div class="navbar-inner">
-    <div class="container">
-      <a class="brand" href="{{ path('hope_church_greater') }}">Something Greater</a>
-
+<div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse"
+              data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{{ path('hope_church_greater') }}">
+        Something Greater
+      </a>
+    </div>
+    <div class="collapse navbar-collapse">
       {{ block('list') -}}
     </div>
   </div>
@@ -31,7 +41,7 @@
 {% import _self as knp_menu %}
 
 {% if item.level is sameas(0) %}
-  {%- set ul_class = 'nav' %}
+  {%- set ul_class = 'nav navbar-nav' %}
 {% else %}
   {%- set ul_class = 'dropdown-menu' %}
 {% endif %}
