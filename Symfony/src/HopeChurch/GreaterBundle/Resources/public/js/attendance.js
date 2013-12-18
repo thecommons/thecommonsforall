@@ -77,7 +77,7 @@ var createTables = function() {
 
 	var table = span.append("table")
 	    .attr("id", r.name+"-table")
-	    .classed("table table-bordered table-striped table-hover", true);
+	    .classed("table table-bordered table-hover", true);
 
 	table.append("thead")
 	    .attr("id", r.name+"-head")
