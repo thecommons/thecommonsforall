@@ -55,27 +55,37 @@ var loading = function(text) {
     if(!text)
 	text = "Loading...";
 
-    console.log("button loading");
-
     $('#update-btn').data('loading-text', text).button('loading');
 }
 
 var loadingDone = function() {
-    console.log("button done");
     $("#update-btn").button('reset');
 }
 
 var createTables = function() {
     roles.forEach(function(r, i) {
-	var span = d3.select("#attendance-tables")
-	    .append("div")
-	    .classed("row", true)
-	    .append("div")
-	    .classed("col-md-12", true);
-	span.append("h4")
+	var tab = d3.select("#attendance-tabs")
+	    .append("li")
+	    .classed("active", (i==0))
+	    .append("a")
+	    .attr("href", "#" + r.name)
+	    .attr("data-toggle", "tab")
 	    .text(r.title);
 
-	var table = span.append("table")
+	var content = d3.select("#attendance-content")
+	    .append("div") // tab pane
+	    .classed("tab-pane", true)
+	    .classed("active", (i == 0))
+	    .attr("id", r.name)
+	    .append("div") //row div
+	    .classed("row", true)
+	    .append("div") // col div
+	    .classed("col-md-12", true);
+
+	//content.append("h4")
+	//    .text(r.title);
+
+	var table = content.append("table")
 	    .attr("id", r.name+"-table")
 	    .classed("table table-bordered table-hover", true);
 
@@ -95,9 +105,7 @@ var createTables = function() {
 }
 
 var getSQLDate = function() {
-    // the bootstrap-datepicker really sucks
     var currentDate = $(".datepicker").datepicker('getDate');
-    console.log(currentDate);
     //var currentDate = new Date(d.getTime() + (d.getTimezoneOffset()*60000));
     return sqlDateFormat(currentDate);
 }
@@ -234,6 +242,14 @@ $('.datepicker').datepicker()
 $('#reset-btn').on('click', function(e){
     updateDataForDate();
     return false;
+});
+
+var $tabs = $('.nav-tabs li');
+$('#prev-btn').on('click', function() {
+    $tabs.filter('.active').prev('li').find('a[data-toggle="tab"]').tab('show');
+});
+$('#next-btn').on('click', function() {
+    $tabs.filter('.active').next('li').find('a[data-toggle="tab"]').tab('show');
 });
 
 // update the attendance for the current date
