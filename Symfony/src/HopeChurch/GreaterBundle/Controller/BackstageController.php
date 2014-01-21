@@ -26,6 +26,25 @@ class BackstageController extends Controller
       return $response;
     }
 
+  public function getOverallAttendeesAction($event, $date, $_route)
+  {
+    $repo = $this->getDoctrine()->getManager()
+      ->getRepository('HopeChurchGreaterBundle:OverallAttendance');
+
+    $records = $repo->findOverallAttendeeCountForEventByDate($event, $date);
+
+    if(!$records)
+      {
+	// no attendees
+	$records = Array();
+      }
+
+    $response = new Response(json_encode($records));
+    $response->headers->set('Content-Type', 'application/json');
+
+    return $response;
+  }
+
   public function getAttendeesAction($event, $role, $date, $_route)
   {
     /* this will eventually be a pretty complex formula for sorting

@@ -5,19 +5,19 @@ namespace HopeChurch\GreaterBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Attendance
+ * OverallAttendance
  */
-class Attendance
+class OverallAttendance
 {
+    /**
+     * @var integer
+     */
+    private $id;
+
     /**
      * @var \DateTime
      */
     private $date;
-
-    /**
-     * @var Person
-     */
-    private $person;
 
     /**
      * @var Event
@@ -27,14 +27,24 @@ class Attendance
     /**
      * @var integer
      */
-    private $id;
+    private $attendeeCount;
 
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set date
      *
      * @param \DateTime $date
-     * @return Attendance
+     * @return OverallAttendance
      */
     public function setDate($date)
     {
@@ -51,29 +61,6 @@ class Attendance
     public function getDate()
     {
         return $this->date;
-    }
-
-    /**
-     * Set person
-     *
-     * @param \HopeChurch\GreaterBundle\Entity\Person $person
-     * @return Attendance
-     */
-    public function setPerson(\HopeChurch\GreaterBundle\Entity\Person $person)
-    {
-        $this->person = $person;
-
-        return $this;
-    }
-
-    /**
-     * Get person
-     *
-     * @return  \HopeChurch\GreaterBundle\Entity\Person
-     */
-    public function getPerson()
-    {
-        return $this->person;
     }
 
     /**
@@ -100,12 +87,25 @@ class Attendance
     }
 
     /**
-     * Get id
+     * Set attendeeCount
+     *
+     * @param integer $attendeeCount
+     * @return OverallAttendance
+     */
+    public function setAttendeeCount($attendeeCount)
+    {
+        $this->attendeeCount = $attendeeCount;
+
+        return $this;
+    }
+
+    /**
+     * Get attendeeCount
      *
      * @return integer
      */
-    public function getId()
+    public function getAttendeeCount()
     {
-        return $this->id;
+        return $this->attendeeCount;
     }
 }

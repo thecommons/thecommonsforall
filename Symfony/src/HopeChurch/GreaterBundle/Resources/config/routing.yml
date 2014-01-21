@@ -15,6 +15,14 @@ hope_church_greater:
 ########## Back-end Routes ##########
 # TODO: Refactor this into a BackendBundle
 
+#---------- Overall Attendees Page Routes ----------#
+hope_church_backstage_get_overall_attendees:
+  path: /backstage/get/attendees/overall/{event}/{date}
+  defaults:
+    _controller: HopeChurchGreaterBundle:Backstage:getOverallAttendees
+    event: 1 #sunday gathering
+    date: 0 # no date
+
 #--------- Attendees Page Routes ---------#
 hope_church_backstage_get_attendees:
   path: /backstage/get/attendees/{event}/{role}/{date}

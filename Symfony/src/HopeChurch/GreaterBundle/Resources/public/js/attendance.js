@@ -114,9 +114,26 @@ var getSQLDate = function() {
     return sqlDateFormat(currentDate);
 }
 
+function updateOverallAttendance() {
+    var url = overallAttendanceUrl + "/" + SUNDAY_ID + "/" + getSQLDate();
+
+    d3.json(url,
+	    function(error, json) {
+		if(error) return console.warn(error);
+
+		// simply set the value
+		$("#total-cnt").val(
+		    json[0].attendeeCount ? json[0].attendeeCount : 0
+		);
+	    });
+}
+
 var updateDataForDate = function() {
     //enable the loading notice
     loading();
+
+    //kick off an update of the overall attendance
+    updateOverallAttendance();
 
     var dateUrl = attendanceUrl + "/" + SUNDAY_ID + "/all/"
 	+ getSQLDate();
