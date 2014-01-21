@@ -15,7 +15,7 @@ class OverallAttendance
     private $id;
 
     /**
-     * @var \DateTime
+     * @var \HopeChurch\GreaterBundle\Type\DbDate
      */
     private $date;
 
@@ -43,7 +43,7 @@ class OverallAttendance
     /**
      * Set date
      *
-     * @param \DateTime $date
+     * @param \HopeChurch\GreaterBundle\Type\DbDate $date
      * @return OverallAttendance
      */
     public function setDate($date)
@@ -56,7 +56,7 @@ class OverallAttendance
     /**
      * Get date
      *
-     * @return \DateTime
+     * @return \HopeChurch\GreaterBundle\Type\DbDate
      */
     public function getDate()
     {

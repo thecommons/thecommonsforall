@@ -49,6 +49,8 @@ var columns = [
 var data = {};
 var all_attendees = {};
 
+var origOverallAttendance = 0;
+
 var loading = function(text) {
     $('#update-btn').button('loading');
 
@@ -121,11 +123,13 @@ function updateOverallAttendance() {
 	    function(error, json) {
 		if(error) return console.warn(error);
 
-		var attendees = (json && json[0] && json[0].attendeeCount) ?
-		    json[0].attendeeCount : 0;
+		var attendees = (json && json.attendeeCount) ?
+		    json.attendeeCount : 0;
 
 		// simply set the value
 		$("#total-cnt").val(attendees);
+		// and cache for later
+		origOverallAttendance = attendees;
 	    });
 }
 
@@ -290,6 +294,27 @@ $("#total-btn-up").on('click', function() {
 $('#update-btn').on('click', function(e) {
     loading("Saving...");
 
+    var waiting = 0;
+
+    var newOverallAttendance = $("#total-cnt").val();
+    if(newOverallAttendance != origOverallAttendance) {
+	waiting += 1;
+
+	$.post(overallUpdateUrl,
+	       {
+		   event: SUNDAY_ID,
+		   date: getSQLDate(),
+		   count: newOverallAttendance
+	       },
+	       function(data) {
+		   waiting -= 1;
+
+		   if(!waiting) {
+		       updateDataForDate();
+		   }
+	       }, "json");
+    }
+
     // construct two arrays:
     //  - one with those that are NOW attending
     //  - one with those that are now NOT attending
@@ -308,7 +333,7 @@ $('#update-btn').on('click', function(e) {
 
     // short circuit if nothing was changed
     if(attended_ids.length == 0 && not_attended_ids.length == 0) return;
-
+    waiting += 1;
     var updateUrl = attendanceUpdateUrl + "/" + SUNDAY_ID + "/" + getSQLDate();
 
     $.post(updateUrl,
@@ -324,8 +349,12 @@ $('#update-btn').on('click', function(e) {
 		       alert("Failed to update attendance");
 		   }
 
-	       // we are done, reload from db and reset the button
-	       updateDataForDate();
+	       waiting -= 1;
+
+	       if(!waiting) {
+		   // we are done, reload from db and reset the button
+		   updateDataForDate();
+	       }
 	   }, "json");
 
     return false;

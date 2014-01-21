@@ -12,7 +12,8 @@ filter='cssrewrite' %}
 
 {% block head_js %}
 {{ parent() }}
-var overallAttendanceUrl = "{{ path('hope_church_backstage_get_overall_attendees')  }}";
+var overallAttendanceUrl = "{{path('hope_church_backstage_get_overall_attendees') }}";
+var overallUpdateUrl = "{{ path('hope_church_backstage_update_overall_attendees')  }}";
 var attendanceUrl = "{{ path('hope_church_backstage_get_attendees') }}";
 var attendanceUpdateUrl = "{{ path('hope_church_backstage_update_attendees') }}";
 {% endblock %}

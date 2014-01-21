@@ -23,6 +23,11 @@ hope_church_backstage_get_overall_attendees:
     event: 1 #sunday gathering
     date: 0 # no date
 
+hope_church_backstage_update_overall_attendees:
+  path: /backstage/update/attendees/overall/
+  defaults:
+    _controller: HopeChurchGreaterBundle:Backstage:updateOverallAttendees
+
 #--------- Attendees Page Routes ---------#
 hope_church_backstage_get_attendees:
   path: /backstage/get/attendees/{event}/{role}/{date}
