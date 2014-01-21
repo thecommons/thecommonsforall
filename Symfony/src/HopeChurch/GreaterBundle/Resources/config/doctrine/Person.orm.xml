@@ -48,10 +48,9 @@
       <join-column name="smallgroup_id" referenced-column-name="id"/>
     </many-to-one>
 
-    <field name="leaderId" type="integer" column="leader_id" nullable="true"/>
-    <one-to-one field="leader" target-entity="Person">
+    <many-to-one field="leader" target-entity="Person" join-column="leader_id">
       <join-column name="leader_id" referenced-column-name="id"/>
-    </one-to-one>
+    </many-to-one>
 
     <one-to-many field="attended" target-entity="Attendance"
 		 mapped-by="person"/>
