@@ -31,7 +31,8 @@ $('#person_roles input[type="checkbox"]').each(function() {
 	    // actual roles
 	    if(id == "person_roles_1" ||
 	       id == "person_roles_2" ||
-	       id == "person_roles_3") {
+	       id == "person_roles_3" ||
+	       id == "person_roles_7") {
 		// these roles only make sense for adults to have
 		// check "Adult" (person_roles_4)
 		$('#person_roles_4').prop('checked', true);
@@ -62,6 +63,7 @@ $('#person_roles input[type="checkbox"]').each(function() {
 		$('#person_roles_1').prop('checked', false);
 		$('#person_roles_2').prop('checked', false);
 		$('#person_roles_3').prop('checked', false);
+		$('#person_roles_7').prop('checked', false);
 	    }
 
 	    if(!$('#person_roles_4').is(':checked') &&

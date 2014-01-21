@@ -8,8 +8,8 @@ var roles = [
 	"title": "Staff"
     },
     {
-	"name": "Leader",
-	"title": "Leaders"
+	"name": "Elder",
+	"title": "Elders"
     },
     {
 	"name": "Adult",

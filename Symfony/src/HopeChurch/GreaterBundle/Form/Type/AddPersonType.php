@@ -97,13 +97,13 @@ class AddPersonType extends AbstractType
     $builder->add('leader',
                   'entity',
                   array(
-                        'label' => 'Leader',
+                        'label' => 'Member',
                         'empty_value' => '-- None --',
                         'class' => 'HopeChurchGreaterBundle:Person',
                         'query_builder' =>
                         function(PersonRepository $pr)
                         {
-			  return $pr->findByRoleName('Leader')
+			  return $pr->findByRoleName('Member')
 			    ->orderBy('p.nameFirst, p.nameLast', 'ASC');
 			},
                         'required' => false
