@@ -1,3 +1,4 @@
+/* UNUSED
 .total-group-giant > .form-control,
 .total-group-giant > .input-group-addon,
 .total-group-giant > .input-group-btn > .btn {
@@ -7,7 +8,24 @@
   line-height: 1.33;
   border-radius: 0;
 }
+*/
+
+/* disable Safari's number spinner */
+/* http://stackoverflow.com/questions/3975769/disable-webkits-spin-buttons-on-input-type-number */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 
 #total-tab {
     visibility: hidden;
+}
+
+.total-group {
+    width: 176px;
+}
+
+#total-cnt {
+    width: 80px;
 }

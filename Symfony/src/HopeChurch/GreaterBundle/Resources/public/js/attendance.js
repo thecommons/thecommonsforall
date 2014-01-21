@@ -259,12 +259,12 @@ $('#next-btn').on('click', function() {
 
 $("#total-btn-down").on('click', function() {
     var val = parseFloat($("#total-cnt").val());
-    val = (val) ? val-1 : 0;
+    val = (val && val > 0) ? val-1 : 0;
     $("#total-cnt").val(val);
 });
 $("#total-btn-up").on('click', function() {
     var val = parseFloat($("#total-cnt").val());
-    val = (val) ? val+1 : 1;
+    val = (val && val > 0) ? val+1 : 1;
     $("#total-cnt").val(val);
 });
 
