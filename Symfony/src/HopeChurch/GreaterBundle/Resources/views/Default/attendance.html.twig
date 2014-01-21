@@ -4,6 +4,7 @@
 {{ parent() }}
 {% stylesheets
 'bundles/hopechurchgreater/libs/datepicker/css/datepicker3.css'
+'@HopeChurchGreaterBundle/Resources/public/css/attendance.css'
 filter='cssrewrite' %}
 <link rel="stylesheet" href="{{ asset_url }}" />
 {% endstylesheets %}
@@ -42,8 +43,45 @@ var attendanceUpdateUrl = "{{ path('hope_church_backstage_update_attendees') }}"
 </div>
 <div class="row top-padding">
   <div class="col-md-12">
-    <ul id="attendance-tabs" class="nav nav-tabs"></ul>
-    <div id="attendance-content" class="tab-content"></div>
+    <ul id="attendance-tabs" class="nav nav-tabs">
+    <li id="total-tab">
+      <a href="#total-tab-content" data-toggle="tab">Total</a>
+    </li>
+    </ul>
+    <div id="attendance-content" class="tab-content">
+
+      <div class="tab-pane" id="total-tab-content">
+        <div class="row top-padding">
+          <div class="col-md-12">
+            <div style="width:294px">
+              <div class="input-group total-group-giant">
+
+                <div class="input-group-btn">
+                  <button type="button" id="total-btn-down"
+                          class="btn btn-default">
+                    <span class="glyphicon glyphicon-chevron-down"></span>
+                  </button>
+                </div>
+
+                <input type="number" pattern="[0-9]*" id="total-cnt"
+                       class="form-control text-center"
+                       placeholder="0" style="width:130px;">
+
+                <div class="input-group-btn">
+                  <button type="button" id="total-btn-up"
+                          class="btn btn-default">
+                    <span class="glyphicon glyphicon-chevron-up"></span>
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
 {#
@@ -61,7 +99,7 @@ var attendanceUpdateUrl = "{{ path('hope_church_backstage_update_attendees') }}"
   </div>
 </div>
 #}
-<div class="row">
+<div class="row top-padding">
   <div class="col-md-2 col-xs-2">
     <button class="btn" id="prev-btn"><span class="glyphicon glyphicon-chevron-left"></span> Prev</button>
   </div>

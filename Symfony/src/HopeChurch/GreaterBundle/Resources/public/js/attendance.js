@@ -65,7 +65,7 @@ var loadingDone = function() {
 var createTables = function() {
     roles.forEach(function(r, i) {
 	var tab = d3.select("#attendance-tabs")
-	    .append("li")
+	    .insert("li", "#total-tab")
 	    .classed("active", (i==0))
 	    .append("a")
 	    .attr("href", "#" + r.name)
@@ -73,14 +73,18 @@ var createTables = function() {
 	    .text(r.title);
 
 	var content = d3.select("#attendance-content")
-	    .append("div") // tab pane
+	    .insert("div", "#total-tab-content") // tab pane
 	    .classed("tab-pane", true)
 	    .classed("active", (i == 0))
 	    .attr("id", r.name)
 	    .append("div") //row div
 	    .classed("row", true)
+	    .classed("top-padding", true)
 	    .append("div") // col div
 	    .classed("col-md-12", true);
+
+	// now that we've inserted the role tabs, show the total tab
+	$("#total-tab").css("visibility", "visible");
 
 	//content.append("h4")
 	//    .text(r.title);
@@ -241,6 +245,7 @@ $('.datepicker').datepicker()
 
 $('#reset-btn').on('click', function(e){
     updateDataForDate();
+    $("#total-cnt").val(null); //TODO replace this with an update from DB
     return false;
 });
 
@@ -250,6 +255,17 @@ $('#prev-btn').on('click', function() {
 });
 $('#next-btn').on('click', function() {
     $tabs.filter('.active').next('li').find('a[data-toggle="tab"]').tab('show');
+});
+
+$("#total-btn-down").on('click', function() {
+    var val = parseFloat($("#total-cnt").val());
+    val = (val) ? val-1 : 0;
+    $("#total-cnt").val(val);
+});
+$("#total-btn-up").on('click', function() {
+    var val = parseFloat($("#total-cnt").val());
+    val = (val) ? val+1 : 1;
+    $("#total-cnt").val(val);
 });
 
 // update the attendance for the current date

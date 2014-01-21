@@ -1,0 +1,13 @@
+.total-group-giant > .form-control,
+.total-group-giant > .input-group-addon,
+.total-group-giant > .input-group-btn > .btn {
+  height: 80px;
+  padding: 10px 16px;
+  font-size: 50px;
+  line-height: 1.33;
+  border-radius: 0;
+}
+
+#total-tab {
+    visibility: hidden;
+}
