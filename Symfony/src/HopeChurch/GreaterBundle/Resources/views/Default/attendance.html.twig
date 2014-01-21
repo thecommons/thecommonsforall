@@ -53,8 +53,8 @@ var attendanceUpdateUrl = "{{ path('hope_church_backstage_update_attendees') }}"
       <div class="tab-pane" id="total-tab-content">
         <div class="row top-padding">
           <div class="col-md-12">
-            <div style="width:294px">
-              <div class="input-group total-group-giant">
+            <div style="width:176px">
+              <div class="input-group input-group-lg">
 
                 <div class="input-group-btn">
                   <button type="button" id="total-btn-down"
@@ -65,7 +65,7 @@ var attendanceUpdateUrl = "{{ path('hope_church_backstage_update_attendees') }}"
 
                 <input type="number" pattern="[0-9]*" id="total-cnt"
                        class="form-control text-center"
-                       placeholder="0" style="width:130px;">
+                       placeholder="0" style="width:80px;">
 
                 <div class="input-group-btn">
                   <button type="button" id="total-btn-up"
@@ -78,6 +78,11 @@ var attendanceUpdateUrl = "{{ path('hope_church_backstage_update_attendees') }}"
             </div>
           </div>
 
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <p>Enter total attendance, including visitors.</p>
+          </div>
         </div>
       </div>
 
