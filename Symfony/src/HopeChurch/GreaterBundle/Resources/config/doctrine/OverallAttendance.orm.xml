@@ -5,9 +5,9 @@
       name="HopeChurch\GreaterBundle\Entity\OverallAttendance"
       table="overall_attendance">
     <id name="id" type="integer" column="id">
-      <generator strategy="AUTO"/>
+      <generator strategy="IDENTITY"/>
     </id>
-    <field name="date" type="date" column="date"/>
+    <field name="date" type="date" column="date" nullable="false"/>
     <field name="attendeeCount" type="integer" column="attendee_count"/>
     <many-to-one field="event" target-entity="Event"
 		 join-column="event" inversed-by="attendees">

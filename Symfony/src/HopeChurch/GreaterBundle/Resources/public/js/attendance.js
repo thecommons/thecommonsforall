@@ -121,10 +121,11 @@ function updateOverallAttendance() {
 	    function(error, json) {
 		if(error) return console.warn(error);
 
+		var attendees = (json && json[0] && json[0].attendeeCount) ?
+		    json[0].attendeeCount : 0;
+
 		// simply set the value
-		$("#total-cnt").val(
-		    json[0].attendeeCount ? json[0].attendeeCount : 0
-		);
+		$("#total-cnt").val(attendees);
 	    });
 }
 

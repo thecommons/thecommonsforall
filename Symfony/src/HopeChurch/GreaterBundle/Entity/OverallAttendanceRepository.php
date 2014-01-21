@@ -11,6 +11,17 @@ use Doctrine\ORM\EntityRepository;
 class OverallAttendanceRepository extends EntityRepository
 {
 
+  public function findOverallAttendeeCountForEvent($event_id)
+  {
+    return $this->getEntityManager()
+      ->createQuery("SELECT a.attendeeCount, a.date"
+		    ." FROM HopeChurchGreaterBundle:OverallAttendance a"
+		    ." JOIN a.event e "
+		    ." WHERE e.id = :event_id")
+      ->setParameter('event_id', $event_id)
+      ->getResult();
+  }
+
   public function findOverallAttendeeCountForEventByDate($event_id, $date)
   {
     return $this->getEntityManager()

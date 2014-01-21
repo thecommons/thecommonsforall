@@ -31,7 +31,11 @@ class BackstageController extends Controller
     $repo = $this->getDoctrine()->getManager()
       ->getRepository('HopeChurchGreaterBundle:OverallAttendance');
 
-    $records = $repo->findOverallAttendeeCountForEventByDate($event, $date);
+    if($date) {
+      $records = $repo->findOverallAttendeeCountForEventByDate($event, $date);
+    } else {
+      $records = $repo->findOverallAttendeeCountForEvent($event);
+    }
 
     if(!$records)
       {
