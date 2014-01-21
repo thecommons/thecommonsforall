@@ -7,10 +7,10 @@ var roles = [
 	"name": "Staff",
 	"title": "Staff"
     },
-    {
-	"name": "Elder",
-	"title": "Elders"
-    },
+//    {
+//	"name": "Elder",
+//	"title": "Elders"
+//    },
     {
 	"name": "Adult",
 	"title": "Adults"
