@@ -3,10 +3,10 @@
 var SUNDAY_ID = 1;
 // the roles that we break out
 var roles = [
-    {
-	"name": "Staff",
-	"title": "Staff"
-    },
+//    {
+//	"name": "Staff",
+//	"title": "Staff"
+//    },
 //    {
 //	"name": "Elder",
 //	"title": "Elders"

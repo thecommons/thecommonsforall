@@ -104,6 +104,11 @@ class Person
   private $leader;
 
   /**
+   * @var Age
+   */
+  private $age;
+
+  /**
    * @var ArrayCollection
    */
   private $attended;
@@ -506,6 +511,29 @@ class Person
   public function getLeader()
   {
     return $this->leader;
+  }
+
+  /**
+   * Set age
+   *
+   * @param \HopeChurch\GreaterBundle\Entity\Age $age
+   * @return Person
+   */
+  public function setAge(\HopeChurch\GreaterBundle\Entity\Age $age = null)
+  {
+    $this->age = $age;
+
+    return $this;
+  }
+
+  /**
+   * Get age
+   *
+   * @return \HopeChurch\GreaterBundle\Entity\Age
+   */
+  public function getAge()
+  {
+    return $this->age;
   }
 
   /**

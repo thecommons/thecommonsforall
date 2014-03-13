@@ -53,6 +53,10 @@
       <join-column name="leader_id" referenced-column-name="id"/>
     </many-to-one>
 
+    <many-to-one field="age" target-entity="Age" join-column="age_id">
+      <join-column name="age_id" referenced-column-name="id"/>
+    </many-to-one>
+
     <one-to-many field="attended" target-entity="Attendance"
 		 mapped-by="person"/>
 

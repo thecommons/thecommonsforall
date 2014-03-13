@@ -22,7 +22,7 @@ class AddPersonType extends AbstractType
 
     $builder->add('referrer', 'entity', array(
                                              'label' => 'Referrer',
-                                             'required' => false,
+                                             'required' => true,
 					     'empty_value' => '-- Unknown --',
 					     'class' =>
 					     'HopeChurchGreaterBundle:Referrer',
@@ -34,9 +34,17 @@ class AddPersonType extends AbstractType
                                              'required' => false
                                              ));
 
+    $builder->add('age', 'entity', array(
+					 'label' => 'Age',
+					 'required' => true,
+					 'empty_value' => '-- Select Age --',
+					 'class' => 'HopeChurchGreaterBundle:Age',
+					 'property' => 'name'
+					 ));
+
     $builder->add('roles', 'entity', array(
 					   'label' => 'Roles',
-					   'required' => true,
+					   'required' => false,
 					   'class' =>
 					   'HopeChurchGreaterBundle:Role',
 					   'property'     => 'roleName',

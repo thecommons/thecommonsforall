@@ -3,7 +3,10 @@ HopeChurch\GreaterBundle\Entity\Person:
     nameFirst:
       - NotBlank:
           message: "A first name must be given"
+    age:
+      - NotBlank:
+          message: "An age group must be chosen"
     roles:
       - Count:
-          min: 1
+          min: 0
           minMessage: "At least one role must be specified"
