@@ -1,0 +1,59 @@
+2. Create age section
+   a. Infant (< 4)
+   b. Child (4-12)
+   d. Youth (13-16)
+   e. Adult (17+)
+
+-- DONE --
+
+3. Only enable roles selection when adult is selected
+   - use http://harvesthq.github.io/chosen/
+
+4. Add "attributes" KV store for person
+
+5. Add "baptized" attribute as checkbox to add person, under role
+
+6. Add "inactive" attribute, but not to add person, only in edit person
+
+7. Add "Next Discipleship State", and "Current Discipleship State"
+   - This implies adding a "State" object (next state...)
+     - Sunday Gathering (currently unused for next state)
+       - mentor_roles: [Staff]
+     - Community Group  (NS for those attending sundays)
+       - mentor_roles: [Community Leader]
+     - Membership       (NS for those in Community groups)
+       - mentor_roles: [Elder, Staff, Member, Staff-Volunteer]
+     - Application      (NS for members)
+       - mentor_roles: [Elder, Staff, Member, Staff-Volunteer]
+
+     plus, out of band states:
+     - Re-contact       (for those who have lapsed into inactive)
+
+1. Mentor list on add-person page should be two drop-downs:
+   a. state, which filters:
+   b. person (based on roles which are eligible to be mentors for that state)
+
+8. Add calendar for events
+   - event,start_datetime,end_datetime
+
+new tables:
+
+state
+ - name
+ - next_state
+
+state_mentor_role
+
+age
+ - name [see above]
+
+attribute
+ - name [inactive, baptized]
+
+person_attribute
+
+person->state
+person->age
+
+calendar
+ - event_id, datetime_start, datetime_end
