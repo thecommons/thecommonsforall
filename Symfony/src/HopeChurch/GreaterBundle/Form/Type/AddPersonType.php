@@ -97,7 +97,7 @@ class AddPersonType extends AbstractType
     $builder->add('leader',
                   'entity',
                   array(
-                        'label' => 'Member',
+                        'label' => 'Mentor',
                         'empty_value' => '-- None --',
                         'class' => 'HopeChurchGreaterBundle:Person',
                         'query_builder' =>
