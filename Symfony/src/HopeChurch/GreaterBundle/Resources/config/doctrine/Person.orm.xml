@@ -12,9 +12,10 @@
     <field name="notes" type="string" column="notes"
 	   nullable="true"/>
 
-    <one-to-one field="referrer" target-entity="Referrer">
+    <many-to-one field="referrer" target-entity="Referrer"
+		 join-column="referrer_id">
       <join-column name="referrer_id" referenced-column-name="id"/>
-    </one-to-one>
+    </many-to-one>
 
     <field name="dateCreated" type="date" column="date_created"
 	   nullable="false"/>
