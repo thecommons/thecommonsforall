@@ -49,7 +49,7 @@ class AddPersonType extends AbstractType
 					   'HopeChurchGreaterBundle:Role',
 					   'property'     => 'roleName',
 					   'multiple'     => true,
-					   'expanded'     => true
+					   'expanded'     => false
 					   ));
 
     $builder->add('email', 'email', array(
