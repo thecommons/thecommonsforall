@@ -1,9 +1,9 @@
 ########## Front-end Routes ##########
 
-hope_church_greater_add_person:
-  path: /add/person
-  defaults:
-    _controller: HopeChurchGreaterBundle:Default:addPerson
+#hope_church_greater_add_person:
+#  path: /add/person
+#  defaults:
+#    _controller: HopeChurchGreaterBundle:Default:addPerson
 
 hope_church_greater:
   path:  /{page}/{subpage}
@@ -11,6 +11,11 @@ hope_church_greater:
     _controller: HopeChurchGreaterBundle:Default:index
     page: home
     subpage:
+
+########## Entity Routes ##########
+HopeChurchGreaterBundle_person:
+        resource: "@HopeChurchGreaterBundle/Resources/config/routing/person.yml"
+        prefix:   /person
 
 ########## Back-end Routes ##########
 # TODO: Refactor this into a BackendBundle
@@ -56,13 +61,6 @@ hope_church_backstage_get_mentor_by_dstage:
   defaults:
     _controller: HopeChurchGreaterBundle:Backstage:getMentorByDiscipleshipStage
     dstage: 0
-
-#---------- Add-Person Page Routes ----------#
-
-hope_church_backstage_update_person:
-  path: /backstage/update/person
-  defaults:
-    _controller: HopeChurchGreaterBundle:Backstage:updatePerson
 
 # this is the generic get route, it must be last
 hope_church_backstage_get_generic:
