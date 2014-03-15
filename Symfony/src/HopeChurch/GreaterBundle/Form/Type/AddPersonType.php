@@ -45,6 +45,7 @@ class AddPersonType extends AbstractType
     $builder->add('roles', 'entity', array(
 					   'label' => 'Roles',
 					   'required' => false,
+					   'empty_value' => '-- None --',
 					   'class' =>
 					   'HopeChurchGreaterBundle:Role',
 					   'property'     => 'roleName',
