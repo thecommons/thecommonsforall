@@ -29,6 +29,11 @@ class Age
      */
     private $upper;
 
+    public function getFullName()
+    {
+      return $this->getName()." (".$this->getLower()."-".$this->getUpper().")";
+    }
+
 
     /**
      * Get id
