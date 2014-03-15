@@ -42,6 +42,13 @@ class AddPersonType extends AbstractType
 					 'property' => 'name'
 					 ));
 
+    $builder->add('status', 'entity', array(
+					 'label' => 'Status',
+					 'required' => true,
+					 'class' => 'HopeChurchGreaterBundle:PersonStatus',
+					 'property' => 'name'
+					 ));
+
     $builder->add('roles', 'entity', array(
 					   'label' => 'Roles',
 					   'required' => false,

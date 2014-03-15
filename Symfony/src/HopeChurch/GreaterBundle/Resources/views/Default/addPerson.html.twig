@@ -132,31 +132,6 @@ filter='cssrewrite' %}
     )
     }}
 
-    {{ form_row(form.roles,
-      {'help_blocks':
-        [
-          'What position(s) does this person hold?',
-        ]
-      }
-    )
-    }}
-
-    {# BAPTIZED #}
-    <div class="form-group">
-      {{
-      form_label(form.baptized, null, {'label_attr': {'class': 'col-md-2 control-label'}})
-      }}
-      <div class="col-md-10">
-        <div class="checkbox">
-          <input type="checkbox"
-                 id="{{ form.baptized.vars.id }}"
-                 name="{{ form.baptized.vars.full_name }}"
-                 >
-          <p class="help-block">Has this person been baptized?</p>
-        </div>
-      </div>
-    </div>
-
     {{
     form_row(form.referrer,
       {'help_blocks':
@@ -195,6 +170,46 @@ filter='cssrewrite' %}
   </fieldset>
 
   <div id="all-info" class="collapse out">
+
+    <fieldset>
+      <legend>Further Info</legend>
+
+      {{ form_row(form.status,
+        {'help_blocks':
+          [
+            'Only change status if adding an inactive person.',
+            'For example, family that may visit again but not permanently attend.',
+          ]
+        }
+        )
+      }}
+
+      {# TODO only show this if age is adult? #}
+      {{ form_row(form.roles,
+        {'help_blocks':
+          [
+            'What position(s) does this person hold?',
+          ]
+        }
+        )
+      }}
+
+      {# BAPTIZED #}
+      <div class="form-group">
+	{{
+	form_label(form.baptized, null, {'label_attr': {'class': 'col-md-2 control-label'}})
+	}}
+	<div class="col-md-10">
+          <div class="checkbox">
+            <input type="checkbox"
+                   id="{{ form.baptized.vars.id }}"
+                   name="{{ form.baptized.vars.full_name }}"
+                   >
+            <p class="help-block">Has this person been baptized?</p>
+          </div>
+	</div>
+      </div>
+    </fieldset>
 
     <fieldset>
       <legend>Contact Details</legend>

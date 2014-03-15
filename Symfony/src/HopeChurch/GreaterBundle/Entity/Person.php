@@ -114,6 +114,11 @@ class Person
   private $age;
 
   /**
+   * @var PersonStatus
+   */
+  private $status;
+
+  /**
    * @var ArrayCollection
    */
   private $attended;
@@ -562,6 +567,29 @@ class Person
   public function getAge()
   {
     return $this->age;
+  }
+
+  /**
+   * Set status
+   *
+   * @param \HopeChurch\GreaterBundle\Entity\PersonStatus $status
+   * @return Person
+   */
+  public function setStatus(\HopeChurch\GreaterBundle\Entity\PersonStatus $status = null)
+  {
+    $this->status = $status;
+
+    return $this;
+  }
+
+  /**
+   * Get status
+   *
+   * @return \HopeChurch\GreaterBundle\Entity\PersonStatus
+   */
+  public function getStatus()
+  {
+    return $this->status;
   }
 
   /**
