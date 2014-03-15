@@ -12,4 +12,19 @@ use Doctrine\ORM\EntityRepository;
  */
 class TransformationalStageRepository extends EntityRepository
 {
+
+  public function findMentors($tstage_id)
+  {
+    return $this->createQueryBuilder('t')
+      ->select(array('trp.id', 'trp.nameFirst', 'trp.nameLast'))
+      ->innerJoin('t.mentorRoles', 'troles')
+      ->innerJoin('troles.people', 'trp')
+      ->where('t.id = :tstage_id')
+      ->addOrderBy('trp.nameFirst', 'ASC')
+      ->addOrderBy('trp.nameLast', 'ASC')
+      ->setParameter('tstage_id', $tstage_id)
+      ->getQuery()
+      ->getResult();
+  }
+
 }

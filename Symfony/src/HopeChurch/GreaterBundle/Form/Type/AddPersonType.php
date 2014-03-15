@@ -183,7 +183,7 @@ class AddPersonType extends AbstractType
 				 }
 			       });
 
-    $builder->addEventListener(FormEvents::PRE_BIND,
+    $builder->addEventListener(FormEvents::PRE_SUBMIT,
 			       function (FormEvent $event) use ($refreshMentor) {
 				 $form = $event->getForm();
 				 $data = $event->getData();

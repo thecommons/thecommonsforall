@@ -161,6 +161,20 @@ class BackstageController extends Controller
     return $response;
   }
 
+  public function getMentorByTransformationStageAction($tstage)
+  {
+    $results = Array();
+    $em = $this->getDoctrine()->getManager();
+    $tstageRepo = $em->getRepository('HopeChurchGreaterBundle:TransformationalStage');
+
+
+    $results = $tstageRepo->findMentors($tstage);
+
+    $response = new Response(json_encode($results));
+    $response->headers->set('Content-Type', 'application/json');
+    return $response;
+  }
+
   public function getRolesPeopleAction()
   {
     $em = $this->getDoctrine()->getManager();
