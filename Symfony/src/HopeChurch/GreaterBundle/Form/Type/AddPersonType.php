@@ -22,7 +22,7 @@ class AddPersonType extends AbstractType
 
     $builder->add('referrer', 'entity', array(
                                              'label' => 'Referrer',
-                                             'required' => true,
+                                             'required' => false,
 					     'empty_value' => '-- Unknown --',
 					     'class' =>
 					     'HopeChurchGreaterBundle:Referrer',
