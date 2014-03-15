@@ -4,7 +4,7 @@ namespace HopeChurch\GreaterBundle\Form\Type;
 
 use HopeChurch\GreaterBundle\Entity\PersonRepository;
 use HopeChurch\GreaterBundle\Entity\Person;
-use HopeChurch\GreaterBundle\Entity\TransformationalStage;
+use HopeChurch\GreaterBundle\Entity\DiscipleshipStage;
 
 use Doctrine\ORM\EntityRepository;
 
@@ -123,15 +123,15 @@ class AddPersonType extends AbstractType
                                                 'required' => false
                                                 ));
 
-    $builder->add('transformationalStage', 'entity',
+    $builder->add('discipleshipStage', 'entity',
 		  array(
-			'label' => 'Transformational Stage',
+			'label' => 'Discipleship Stage',
 			'required' => true,
-			'class' => 'HopeChurchGreaterBundle:TransformationalStage',
+			'class' => 'HopeChurchGreaterBundle:DiscipleshipStage',
 			'property' => 'name'
 			));
 
-    $refreshMentor = function ($form, $tstage) use ($factory) {
+    $refreshMentor = function ($form, $dstage) use ($factory) {
       $form->add($factory->createNamed('mentor', 'entity', null,
 				       array(
 					     'class' => 'HopeChurchGreaterBundle:Person',
@@ -140,21 +140,21 @@ class AddPersonType extends AbstractType
 					     'label'         => 'Mentor',
 					     'auto_initialize' => false,
 					     'query_builder' =>
-					     function (EntityRepository $repository) use ($tstage) {
+					     function (EntityRepository $repository) use ($dstage) {
 					       $qb = $repository
 						 ->createQueryBuilder('p')
 						 ->innerJoin('p.roles', 'proles')
-						 ->innerJoin('proles.transformationalStages',
+						 ->innerJoin('proles.discipleshipStages',
 							     'pts');
 
-					       if($tstage instanceof TransformationalStage) {
+					       if($dstage instanceof DiscipleshipStage) {
 						 $qb = $qb
-						   ->where('pts = :tstage')
-						   ->setParameter('tstage', $tstage);
-					       } elseif(is_numeric($tstage)) {
+						   ->where('pts = :dstage')
+						   ->setParameter('dstage', $dstage);
+					       } elseif(is_numeric($dstage)) {
 						 $qb = $qb
-						   ->where('pts.id = :tstage_id')
-						   ->setParameter('tstage_id', $tstage);
+						   ->where('pts.id = :dstage_id')
+						   ->setParameter('dstage_id', $dstage);
 					       } else {
 						 $qb = $qb->where('pts.id = 1'); //nothing
 					       }
@@ -177,7 +177,7 @@ class AddPersonType extends AbstractType
 				   $refreshMentor($form, null);
 				 } else if($data instanceof Person) {
 				   $refreshMentor($form,
-						  $data->getTransformationalStage());
+						  $data->getDiscipleshipStage());
 				 } else {
 				   var_dump($data);
 				 }
@@ -188,8 +188,8 @@ class AddPersonType extends AbstractType
 				 $form = $event->getForm();
 				 $data = $event->getData();
 
-				 if(array_key_exists('transformationalStage', $data)) {
-				   $refreshMentor($form, $data['transformationalStage']);
+				 if(array_key_exists('discipleshipStage', $data)) {
+				   $refreshMentor($form, $data['discipleshipStage']);
 				 }
 			       });
 

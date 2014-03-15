@@ -5,9 +5,9 @@ namespace HopeChurch\GreaterBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * TransformationalStage
+ * DiscipleshipStage
  */
-class TransformationalStage
+class DiscipleshipStage
 {
   /**
    * @var integer
@@ -20,12 +20,12 @@ class TransformationalStage
   private $name;
 
   /**
-   * @var TransformationalStage
+   * @var DiscipleshipStage
    */
   private $nextStage;
 
   /**
-   * @var TransformationalStage
+   * @var DiscipleshipStage
    */
   private $prevStage;
 
@@ -48,7 +48,7 @@ class TransformationalStage
    * Set name
    *
    * @param string $name
-   * @return TransformationalStage
+   * @return DiscipleshipStage
    */
   public function setName($name)
   {
@@ -70,10 +70,10 @@ class TransformationalStage
   /**
    * Set nextStage
    *
-   * @param \HopeChurch\GreaterBundle\Entity\TransformationalStage $nextStage
+   * @param \HopeChurch\GreaterBundle\Entity\DiscipleshipStage $nextStage
    * @return Person
    */
-  public function setNextStage(\HopeChurch\GreaterBundle\Entity\TransformationalStage $nextStage = null)
+  public function setNextStage(\HopeChurch\GreaterBundle\Entity\DiscipleshipStage $nextStage = null)
   {
     $this->nextStage = $nextStage;
 
@@ -83,7 +83,7 @@ class TransformationalStage
   /**
    * Get nextStage
    *
-   * @return \HopeChurch\GreaterBundle\Entity\TransformationalStage
+   * @return \HopeChurch\GreaterBundle\Entity\DiscipleshipStage
    */
   public function getNextStage()
   {
@@ -93,10 +93,10 @@ class TransformationalStage
   /**
    * Set prevStage
    *
-   * @param \HopeChurch\GreaterBundle\Entity\TransformationalStage $prevStage
+   * @param \HopeChurch\GreaterBundle\Entity\DiscipleshipStage $prevStage
    * @return Person
    */
-  public function setPrevStage(\HopeChurch\GreaterBundle\Entity\TransformationalStage $prevStage = null)
+  public function setPrevStage(\HopeChurch\GreaterBundle\Entity\DiscipleshipStage $prevStage = null)
   {
     $this->prevStage = $prevStage;
 
@@ -106,7 +106,7 @@ class TransformationalStage
   /**
    * Get prevStage
    *
-   * @return \HopeChurch\GreaterBundle\Entity\TransformationalStage
+   * @return \HopeChurch\GreaterBundle\Entity\DiscipleshipStage
    */
   public function getPrevStage()
   {

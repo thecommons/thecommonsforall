@@ -13,7 +13,7 @@ filter='cssrewrite' %}
 
 {% block head_js %}
 {{ parent() }}
-var mentorsByTStageUrl = "{{path('hope_church_backstage_get_mentor_by_tstage') }}";
+var mentorsByDStageUrl = "{{path('hope_church_backstage_get_mentor_by_dstage') }}";
 {% endblock %}
 
 {% block jsblock %}
@@ -195,12 +195,12 @@ var mentorsByTStageUrl = "{{path('hope_church_backstage_get_mentor_by_tstage') }
     </fieldset>
 
     <fieldset>
-      <legend>Transformational Process</legend>
+      <legend>Discipleship Pathway</legend>
       {{
-        form_row(form.transformationalStage,
+        form_row(form.discipleshipStage,
           {'help_blocks':
             [
-              'What Transformational Stage is this person currently in?',
+              'What Discipleship Stage is this person currently in?',
               'If they have just started attending, then leave set to "Sunday Gathering."'
             ]
           }
@@ -209,7 +209,7 @@ var mentorsByTStageUrl = "{{path('hope_church_backstage_get_mentor_by_tstage') }
 
       {{
       form_row(form.mentor, {'help_blocks':
-      ['Who is responsible for mentoring this person toward their next Transformational Stage?']
+      ['Who is responsible for mentoring this person toward their next Discipleship Stage?']
       })
       }}
 

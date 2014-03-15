@@ -22,8 +22,8 @@ $('#person_roles').select2();
 
 var firstRun = true;
 
-// update mentor list based on current tstage
-$('#person_transformationalStage').change( function() {
+// update mentor list based on current dstage
+$('#person_discipleshipStage').change( function() {
 
     var pm = d3.select('#person_mentor');
     pm.attr("disabled", "disabled");
@@ -38,7 +38,7 @@ $('#person_transformationalStage').change( function() {
 	.attr("selected", "selected")
 	.text("Loading...");
 
-    d3.json(mentorsByTStageUrl + "/" + $(this).val(), function(error, json) {
+    d3.json(mentorsByDStageUrl + "/" + $(this).val(), function(error, json) {
 	if(error) return console.warn(error);
 
 	pm.select('option').remove();

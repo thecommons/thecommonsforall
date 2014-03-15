@@ -51,11 +51,11 @@ hope_church_backstage_get_people_roles:
     _controller: HopeChurchGreaterBundle:Backstage:getRolesPeople
 
 #---------- Mentor Page Routes ----------#
-hope_church_backstage_get_mentor_by_tstage:
-  path: /backstage/get/mentors/{tstage}
+hope_church_backstage_get_mentor_by_dstage:
+  path: /backstage/get/mentors/{dstage}
   defaults:
-    _controller: HopeChurchGreaterBundle:Backstage:getMentorByTransformationStage
-    tstage: 0
+    _controller: HopeChurchGreaterBundle:Backstage:getMentorByDiscipleshipStage
+    dstage: 0
 
 #---------- Add-Person Page Routes ----------#
 

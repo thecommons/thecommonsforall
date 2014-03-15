@@ -6,9 +6,9 @@
 			http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd"
     >
   <entity
-      repository-class="HopeChurch\GreaterBundle\Entity\TransformationalStageRepository"
-      name="HopeChurch\GreaterBundle\Entity\TransformationalStage"
-      table="tstage"
+      repository-class="HopeChurch\GreaterBundle\Entity\DiscipleshipStageRepository"
+      name="HopeChurch\GreaterBundle\Entity\DiscipleshipStage"
+      table="dstage"
       >
 
     <id name="id" type="integer" column="id">
@@ -18,14 +18,14 @@
     <field name="name" type="string" column="name" length="255"/>
 
     <one-to-one field="nextStage"
-		target-entity="TransformationalStage"
+		target-entity="DiscipleshipStage"
 		inversed-by="prevStage"
 		>
       <join-column name="next_stage_id" referenced-column-name="id"/>
     </one-to-one>
 
     <one-to-one field="prevStage"
-		target-entity="TransformationalStage"
+		target-entity="DiscipleshipStage"
 		mapped-by="nextStage"
 		>
       <join-column name="prev_stage_id" referenced-column-name="id"/>
@@ -33,11 +33,11 @@
 
     <many-to-many field="mentorRoles"
 		  target-entity="Role"
-		  inversed-by="transformationalStages"
+		  inversed-by="discipleshipStages"
 		  >
-      <join-table name="tstage_role">
+      <join-table name="dstage_role">
 	<join-columns>
-	  <join-column id="tstage_id" referenced-column-name="id" />
+	  <join-column id="dstage_id" referenced-column-name="id" />
 	</join-columns>
 	<inverse-join-columns>
 	  <join-column id="role_id" referenced-column-name="id" />

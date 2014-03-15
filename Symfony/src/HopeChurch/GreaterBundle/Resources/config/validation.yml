@@ -6,9 +6,9 @@ HopeChurch\GreaterBundle\Entity\Person:
     age:
       - NotBlank:
           message: "An age group must be selected"
-    transformationalStage:
+    discipleshipStage:
       - NotBlank:
-          message: "A Transformational Stage must be selected"
+          message: "A Discipleship Stage must be selected"
 #    roles:
 #      - Count:
 #          min: 0

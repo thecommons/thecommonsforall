@@ -119,9 +119,9 @@ class Person
   private $status;
 
   /**
-   * @var TransformationalStage
+   * @var DiscipleshipStage
    */
-  private $transformationalStage;
+  private $discipleshipStage;
 
   /**
    * @var ArrayCollection
@@ -598,26 +598,26 @@ class Person
   }
 
   /**
-   * Set transformationalStage
+   * Set discipleshipStage
    *
-   * @param \HopeChurch\GreaterBundle\Entity\TransformationalStage $transformationalStage
+   * @param \HopeChurch\GreaterBundle\Entity\DiscipleshipStage $discipleshipStage
    * @return Person
    */
-  public function setTransformationalStage(\HopeChurch\GreaterBundle\Entity\TransformationalStage $transformationalStage = null)
+  public function setDiscipleshipStage(\HopeChurch\GreaterBundle\Entity\DiscipleshipStage $discipleshipStage = null)
   {
-    $this->transformationalStage = $transformationalStage;
+    $this->discipleshipStage = $discipleshipStage;
 
     return $this;
   }
 
   /**
-   * Get transformationalStage
+   * Get discipleshipStage
    *
-   * @return \HopeChurch\GreaterBundle\Entity\TransformationalStage
+   * @return \HopeChurch\GreaterBundle\Entity\DiscipleshipStage
    */
-  public function getTransformationalStage()
+  public function getDiscipleshipStage()
   {
-    return $this->transformationalStage;
+    return $this->discipleshipStage;
   }
 
   /**

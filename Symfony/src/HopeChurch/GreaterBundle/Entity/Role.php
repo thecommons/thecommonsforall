@@ -22,7 +22,7 @@ class Role
     /**
      * @var ArrayCollection
      */
-    private $transformationalStages;
+    private $discipleshipStages;
 
     /**
      * @var integer
@@ -97,35 +97,35 @@ class Role
     }
 
     /**
-     * Add transformationalStage
+     * Add discipleshipStage
      *
-     * @param \HopeChurch\GreaterBundle\Entity\TransformationalStage $transformationalStage
+     * @param \HopeChurch\GreaterBundle\Entity\DiscipleshipStage $discipleshipStage
      * @return Smallgroup
      */
-    public function addTransformationalStage(\HopeChurch\GreaterBundle\Entity\TransformationalStage $transformationalStage)
+    public function addDiscipleshipStage(\HopeChurch\GreaterBundle\Entity\DiscipleshipStage $discipleshipStage)
     {
-      $this->transformationalStages->addElement($transformationalStage);
+      $this->discipleshipStages->addElement($discipleshipStage);
 
       return $this;
     }
 
     /**
-     * Remove transformationalStage
+     * Remove discipleshipStage
      *
-     * @param \HopeChurch\GreaterBundle\Entity\TransformationalStage $transformationalStage
+     * @param \HopeChurch\GreaterBundle\Entity\DiscipleshipStage $discipleshipStage
      */
-    public function removeTransformationalStage(\HopeChurch\GreaterBundle\Entity\TransformationalStage $transformationalStage)
+    public function removeDiscipleshipStage(\HopeChurch\GreaterBundle\Entity\DiscipleshipStage $discipleshipStage)
     {
-      $this->transformationalStages->removeElement($transformationalStage);
+      $this->discipleshipStages->removeElement($discipleshipStage);
     }
 
     /**
-     * Get transformationalStages
+     * Get discipleshipStages
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getTransformationalStages()
+    public function getDiscipleshipStages()
     {
-      return $this->transformationalStages;
+      return $this->discipleshipStages;
     }
 }
