@@ -6,12 +6,14 @@
 
 5. Add "baptized" attribute as checkbox to add person, under role
 
--- DONE --
+6. Add "inactive" attribute to person
 
 3. Only enable roles selection when adult is selected
    - use http://harvesthq.github.io/chosen/
 
-6. Add "inactive" attribute, but not to add person, only in edit person
+-- DONE --
+
+TransformationalStage
 
 7. Add "Next Discipleship State", and "Current Discipleship State"
    - This implies adding a "State" object (next state...)
