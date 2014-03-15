@@ -104,9 +104,9 @@ class Person
   private $smallgroup;
 
   /**
-   * @var Leader
+   * @var Person
    */
-  private $leader;
+  private $mentor;
 
   /**
    * @var Age
@@ -529,26 +529,26 @@ class Person
   }
 
   /**
-   * Set leader
+   * Set mentor
    *
-   * @param \HopeChurch\GreaterBundle\Entity\Person $leader
+   * @param \HopeChurch\GreaterBundle\Entity\Person $mentor
    * @return Person
    */
-  public function setLeader(\HopeChurch\GreaterBundle\Entity\Person $leader = null)
+  public function setMentor(\HopeChurch\GreaterBundle\Entity\Person $mentor = null)
   {
-    $this->leader = $leader;
+    $this->mentor = $mentor;
 
     return $this;
   }
 
   /**
-   * Get leader
+   * Get mentor
    *
    * @return \HopeChurch\GreaterBundle\Entity\Person
    */
-  public function getLeader()
+  public function getMentor()
   {
-    return $this->leader;
+    return $this->mentor;
   }
 
   /**
@@ -735,40 +735,12 @@ class Person
   }
 
   /**
-   * @var integer
-   */
-  private $leaderId;
-
-  /**
    * Constructor
    */
   public function __construct()
   {
     $this->attended = new ArrayCollection();
     $this->roles = new ArrayCollection();
-  }
-
-  /**
-   * Set leaderId
-   *
-   * @param integer $leaderId
-   * @return Person
-   */
-  public function setLeaderId($leaderId)
-  {
-    $this->leaderId = $leaderId;
-
-    return $this;
-  }
-
-  /**
-   * Get leaderId
-   *
-   * @return integer
-   */
-  public function getLeaderId()
-  {
-    return $this->leaderId;
   }
 
   public function __toString()

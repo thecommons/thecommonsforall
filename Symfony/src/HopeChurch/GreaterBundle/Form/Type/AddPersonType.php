@@ -123,7 +123,7 @@ class AddPersonType extends AbstractType
                                                 'required' => false
                                                 ));
 
-    $builder->add('leader',
+    $builder->add('mentor',
                   'entity',
                   array(
                         'label' => 'Mentor',

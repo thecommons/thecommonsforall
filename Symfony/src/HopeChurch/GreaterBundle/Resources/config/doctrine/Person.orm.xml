@@ -50,8 +50,8 @@
       <join-column name="smallgroup_id" referenced-column-name="id"/>
     </many-to-one>
 
-    <many-to-one field="leader" target-entity="Person" join-column="leader_id">
-      <join-column name="leader_id" referenced-column-name="id"/>
+    <many-to-one field="mentor" target-entity="Person" join-column="mentor_id">
+      <join-column name="mentor_id" referenced-column-name="id"/>
     </many-to-one>
 
     <many-to-one field="age" target-entity="Age" join-column="age_id">
