@@ -38,6 +38,7 @@
     <field name="addrCountry" type="string" column="addr_country" length="128"
 	   nullable="true"/>
     <field name="facebook" type="boolean" column="facebook" nullable="true"/>
+    <field name="baptized" type="boolean" column="baptized" nullable="true"/>
 
     <many-to-one field="family" target-entity="Family" join-column="family"
 		 inversed-by="people">

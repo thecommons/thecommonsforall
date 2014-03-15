@@ -141,6 +141,22 @@ filter='cssrewrite' %}
     )
     }}
 
+    {# BAPTIZED #}
+    <div class="form-group">
+      {{
+      form_label(form.baptized, null, {'label_attr': {'class': 'col-md-2 control-label'}})
+      }}
+      <div class="col-md-10">
+        <div class="checkbox">
+          <input type="checkbox"
+                 id="{{ form.baptized.vars.id }}"
+                 name="{{ form.baptized.vars.full_name }}"
+                 >
+          <p class="help-block">Has this person been baptized?</p>
+        </div>
+      </div>
+    </div>
+
     {{
     form_row(form.referrer,
       {'help_blocks':
@@ -223,8 +239,9 @@ filter='cssrewrite' %}
                  id="{{ form.facebook.vars.id }}"
                  name="{{ form.facebook.vars.full_name }}"
                  >
+          <p class="help-block">Does at least one leader have this person added
+          as a friend on FB?</p>
         </div>
-        <p class="help-block">Does at least one leader have this person added as a friend on FB?</p>
       </div>
       </div>
     </fieldset>

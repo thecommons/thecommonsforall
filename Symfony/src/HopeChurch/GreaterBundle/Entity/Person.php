@@ -89,6 +89,11 @@ class Person
   private $facebook;
 
   /**
+   * @var boolean
+   */
+  private $baptized;
+
+  /**
    * @var Family
    */
   private $family;
@@ -478,6 +483,29 @@ class Person
   public function getFacebook()
   {
     return $this->facebook;
+  }
+
+  /**
+   * Set baptized
+   *
+   * @param boolean $baptized
+   * @return Person
+   */
+  public function setBaptized($baptized)
+  {
+    $this->baptized = $baptized;
+
+    return $this;
+  }
+
+  /**
+   * Get baptized
+   *
+   * @return boolean
+   */
+  public function getBaptized()
+  {
+    return $this->baptized;
   }
 
   /**

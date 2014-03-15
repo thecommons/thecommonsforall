@@ -4,14 +4,12 @@
    d. Youth (13-16)
    e. Adult (17+)
 
+5. Add "baptized" attribute as checkbox to add person, under role
+
 -- DONE --
 
 3. Only enable roles selection when adult is selected
    - use http://harvesthq.github.io/chosen/
-
-4. Add "attributes" KV store for person
-
-5. Add "baptized" attribute as checkbox to add person, under role
 
 6. Add "inactive" attribute, but not to add person, only in edit person
 

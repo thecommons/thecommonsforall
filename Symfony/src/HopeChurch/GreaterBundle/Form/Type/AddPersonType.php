@@ -52,6 +52,11 @@ class AddPersonType extends AbstractType
 					   'expanded'     => false
 					   ));
 
+    $builder->add('baptized', 'checkbox', array(
+						'label' => 'Baptized',
+                                                'required' => false
+                                                ));
+
     $builder->add('email', 'email', array(
                                           'label' => 'Email',
                                           'required' => false
@@ -98,7 +103,7 @@ class AddPersonType extends AbstractType
                                                ));
 
     $builder->add('facebook', 'checkbox', array(
-                                                'label' => 'Facebook?',
+                                                'label' => 'Facebook',
                                                 'required' => false
                                                 ));
 
