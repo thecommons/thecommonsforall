@@ -17,4 +17,4 @@ $('#btn-reset').click(function(){
 
 });
 
-$('#person_roles').chosen();
+$('#person_roles').select2();
