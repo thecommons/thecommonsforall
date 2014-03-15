@@ -5,7 +5,10 @@ HopeChurch\GreaterBundle\Entity\Person:
           message: "A first name must be given"
     age:
       - NotBlank:
-          message: "An age group must be chosen"
+          message: "An age group must be selected"
+    transformationalStage:
+      - NotBlank:
+          message: "A Transformational Stage must be selected"
 #    roles:
 #      - Count:
 #          min: 0
