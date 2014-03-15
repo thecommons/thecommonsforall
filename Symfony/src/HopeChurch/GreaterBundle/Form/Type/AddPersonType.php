@@ -60,6 +60,14 @@ class AddPersonType extends AbstractType
 					   'expanded'     => false
 					   ));
 
+    $builder->add('transformationalStage', 'entity',
+		  array(
+			'label' => 'Transformational Stage',
+			'required' => true,
+			'class' => 'HopeChurchGreaterBundle:TransformationalStage',
+			'property' => 'name'
+			));
+
     $builder->add('baptized', 'checkbox', array(
 						'label' => 'Baptized',
                                                 'required' => false

@@ -186,6 +186,26 @@ filter='cssrewrite' %}
         }
         )
       }}
+    </fieldset>
+
+    <fieldset>
+      <legend>Transformational Process</legend>
+      {{
+        form_row(form.transformationalStage,
+          {'help_blocks':
+            [
+              'What Transformational Stage is this person currently in?',
+              'If they have just started attending, then leave set to "Sunday Gathering."'
+            ]
+          }
+        )
+      }}
+
+      {{
+      form_row(form.leader, {'help_blocks':
+      ['Who is responsible for mentoring this person toward their next Transformational Stage?']
+      })
+      }}
 
       {# BAPTIZED #}
       <div class="form-group">
@@ -202,6 +222,7 @@ filter='cssrewrite' %}
           </div>
 	</div>
       </div>
+
     </fieldset>
 
     <fieldset>
@@ -291,11 +312,6 @@ filter='cssrewrite' %}
     {# RELATIONSHIPS #}
     <fieldset>
       <legend>Relationships</legend>
-      {{
-      form_row(form.leader, {'help_blocks':
-      ['Who greeted this person and may know more about them?']
-      })
-      }}
 
       {# TODO - ADD THESE #}
       <div class="form-group">
