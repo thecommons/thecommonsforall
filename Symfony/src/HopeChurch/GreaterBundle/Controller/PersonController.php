@@ -44,7 +44,12 @@ class PersonController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('person_show', array('id' => $entity->getId())));
+	    $nameFirst = $form->get('nameFirst')->getData();
+	    $this->get('session')->getFlashBag()->add('success',
+						      "$nameFirst was added successfully");
+
+            return $this->redirect($this->generateUrl('person_show',
+						      array('id' => $entity->getId())));
         }
 
         return $this->render('HopeChurchGreaterBundle:Person:new.html.twig', array(
