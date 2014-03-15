@@ -123,14 +123,7 @@ filter='cssrewrite' %}
 
     {{ form_row(form.nameLast) }}
 
-    {{ form_row(form.age,
-      {'help_blocks':
-        [
-          'What age group does this person fit into?',
-        ]
-      }
-    )
-    }}
+    {{ form_row(form.age) }}
 
     {{
     form_row(form.referrer,

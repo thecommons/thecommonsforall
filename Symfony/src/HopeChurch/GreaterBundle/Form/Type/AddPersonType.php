@@ -37,7 +37,7 @@ class AddPersonType extends AbstractType
     $builder->add('age', 'entity', array(
 					 'label' => 'Age',
 					 'required' => true,
-					 'empty_value' => '-- Select Age --',
+					 'empty_value' => '-- Select Age Group --',
 					 'class' => 'HopeChurchGreaterBundle:Age',
 					 'property' => 'name'
 					 ));
