@@ -17,6 +17,10 @@
 
     <many-to-many field="people" target-entity="Person" mapped-by="roles" />
 
+    <many-to-many field="transformationalStages"
+		  target-entity="TransformationalStage"
+		  mapped-by="mentorRoles" />
+
   </entity>
 
 </doctrine-mapping>

@@ -29,6 +29,8 @@ TransformationalStage
      plus, out of band states:
      - Re-contact       (for those who have lapsed into inactive)
 
+ + s/person.leader/person.mentor/;
+
 1. Mentor list on add-person page should be two drop-downs:
    a. state, which filters:
    b. person (based on roles which are eligible to be mentors for that state)

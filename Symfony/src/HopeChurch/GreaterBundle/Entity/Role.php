@@ -20,6 +20,11 @@ class Role
     private $people;
 
     /**
+     * @var ArrayCollection
+     */
+    private $transformationalStages;
+
+    /**
      * @var integer
      */
     private $id;
@@ -89,5 +94,38 @@ class Role
     public function getPeople()
     {
       return $this->people;
+    }
+
+    /**
+     * Add transformationalStage
+     *
+     * @param \HopeChurch\GreaterBundle\Entity\TransformationalStage $transformationalStage
+     * @return Smallgroup
+     */
+    public function addTransformationalStage(\HopeChurch\GreaterBundle\Entity\TransformationalStage $transformationalStage)
+    {
+      $this->transformationalStages->addElement($transformationalStage);
+
+      return $this;
+    }
+
+    /**
+     * Remove transformationalStage
+     *
+     * @param \HopeChurch\GreaterBundle\Entity\TransformationalStage $transformationalStage
+     */
+    public function removeTransformationalStage(\HopeChurch\GreaterBundle\Entity\TransformationalStage $transformationalStage)
+    {
+      $this->transformationalStages->removeElement($transformationalStage);
+    }
+
+    /**
+     * Get transformationalStages
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTransformationalStages()
+    {
+      return $this->transformationalStages;
     }
 }

@@ -119,6 +119,11 @@ class Person
   private $status;
 
   /**
+   * @var TransformationalStage
+   */
+  private $transformationalStage;
+
+  /**
    * @var ArrayCollection
    */
   private $attended;
@@ -590,6 +595,29 @@ class Person
   public function getStatus()
   {
     return $this->status;
+  }
+
+  /**
+   * Set transformationalStage
+   *
+   * @param \HopeChurch\GreaterBundle\Entity\TransformationalStage $transformationalStage
+   * @return Person
+   */
+  public function setTransformationalStage(\HopeChurch\GreaterBundle\Entity\TransformationalStage $transformationalStage = null)
+  {
+    $this->transformationalStage = $transformationalStage;
+
+    return $this;
+  }
+
+  /**
+   * Get transformationalStage
+   *
+   * @return \HopeChurch\GreaterBundle\Entity\TransformationalStage
+   */
+  public function getTransformationalStage()
+  {
+    return $this->transformationalStage;
   }
 
   /**

@@ -1,9 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity repository-class="HopeChurch\GreaterBundle\Entity\TransformationalStageRepository" name="HopeChurch\GreaterBundle\Entity\TransformationalStage">
+<doctrine-mapping
+    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+			http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd"
+    >
+  <entity
+      repository-class="HopeChurch\GreaterBundle\Entity\TransformationalStageRepository"
+      name="HopeChurch\GreaterBundle\Entity\TransformationalStage"
+      table="tstage"
+      >
+
     <id name="id" type="integer" column="id">
       <generator strategy="AUTO"/>
     </id>
+
     <field name="name" type="string" column="name" length="255"/>
+
+    <one-to-one field="nextStage"
+		target-entity="TransformationalStage"
+		inversed-by="prevStage"
+		>
+      <join-column name="next_stage_id" referenced-column-name="id"/>
+    </one-to-one>
+
+    <one-to-one field="prevStage"
+		target-entity="TransformationalStage"
+		mapped-by="nextStage"
+		>
+      <join-column name="prev_stage_id" referenced-column-name="id"/>
+    </one-to-one>
+
+    <many-to-many field="mentorRoles"
+		  target-entity="Role"
+		  inversed-by="transformationalStages"
+		  >
+      <join-table name="tstage_role">
+	<join-columns>
+	  <join-column id="tstage_id" referenced-column-name="id" />
+	</join-columns>
+	<inverse-join-columns>
+	  <join-column id="role_id" referenced-column-name="id" />
+	</inverse-join-columns>
+      </join-table>
+    </many-to-many>
   </entity>
 </doctrine-mapping>
