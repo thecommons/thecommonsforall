@@ -1,1 +1,1 @@
-rsync --exclude=Symfony/app/logs/ --exclude=Symfony/app/cache/ --exclude=.git -av ~/projects/hope/ hope:public_html/somethinggreater/
+rsync --delete --exclude=Symfony/web --exclude=Symfony/app/config/parameters.yml --exclude=Symfony/app/logs/ --exclude=Symfony/app/cache/ --exclude=.git -av ~/projects/hope/ hope:public_html/somethinggreater/
