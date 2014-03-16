@@ -31,7 +31,20 @@ class Age
 
     public function getFullName()
     {
-      return $this->getName()." (".$this->getLower()."-".$this->getUpper().")";
+      $rangeStr = "";
+      if(strlen($this->getLower()) && strlen($this->getUpper())) {
+	// (13-17)
+	$rangeStr = " (".$this->getLower()."-".$this->getUpper().")";
+      } else if(strlen($this->getLower())) {
+	// (18+)
+	$rangeStr = " (".$this->getLower()."+)";
+      } else if(strlen($this->getUpper())) {
+	// (< 3)
+	$rangeStr = " (< ".$this->getUpper().")";
+      }
+      // else, leave blank
+
+      return $this->getName().$rangeStr;
     }
 
 
