@@ -3,6 +3,8 @@
 {% block jsblock %}
   {{ parent() }}
   {% javascripts
+    'bundles/hopechurchgreater/libs/tablesorter/js/jquery.tablesorter.min.js'
+    'bundles/hopechurchgreater/libs/tablesorter/js/jquery.tablesorter.widgets.js'
     '@HopeChurchGreaterBundle/Resources/public/js/person/index.js'
   %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
@@ -14,7 +16,7 @@
       <h1>Browse People</h1>
     </div>
 
-    <table class="table">
+    <table id="people-table" class="table tablesorter">
         <thead>
             <tr>
                 <th></th>
@@ -32,8 +34,10 @@
 		    <span class="glyphicon glyphicon-edit"></span>
 		  </a>
                 </td>
-                <td><a href="{{ path('person_show', { 'id': entity.id }) }}">
-		    {{ entity.nameFirst }} {{ entity.nameLast }}</a>
+                <td>
+		  <a href="{{ path('person_show', { 'id': entity.id }) }}">
+		    {{ entity.nameLast }}, {{ entity.nameFirst }}
+		  </a>
 		</td>
                 <td>{{ entity.email }}</td>
                 <td>{{ entity.phoneCell }}</td>
