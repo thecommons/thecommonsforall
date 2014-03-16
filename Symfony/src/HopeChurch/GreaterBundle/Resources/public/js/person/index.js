@@ -26,7 +26,10 @@ $(function() {
 	sortList: [[1,0]], // default sort column, 0=asc, 1=desc
 	theme : "bootstrap",
 	headerTemplate : '{content} {icon}',
-	widgets : ["uitheme"]
+	widgets : ["uitheme"],
+	headers: {
+            0: { sorter: false }
+        }
     })
 
 });
