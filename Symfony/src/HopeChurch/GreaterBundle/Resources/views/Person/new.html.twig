@@ -109,7 +109,7 @@ var mentorsByDStageUrl = "{{path('hope_church_backstage_get_mentor_by_dstage') }
 {% endfor %}
 
 <form class="form-horizontal"
-      action="{{ path('hope_church_greater_add_person') }}"
+      action="{{ path('person_create') }}"
       method="post" {{ form_enctype(form) }}
       id="form-person"
       >

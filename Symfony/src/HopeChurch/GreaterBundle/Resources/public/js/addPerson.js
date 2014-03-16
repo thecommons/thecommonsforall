@@ -18,14 +18,14 @@ $('#btn-reset').click(function(){
 
 });
 
-$('#person_roles').select2();
+$('#hopechurch_greaterbundle_person_roles').select2();
 
 var firstRun = true;
 
 // update mentor list based on current dstage
-$('#person_discipleshipStage').change( function() {
+$('#hopechurch_greaterbundle_person_discipleshipStage').change( function() {
 
-    var pm = d3.select('#person_mentor');
+    var pm = d3.select('#hopechurch_greaterbundle_person_mentor');
     pm.attr("disabled", "disabled");
 
     if(firstRun){

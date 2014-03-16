@@ -1,21 +1,16 @@
+########## Entity Routes ##########
+HopeChurchGreaterBundle_person:
+        resource: "@HopeChurchGreaterBundle/Resources/config/routing/person.yml"
+        prefix:   /person
+
 ########## Front-end Routes ##########
-
-#hope_church_greater_add_person:
-#  path: /add/person
-#  defaults:
-#    _controller: HopeChurchGreaterBundle:Default:addPerson
-
+# This default route MUST come last  #
 hope_church_greater:
   path:  /{page}/{subpage}
   defaults:
     _controller: HopeChurchGreaterBundle:Default:index
     page: home
     subpage:
-
-########## Entity Routes ##########
-HopeChurchGreaterBundle_person:
-        resource: "@HopeChurchGreaterBundle/Resources/config/routing/person.yml"
-        prefix:   /person
 
 ########## Back-end Routes ##########
 # TODO: Refactor this into a BackendBundle
