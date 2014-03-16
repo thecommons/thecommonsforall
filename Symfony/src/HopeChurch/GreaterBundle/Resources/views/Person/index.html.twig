@@ -1,59 +1,43 @@
-{% extends '::base.html.twig' %}
+{% extends 'HopeChurchGreaterBundle:Default:base.html.twig' %}
+
+{% block jsblock %}
+  {{ parent() }}
+  {% javascripts
+    '@HopeChurchGreaterBundle/Resources/public/js/person/index.js'
+  %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+  {% endjavascripts %}
+{% endblock %}
 
 {% block body -%}
-    <h1>Person list</h1>
+    <div class="page-header">
+      <h1>Browse People</h1>
+    </div>
 
-    <table class="records_list">
+    <table class="table">
         <thead>
             <tr>
-                <th>Namefirst</th>
-                <th>Namelast</th>
-                <th>Notes</th>
-                <th>Datecreated</th>
+                <th></th>
+                <th>Name</th>
                 <th>Email</th>
-                <th>Phonecell</th>
-                <th>Phonehome</th>
-                <th>Addrfirst</th>
-                <th>Addrsecond</th>
-                <th>Addrcity</th>
-                <th>Addrstate</th>
-                <th>Addrzip</th>
-                <th>Addrcountry</th>
-                <th>Facebook</th>
-                <th>Baptized</th>
-                <th>Id</th>
-                <th>Actions</th>
+                <th>Cell Phone</th>
+                <th>Discipleship Stage</th>
             </tr>
         </thead>
         <tbody>
         {% for entity in entities %}
             <tr>
-                <td><a href="{{ path('person_show', { 'id': entity.id }) }}">{{ entity.nameFirst }}</a></td>
-                <td>{{ entity.nameLast }}</td>
-                <td>{{ entity.notes }}</td>
-                <td>{% if entity.dateCreated %}{{ entity.dateCreated|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                  <a href="{{ path('person_edit', { 'id': entity.id }) }}">
+		    <span class="glyphicon glyphicon-edit"></span>
+		  </a>
+                </td>
+                <td><a href="{{ path('person_show', { 'id': entity.id }) }}">
+		    {{ entity.nameFirst }} {{ entity.nameLast }}</a>
+		</td>
                 <td>{{ entity.email }}</td>
                 <td>{{ entity.phoneCell }}</td>
-                <td>{{ entity.phoneHome }}</td>
-                <td>{{ entity.addrFirst }}</td>
-                <td>{{ entity.addrSecond }}</td>
-                <td>{{ entity.addrCity }}</td>
-                <td>{{ entity.addrState }}</td>
-                <td>{{ entity.addrZip }}</td>
-                <td>{{ entity.addrCountry }}</td>
-                <td>{{ entity.facebook }}</td>
-                <td>{{ entity.baptized }}</td>
-                <td>{{ entity.id }}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('person_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('person_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-                </td>
+		<td>{{ entity.dstage }}</td>
             </tr>
         {% endfor %}
         </tbody>

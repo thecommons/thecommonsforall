@@ -8,24 +8,6 @@ use Symfony\Component\HttpFoundation\Response;
 class BackstageController extends Controller
 {
 
-  public function getAction($type, $record_id, $_route)
-    {
-      // the default
-      $json_data = array("error" => "unknown");
-
-      /* they have asked us to return the json data for this type */
-
-      // error
-      throw $this->
-	createNotFoundException("Invalid get request type ($type)");
-
-      // by here we should have the json object ready
-      $response = new Response(json_encode($json_data));
-      $response->headers->set('Content-Type', 'application/json');
-
-      return $response;
-    }
-
   public function getOverallAttendeesAction($event, $date, $_route)
   {
     $repo = $this->getDoctrine()->getManager()
@@ -83,7 +65,7 @@ class BackstageController extends Controller
      */
 
     /* for now, just get the list of people and the number of times they
-     have attended the sunday service */
+       have attended the sunday service */
 
     $repo = $this->getDoctrine()->getManager()
       ->getRepository('HopeChurchGreaterBundle:Attendance');
@@ -124,7 +106,7 @@ class BackstageController extends Controller
 
     // first, remove attendance for those that have been removed
     $results[0] = $attRepo->removeAttendeesForEventByDate($event, $date,
-						      $rm_attendees);
+							  $rm_attendees);
 
     // now, add attendance for those that have been added
     $results[1] = $attRepo->addAttendeesForEventByDate($event, $date,
@@ -132,32 +114,6 @@ class BackstageController extends Controller
 
     $response = new Response(json_encode($results));
     $response->headers->set('Content-Type', 'application/json');
-    return $response;
-  }
-
-  public function updatePersonAction($_route)
-  {
-    $person = new Person();
-
-    throw $this->createNotFoundException("Person update not implemented");
-  }
-
-  public function getLeadersAction()
-  {
-    $em = $this->getDoctrine()->getManager();
-
-    $records = $em->getRepository('HopeChurchGreaterBundle:Person')
-	          ->findAllLeaders();
-
-    if(!$records)
-      {
-	// no leaders
-	$records = Array();
-      }
-
-    $response = new Response(json_encode($records));
-    $response->headers->set('Content-Type', 'application/json');
-
     return $response;
   }
 
@@ -174,24 +130,4 @@ class BackstageController extends Controller
     $response->headers->set('Content-Type', 'application/json');
     return $response;
   }
-
-  public function getRolesPeopleAction()
-  {
-    $em = $this->getDoctrine()->getManager();
-
-    $records = $em->getRepository('HopeChurchGreaterBundle:Role')
-	          ->findAllPeople();
-
-    if(!$records)
-      {
-	// no people for roles
-	$records = Array();
-      }
-
-    $response = new Response(json_encode($records));
-    $response->headers->set('Content-Type', 'application/json');
-
-    return $response;
-  }
-
 }

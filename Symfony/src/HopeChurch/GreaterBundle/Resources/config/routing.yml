@@ -44,23 +44,9 @@ hope_church_backstage_update_attendees:
     event: 1 # sunday gathering
     date: 0 # no date
 
-#---------- Roles Routes ----------#
-hope_church_backstage_get_people_roles:
-  path: /backstage/get/roles/people
-  defaults:
-    _controller: HopeChurchGreaterBundle:Backstage:getRolesPeople
-
 #---------- Mentor Page Routes ----------#
 hope_church_backstage_get_mentor_by_dstage:
   path: /backstage/get/mentors/{dstage}
   defaults:
     _controller: HopeChurchGreaterBundle:Backstage:getMentorByDiscipleshipStage
     dstage: 0
-
-# this is the generic get route, it must be last
-hope_church_backstage_get_generic:
-  path: /backstage/get/{type}/{record_id}
-  defaults:
-    _controller: HopeChurchGreaterBundle:Backstage:get
-    # the type of objects that can be retrieved
-    type: people
