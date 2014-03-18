@@ -177,7 +177,7 @@ var updateTable = function(role) {
     //loading();
     var rows = d3.select("#"+role.name+"-body")
 	.selectAll("tr")
-	.data(d3.values(data[role.name]), function(d) {return d.p_id})
+	.data(data[role.name], function(d) {return d.p_id})
 
     // update selection
 	.classed("success", function(d) {
@@ -379,7 +379,7 @@ var bootstrapAttendees = function(role_idx) {
 
     var roleAttendanceUrl = attendanceUrl + "/" + SUNDAY_ID + "/" + role;
 
-    data[role] = {};
+    data[role] = [];
 
     d3.json(roleAttendanceUrl,
 	    function(error, json) {
@@ -391,7 +391,7 @@ var bootstrapAttendees = function(role_idx) {
 			'Never Visited';
 		    if(!all_attendees[e.p_id]) {
 			all_attendees[e.p_id] = e;
-			data[role][e.p_id] = e;
+			data[role].push(e);
 		    }
 		});
 
