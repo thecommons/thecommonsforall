@@ -11,8 +11,6 @@
 3. Only enable roles selection when adult is selected
    - use http://harvesthq.github.io/chosen/
 
--- DONE --
-
 TransformationalStage
 
 7. Add "Next Discipleship State", and "Current Discipleship State"
@@ -31,9 +29,40 @@ TransformationalStage
 
  + s/person.leader/person.mentor/;
 
-1. Mentor list on add-person page should be two drop-downs:
-   a. state, which filters:
-   b. person (based on roles which are eligible to be mentors for that state)
+ - fix padding at bottom of pages
+
+1. Mentor list on add-person page should show
+   - person (based on roles which are eligible to be mentors for that state)
+
+ - s/transformationalstage/discipleshipstage/g
+
+ - add toString for Age
+
+-- DONE --
+
+ - fix overall attendance saving
+
+ - add edit person functionality
+
+ - fix view functionality (dbl-click in browse)
+
+ - fix where add person redirects to (view currently)
+
+ - add count of currently saved attendees beside manual overall count
+
+ - no save button on attendance page, every click saves
+
+ - no last name on attendance is currently null
+
+ - add inactive tab to attendance page
+
+ - add 'needs revision' checkbox for new people (sends message to mentor)
+
+ - sort roles by name
+
+ - add band role
+
+ - another role for paid volunteers? :) (i.e. nursery worker)
 
 8. Add calendar for events
    - event,start_datetime,end_datetime
