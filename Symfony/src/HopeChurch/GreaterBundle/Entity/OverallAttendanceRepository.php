@@ -32,7 +32,8 @@ class OverallAttendanceRepository extends EntityRepository
 		    ." AND a.date = :date")
       ->setParameter('event_id', $event_id)
       ->setParameter('date', $date)
-      ->getSingleResult();
+      ->setMaxResults(1)
+      ->getResult();
   }
 
   public function updateOverallAttendeesForEventByDate($event_id,
@@ -48,7 +49,7 @@ class OverallAttendanceRepository extends EntityRepository
       ->getSingleResult();
 
     // try and get the attendance for this date
-    $oa = $this->getEntityManager()
+    $oa_arr = $this->getEntityManager()
       ->createQuery("SELECT a"
 		    ." FROM HopeChurchGreaterBundle:OverallAttendance a"
 		    ." JOIN a.event e "
@@ -56,7 +57,14 @@ class OverallAttendanceRepository extends EntityRepository
 		    ." AND a.date = :date")
       ->setParameter('event_id', $event_id)
       ->setParameter('date', $date)
-      ->getSingleResult();
+      ->setMaxResults(1)
+      ->getResult();
+
+    if(count($oa_arr) == 1) {
+      $oa = $oa_arr[0];
+    } else {
+      $oa = null;
+    }
 
     if(!$oa) {
       $oa = new OverallAttendance;

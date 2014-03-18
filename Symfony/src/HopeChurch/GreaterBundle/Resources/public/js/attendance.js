@@ -123,8 +123,8 @@ function updateOverallAttendance() {
 	    function(error, json) {
 		if(error) return console.warn(error);
 
-		var attendees = (json && json.attendeeCount) ?
-		    json.attendeeCount : 0;
+		var attendees = (json.length == 1 && json[0].attendeeCount) ?
+		    json[0].attendeeCount : 0;
 
 		// simply set the value
 		$("#total-cnt").val(attendees);
