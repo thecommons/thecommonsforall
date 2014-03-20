@@ -1,0 +1,28 @@
+body {
+    padding-top: 60px;
+    padding-bottom: 20px;
+}
+
+.top-padding {
+    padding-top: 20px;
+}
+/*
+  @media (max-width: 979px) {
+  body {
+  padding-top: 0;
+  }
+  */
+
+.btn-header-sm {
+    bottom: 0px;
+    position: relative;
+    top: 37px;
+}
+
+.control-label {
+    font-weight: bold;
+}
+
+.form-control-static {
+    font-weight: normal;
+}

@@ -1,88 +1,170 @@
-{% extends '::base.html.twig' %}
+{% extends 'HopeChurchGreaterBundle:Default:base.html.twig' %}
+
+{% block styleblock %}
+{{ parent() }}
+{% stylesheets
+'@HopeChurchGreaterBundle/Resources/public/css/person/show.css'
+filter='cssrewrite' %}
+<link rel="stylesheet" href="{{ asset_url }}" />
+{% endstylesheets %}
+{% endblock %}
+
+{% block jsblock %}
+{{ parent() }}
+{% javascripts
+'@HopeChurchGreaterBundle/Resources/public/js/person/show.js'
+%}
+<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+{% endblock %}
 
 {% block body -%}
-    <h1>Person</h1>
+<div class="page-header">
+  <div class="pull-left">
+    <h1>{{ entity.nameFirst }} {{ entity.nameLast }}</h1>
+  </div>
+  <div class="pull-right btn-header-sm">
+    <div class="">
+      <a class="btn btn-primary btn-sm" href="{{ path('person') }}">
+	<span class="glyphicon glyphicon-chevron-left"></span>
+      </a>
+      <a class="btn btn-primary btn-sm" href="{{ path('person_edit', { 'id': entity.id }) }}">
+	<span class="glyphicon glyphicon-edit"></span>
+      </a>
+      <a class="btn btn-primary btn-sm" href="#">
+	<span class="glyphicon glyphicon-trash"></span>
+      </a>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</div>
 
-    <table class="record_properties">
-        <tbody>
-            <tr>
-                <th>Namefirst</th>
-                <td>{{ entity.nameFirst }}</td>
-            </tr>
-            <tr>
-                <th>Namelast</th>
-                <td>{{ entity.nameLast }}</td>
-            </tr>
-            <tr>
-                <th>Notes</th>
-                <td>{{ entity.notes }}</td>
-            </tr>
-            <tr>
-                <th>Datecreated</th>
-                <td>{{ entity.dateCreated|date('Y-m-d H:i:s') }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ entity.email }}</td>
-            </tr>
-            <tr>
-                <th>Phonecell</th>
-                <td>{{ entity.phoneCell }}</td>
-            </tr>
-            <tr>
-                <th>Phonehome</th>
-                <td>{{ entity.phoneHome }}</td>
-            </tr>
-            <tr>
-                <th>Addrfirst</th>
-                <td>{{ entity.addrFirst }}</td>
-            </tr>
-            <tr>
-                <th>Addrsecond</th>
-                <td>{{ entity.addrSecond }}</td>
-            </tr>
-            <tr>
-                <th>Addrcity</th>
-                <td>{{ entity.addrCity }}</td>
-            </tr>
-            <tr>
-                <th>Addrstate</th>
-                <td>{{ entity.addrState }}</td>
-            </tr>
-            <tr>
-                <th>Addrzip</th>
-                <td>{{ entity.addrZip }}</td>
-            </tr>
-            <tr>
-                <th>Addrcountry</th>
-                <td>{{ entity.addrCountry }}</td>
-            </tr>
-            <tr>
-                <th>Facebook</th>
-                <td>{{ entity.facebook }}</td>
-            </tr>
-            <tr>
-                <th>Baptized</th>
-                <td>{{ entity.baptized }}</td>
-            </tr>
-            <tr>
-                <th>Id</th>
-                <td>{{ entity.id }}</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="row">
+  <div class="col-xs-12">
+    <form class="form-horizontal" role="form">
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('person') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>
-        <a href="{{ path('person_edit', { 'id': entity.id }) }}">
-            Edit
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+      <fieldset>
+	<legend>Contact Info</legend>
+	<div class="form-group">
+	  <label class="col-sm-2 control-label">Email</label>
+	  <div class="col-sm-10">
+	    <p class="form-control-static">{{ entity.email }}</p>
+	  </div>
+	</div>
+
+	<div class="form-group">
+	  <label class="col-sm-2 control-label">Cell Phone</label>
+	  <div class="col-sm-10">
+	    <p class="form-control-static">{{ entity.phoneCell }}</p>
+	  </div>
+	</div>
+
+	<div class="form-group">
+	  <label class="col-sm-2 control-label">Home Phone</label>
+	  <div class="col-sm-10">
+	    <p class="form-control-static">{{ entity.phoneHome }}</p>
+	  </div>
+	</div>
+
+	<div class="form-group">
+	  <label class="col-sm-2 control-label">Address</label>
+	  <div class="col-sm-10">
+	    <address class="form-control-static">
+		{{ entity.addrFirst }} {{ entity.addrSecond }}<br>
+		{{entity.addrCity}} {{entity.addrState}} {{entity.addrZip}}<br>
+		{{entity.addrCountry}}
+	    </address>
+	  </div>
+	</div>
+
+	<div class="form-group">
+	  <label class="col-sm-2 control-label">Age Group</label>
+	  <div class="col-sm-10">
+	    <p class="form-control-static">{{ entity.age }}</p>
+	  </div>
+	</div>
+      </fieldset>
+
+      <fieldset>
+	<legend>Discipleship Pathway</legend>
+
+	<div class="form-group">
+	  <label class="col-sm-2 control-label">Discipleship Stage</label>
+	  <div class="col-sm-10">
+	    <p class="form-control-static">{{ entity.discipleshipStage }}</p>
+	  </div>
+	</div>
+
+	<div class="form-group">
+	  <label class="col-sm-2 control-label">Mentor</label>
+	  <div class="col-sm-10">
+	    <p class="form-control-static">{{ entity.mentor }}</p>
+	  </div>
+	</div>
+
+	<div class="form-group">
+	  <label class="col-sm-2 control-label">Baptized</label>
+	  <div class="col-sm-10">
+	    <p class="form-control-static">
+	      {%- if entity.baptized -%}
+	        Yes
+	      {%- else -%}
+	        No
+	      {%- endif -%}
+	    </p>
+	  </div>
+	</div>
+
+      </fieldset>
+
+      <fieldset>
+	<legend>Relationships</legend>
+
+	<div class="form-group">
+	  <label class="col-sm-2 control-label">Family</label>
+	  <div class="col-sm-10">
+	    <p class="form-control-static">Coming soon...</p>
+	  </div>
+	</div>
+
+	<div class="form-group">
+	  <label class="col-sm-2 control-label">Community Group</label>
+	  <div class="col-sm-10">
+	    <p class="form-control-static">Coming soon...</p>
+	  </div>
+	</div>
+      </fieldset>
+
+    </form>
+  </div>
+</div>
+
+<!-- 
+MENTOR
+INACTIVE
+REFERRER
+-->
+
+<!--
+<table class="table">
+  <tbody>
+    <tr>
+      <th>Notes</th>
+      <td>{{ entity.notes }}</td>
+    </tr>
+    <tr>
+      <th>Datecreated</th>
+      <td>{{ entity.dateCreated|date('Y-m-d H:i:s') }}</td>
+    </tr>
+    <tr>
+      <th>Facebook</th>
+      <td>{{ entity.facebook }}</td>
+    </tr>
+    <tr>
+      <th>Baptized</th>
+      <td>{{ entity.baptized }}</td>
+    </tr>
+  </tbody>
+</table>
+-->
 {% endblock %}

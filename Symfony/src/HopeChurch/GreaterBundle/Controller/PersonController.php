@@ -23,7 +23,7 @@ class PersonController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('HopeChurchGreaterBundle:Person')->findAllForIndex();
+        $entities = $em->getRepository('HopeChurchGreaterBundle:Person')->findAllOrdered();
 
         return $this->render('HopeChurchGreaterBundle:Person:index.html.twig', array(
             'entities' => $entities,

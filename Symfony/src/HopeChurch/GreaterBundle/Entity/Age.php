@@ -47,6 +47,11 @@ class Age
       return $this->getName().$rangeStr;
     }
 
+    public function __toString()
+    {
+      return $this->getFullName();
+    }
+
 
     /**
      * Get id

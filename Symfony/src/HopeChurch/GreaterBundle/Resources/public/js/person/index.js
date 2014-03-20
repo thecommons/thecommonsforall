@@ -23,12 +23,12 @@ $(function() {
 
     // call the tablesorter plugin and apply the uitheme widget
     $("#people-table").tablesorter({
-	sortList: [[1,0]], // default sort column, 0=asc, 1=desc
+	sortList: [[0,0]], // default sort column, 0=asc, 1=desc
 	theme : "bootstrap",
 	headerTemplate : '{content} {icon}',
 	widgets : ["uitheme"],
 	headers: {
-            0: { sorter: false }
+            4: { sorter: false }
         }
     })
 

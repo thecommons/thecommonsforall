@@ -17,28 +17,11 @@
     {% block styleblock %}
     {% stylesheets
     'bundles/hopechurchgreater/libs/bootstrap/css/bootstrap-yeti.css'
+    '@HopeChurchGreaterBundle/Resources/public/css/base.css'
     filter='cssrewrite' %}
     <link rel="stylesheet" href="{{ asset_url }}" />
     {% endstylesheets %}
     {% endblock %}
-
-    <style>
-      body {
-      padding-top: 60px;
-      padding-bottom: 20px;
-      }
-
-    .top-padding {
-      padding-top: 20px;
-    }
-    /*
-      @media (max-width: 979px) {
-      body {
-      padding-top: 0;
-      }
-    */
-      }
-    </style>
 
     <script type="text/javascript">
       {% block head_js %}{% endblock %}
