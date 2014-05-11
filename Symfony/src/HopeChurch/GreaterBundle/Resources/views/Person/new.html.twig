@@ -68,7 +68,7 @@ var mentorsByDStageUrl = "{{path('hope_church_backstage_get_mentor_by_dstage') }
 
 {% block checkbox_widget %}
 {% spaceless %}
-    <label class="checkbox-inline">
+    <label class="checkbox">
       <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />{{ form_label(form) }}
     </label>
 {% endspaceless %}
@@ -223,6 +223,8 @@ var mentorsByDStageUrl = "{{path('hope_church_backstage_get_mentor_by_dstage') }
             <input type="checkbox"
                    id="{{ form.baptized.vars.id }}"
                    name="{{ form.baptized.vars.full_name }}"
+		   {% if form.baptized.vars.checked %} checked="checked"{%
+                   endif %}
                    >
             <p class="help-block">Has this person been baptized?</p>
           </div>
@@ -246,7 +248,9 @@ var mentorsByDStageUrl = "{{path('hope_church_backstage_get_mentor_by_dstage') }
                  id="{{ form.phoneCell.vars.id }}"
                  name="{{ form.phoneCell.vars.full_name }}"
                  placeholder="{{ form.phoneCell.vars.label }}"
-                 class="bfh-phone form-control" data-country="US">
+                 class="bfh-phone form-control" data-country="US"
+		 {% if form.phoneCell.vars.value %} data-number="{{
+                 form.phoneCell.vars.value }}"{% endif %}>
         </div>
       </div>
 
@@ -259,7 +263,9 @@ var mentorsByDStageUrl = "{{path('hope_church_backstage_get_mentor_by_dstage') }
                  id="{{ form.phoneHome.vars.id }}"
                  name="{{ form.phoneHome.vars.full_name }}"
                  placeholder="{{ form.phoneHome.vars.label }}"
-                 class="form-control bfh-phone" data-country="US">
+                 class="form-control bfh-phone" data-country="US"
+		 {% if form.phoneHome.vars.value %} data-number="{{
+                 form.phoneHome.vars.value }}"{% endif %}>
         </div>
       </div>
 
@@ -273,6 +279,8 @@ var mentorsByDStageUrl = "{{path('hope_church_backstage_get_mentor_by_dstage') }
           <input type="checkbox"
                  id="{{ form.facebook.vars.id }}"
                  name="{{ form.facebook.vars.full_name }}"
+		 {% if form.facebook.vars.checked %} checked="checked"{%
+                 endif %}
                  >
           <p class="help-block">Does at least one leader have this person added
           as a friend on FB?</p>
