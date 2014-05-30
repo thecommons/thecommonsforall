@@ -5,3 +5,5 @@ Symfony/app/cache/*
 Symfony/web/uploads/*
 Symfony/web/bundles/*
 Symfony/app/config/parameters.yml
+.idea/
+
