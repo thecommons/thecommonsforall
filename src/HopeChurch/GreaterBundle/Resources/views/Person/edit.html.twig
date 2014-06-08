@@ -9,14 +9,17 @@
   </div>
   <div class="pull-right btn-header-sm">
     <div class="btn-group">
-      <a class="btn btn-primary btn-sm" href="{{-
+        {{ form_start(delete_form, {'attr': {'class': 'form-inline'} }) }}
+      <button type="submit" class="btn btn-primary btn-sm" href="{{-
       path('person_delete', {'id': entity.id})
       -}}">
 	<span class="glyphicon glyphicon-trash"></span>
-      </a>
+      </button>
       <a class="btn btn-primary btn-sm" href="{{ path('person_new') }}">
 	<span class="glyphicon glyphicon-plus"></span>
       </a>
+        {{ form_row(delete_form._token) }}
+        </form>
     </div>
   </div>
   <div class="clearfix"></div>
