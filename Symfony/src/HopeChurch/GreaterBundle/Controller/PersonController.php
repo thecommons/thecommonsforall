@@ -176,12 +176,13 @@ class PersonController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('person_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('person_show',
+                array('id' => $id)));
         }
 
         return $this->render('HopeChurchGreaterBundle:Person:edit.html.twig', array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }

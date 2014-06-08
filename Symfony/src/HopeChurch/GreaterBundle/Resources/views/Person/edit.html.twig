@@ -1,6 +1,5 @@
 {% extends 'HopeChurchGreaterBundle:Person:new_edit.html.twig' %}
 
-{% set action_path = "{{ path('person_edit', {'id': form.vars.id}) }}" %}
 {% set show_all_fields = true %}
 
 {% block body_header -%}
@@ -10,7 +9,9 @@
   </div>
   <div class="pull-right btn-header-sm">
     <div class="btn-group">
-      <a class="btn btn-primary btn-sm" href="{{ path('person_delete', {'id': delete_form.vars.id}) }}">
+      <a class="btn btn-primary btn-sm" href="{{-
+      path('person_delete', {'id': entity.id})
+      -}}">
 	<span class="glyphicon glyphicon-trash"></span>
       </a>
       <a class="btn btn-primary btn-sm" href="{{ path('person_new') }}">
