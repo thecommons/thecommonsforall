@@ -1,0 +1,42 @@
+<button class="btn btn-primary btn-sm" data-toggle="modal"
+        data-target=".bs-example-modal-sm">
+    <span class="glyphicon glyphicon-trash"></span>
+</button>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog"
+     aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Delete &quot;{{ entity.nameFirst }} {{ entity.nameLast
+                    }}&quot;?
+                </h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Deleting a person is forever. All their attendance records
+                    and information will be lost.
+                    <span class="text-danger">This cannot be undone.</span>
+                </p>
+                <p>
+                    Instead of deleting this person,
+                    consider marking their status as &quot;Inactive&quot;
+                    instead.
+                </p>
+            </div>
+            <div class="modal-footer">
+                {{ form_start(delete_form, {'attr': {'class': 'form-inline'} }) }}
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">Cancel
+                </button>
+                <button type="submit" class="btn btn-danger">
+                    I'm sure, delete {{ entity.nameFirst }}
+                </button>
+                {{ form_row(delete_form._token) }}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -3,31 +3,27 @@
 {% set show_all_fields = true %}
 
 {% block body_header -%}
-<div class="page-header">
-  <div class="pull-left">
-    <h1>Edit Person</h1>
-  </div>
-  <div class="pull-right btn-header-sm">
-    <div class="btn-group">
-        {{ form_start(delete_form, {'attr': {'class': 'form-inline'} }) }}
-      <button type="submit" class="btn btn-primary btn-sm" href="{{-
-      path('person_delete', {'id': entity.id})
-      -}}">
-	<span class="glyphicon glyphicon-trash"></span>
-      </button>
-      <a class="btn btn-primary btn-sm" href="{{ path('person_new') }}">
-	<span class="glyphicon glyphicon-plus"></span>
-      </a>
-        {{ form_row(delete_form._token) }}
-        </form>
+    <div class="page-header">
+        <div class="pull-left">
+            <h1>Edit Person</h1>
+        </div>
+        <div class="pull-right btn-header-sm">
+            <div class="btn-group">
+                <a class="btn btn-primary btn-sm" href="{{ path('person') }}">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                {% include 'HopeChurchGreaterBundle:Person:delete.html.twig' %}
+                <a class="btn btn-primary btn-sm" href="{{ path('person_new') }}">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </a>
+            </div>
+        </div>
+        <div class="clearfix"></div>
     </div>
-  </div>
-  <div class="clearfix"></div>
-</div>
 {%- endblock %}
 
 {% block body_footer -%}
-  <div class="form-actions">
-    <button type="submit" class="btn btn-primary">Update Person</button>
-  </div>
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Update Person</button>
+    </div>
 {% endblock %}

@@ -108,9 +108,12 @@ class PersonController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('HopeChurchGreaterBundle:Person:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),        ));
+        return $this->render('HopeChurchGreaterBundle:Person:show.html.twig',
+            array(
+                'entity'      => $entity,
+                'delete_form' => $deleteForm->createView(),
+            )
+        );
     }
 
     /**
