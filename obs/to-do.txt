@@ -38,7 +38,13 @@ TransformationalStage
 
  - add toString for Age
 
+ - add message bags to EDIT, NEW, SHOW, BROWSE
+
 -- DONE --
+
+ - when deleting a person, delete all their attendance records
+
+ - add button to delete form to mark user as inactive instead
 
  - fix overall attendance saving
 

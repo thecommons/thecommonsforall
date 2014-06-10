@@ -94,17 +94,7 @@
 {% block body %}
     {% block body_header %}{% endblock %}
 
-    {% for flashMessage in app.session.flashbag.get('success') %}
-        <div class="alert alert-success">
-            {{ flashMessage }}
-        </div>
-    {% endfor %}
-
-    {% for flashMessage in app.session.flashbag.get('error') %}
-        <div class="alert alert-danger">
-            {{ flashMessage }}
-        </div>
-    {% endfor %}
+    {% include 'HopeChurchGreaterBundle:Person:messages.html.twig' %}
 
     {{ form_start(form, { 'attr': {'class': 'form-horizontal'}}) }}
     <fieldset>

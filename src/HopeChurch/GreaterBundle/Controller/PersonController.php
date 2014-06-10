@@ -44,12 +44,16 @@ class PersonController extends Controller
             $em->persist($entity);
             $em->flush();
 
-	    $nameFirst = $form->get('nameFirst')->getData();
-	    $this->get('session')->getFlashBag()->add('success',
-						      "$nameFirst was added successfully");
+            $nameFirst = $form->get('nameFirst')->getData();
+            $this->get('session')->getFlashBag()->add('success',
+                "<strong>$nameFirst</strong> was added successfully");
 
-            return $this->redirect($this->generateUrl('person_show',
-						      array('id' => $entity->getId())));
+            return $this->redirect(
+                $this->generateUrl(
+                    'person_show',
+                    array('id' => $entity->getId())
+                )
+            );
         }
 
         return $this->render('HopeChurchGreaterBundle:Person:new.html.twig', array(
@@ -179,6 +183,10 @@ class PersonController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
+            $nameFirst = $editForm->get('nameFirst')->getData();
+            $this->get('session')->getFlashBag()->add('success',
+                "<strong>$nameFirst</strong> was updated successfully");
+
             return $this->redirect($this->generateUrl('person_show',
                 array('id' => $id)));
         }
@@ -205,6 +213,10 @@ class PersonController extends Controller
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Person entity.');
             }
+
+            $nameFirst = $entity->getNameFirst();
+            $this->get('session')->getFlashBag()->add('warning',
+                "<strong>$nameFirst</strong> was deleted");
 
             $em->remove($entity);
             $em->flush();
