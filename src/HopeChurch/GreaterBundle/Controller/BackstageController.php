@@ -8,28 +8,56 @@ use Symfony\Component\HttpFoundation\Response;
 class BackstageController extends Controller
 {
 
-  public function getOverallAttendeesAction($event, $date, $_route)
-  {
-    $repo = $this->getDoctrine()->getManager()
-      ->getRepository('HopeChurchGreaterBundle:OverallAttendance');
+    public function getOverallAttendeesAction($event, $date, $_route)
+    {
+        $overallRepo = $this->getDoctrine()->getManager()
+            ->getRepository('HopeChurchGreaterBundle:OverallAttendance');
 
-    if($date) {
-      $records = $repo->findOverallAttendeeCountForEventByDate($event, $date);
-    } else {
-      $records = $repo->findOverallAttendeeCountForEvent($event);
+        if($date) {
+            $oRecords = $overallRepo->findOverallAttendeeCountForEventByDate
+                ($event, $date);
+        } else {
+            $oRecords = $overallRepo->findOverallAttendeeCountForEvent
+                ($event);
+        }
+
+        $attRepo = $this->getDoctrine()->getManager()
+            ->getRepository('HopeChurchGreaterBundle:Attendance');
+
+        if ($date) {
+            $aRecords = $attRepo->findAttendeeCountForEventByDate
+                ($event, $date);
+        } else {
+            $aRecords = $attRepo->findAttendeeCountForEvent
+                ($event);
+        }
+
+        $records = [];
+
+        // merge by date
+        foreach ($oRecords as $row) {
+            $date = date_format($row['date'], 'Y-m-d');
+            if(!array_key_exists($date, $records)) {
+                $records[$date] = [];
+            }
+            $records[$date]['overallAttendeeCount'] =
+                $row['overallAttendeeCount'];
+        }
+
+        foreach ($aRecords as $row) {
+            $date = date_format($row['date'], 'Y-m-d');
+            if (!array_key_exists($date, $records)) {
+                $records[$date] = [];
+            }
+            $records[$date]['attendeeCount'] =
+                $row['attendeeCount'];
+        }
+
+        $response = new Response(json_encode($records));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
     }
-
-    if(!$records)
-      {
-	// no attendees
-	$records = Array();
-      }
-
-    $response = new Response(json_encode($records));
-    $response->headers->set('Content-Type', 'application/json');
-
-    return $response;
-  }
 
   public function updateOverallAttendeesAction($_route)
   {

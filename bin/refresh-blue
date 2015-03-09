@@ -1,0 +1,10 @@
+cp app/config/parameters.yml.blue app/config/parameters.yml
+cp web/.htaccess.blue web/.htaccess
+php54-cli app/console cache:clear --env=dev
+php54-cli app/console cache:clear --env=prod --no-debug
+php54-cli app/console assets:install --env=dev
+php54-cli app/console assets:install --env=prod --no-debug
+php54-cli app/console assetic:dump --env=dev
+php54-cli app/console assetic:dump --env=prod --no-debug
+php54-cli app/console cache:warmup --env=dev
+php54-cli app/console cache:warmup --env=prod --no-debug

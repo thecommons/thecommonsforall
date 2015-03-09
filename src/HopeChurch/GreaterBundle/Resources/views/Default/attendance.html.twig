@@ -50,7 +50,7 @@ var attendanceUpdateUrl = "{{ path('hope_church_backstage_update_attendees') }}"
   <div class="col-md-6"></div>
 </div>
 <div class="row top-padding">
-  <div class="col-md-12">
+    <div class="col-md-12">
     <ul id="attendance-tabs" class="nav nav-tabs">
     <li id="total-tab">
       <a href="#total-tab-content" data-toggle="tab">Total</a>
@@ -59,37 +59,41 @@ var attendanceUpdateUrl = "{{ path('hope_church_backstage_update_attendees') }}"
     <div id="attendance-content" class="tab-content">
 
       <div class="tab-pane" id="total-tab-content">
-        <div class="row top-padding">
-          <div class="col-md-12">
-            <div class="total-group">
-              <div class="input-group input-group-lg">
-
-                <div class="input-group-btn">
-                  <button type="button" id="total-btn-down"
-                          class="btn btn-default">
-                    <span class="glyphicon glyphicon-chevron-down"></span>
-                  </button>
-                </div>
-
-                <input type="number" pattern="[0-9]*" id="total-cnt"
-                       class="form-control text-center"
-                       placeholder="0">
-
-                <div class="input-group-btn">
-                  <button type="button" id="total-btn-up"
-                          class="btn btn-default">
-                    <span class="glyphicon glyphicon-chevron-up"></span>
-                  </button>
-                </div>
-
+          <div class="row top-padding">
+              <div class="col-md-12">
+                 <h1 id="marked-cnt">0</h1><p>people are marked as coming.</p>
               </div>
-            </div>
           </div>
+          <div class="row top-padding">
+            <div class="col-md-12">
+                <div class="total-group">
+                    <div class="input-group input-group-lg">
+                        <div class="input-group-btn">
+                            <button type="button" id="total-btn-down"
+                                    class="btn btn-default">
+                                <span class="glyphicon glyphicon-chevron-down"></span>
+                            </button>
+                        </div>
+
+                        <input type="number" pattern="[0-9]*" id="total-cnt"
+                               class="form-control text-center"
+                               placeholder="0">
+
+                        <div class="input-group-btn">
+                            <button type="button" id="total-btn-up"
+                                    class="btn btn-default">
+                                <span class="glyphicon glyphicon-chevron-up"></span>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
 
         </div>
         <div class="row">
           <div class="col-md-12">
-            <p>Enter total attendance, including visitors.</p>
+            <p>Enter count of total attendance, including visitors.</p>
           </div>
         </div>
       </div>

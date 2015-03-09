@@ -9,14 +9,14 @@
           {{ element|title }} &middot;
         {% endfor -%}
       {%- endif -%}
-      Something Greater</title>
+      Common Folk</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Alistair King">
 
     {% block styleblock %}
     {% stylesheets
-    'bundles/hopechurchgreater/libs/bootstrap/css/bootstrap-yeti.css'
+    'bundles/hopechurchgreater/libs/bootstrap/css/bootstrap-journal.min.css'
     '@HopeChurchGreaterBundle/Resources/public/css/base.css'
     filter='cssrewrite' %}
     <link rel="stylesheet" href="{{ asset_url }}" />
@@ -37,42 +37,6 @@
     )
     }}
     {% endspaceless %}
-
-    {#
-    <div class="navbar navbar-fixed-top navbar-inverse">
-      <div class="navbar-inner">
-        <div class="container">
-          <ul class="nav">
-	    {% for page, subpages in nav_pages %}
-            {% if subpages|length > 0 %}
-            <li class="dropdown {% if page == active_page %}active{% endif %}">
-	      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-		{{ page|title }}
-                <b class="caret"></b>
-	      </a>
-              <ul class="dropdown-menu">
-                {% for subpage in subpages %}
-                <li {% if page == active_page and subpage == active_subpage %}class="active"{% endif %}>
-	          <a href="{{ path(route, {'page': page, 'subpage': subpage}) }}">
-		    {{ subpage|title }}
-	          </a>
-                </li>
-                {% endfor %}
-              </ul>
-	    </li>
-            {% else %}
-	    <li {% if page == active_page %} class="active" {% endif %}>
-	      <a href="{{ path(route, {'page': page}) }}">
-		{{ page|title }}
-	      </a>
-	    </li>
-            {% endif %}
-	    {% endfor %}
-          </ul>
-        </div>
-      </div>
-    </div>
-    #}
 
     <div class="container">
       <div class="row">
