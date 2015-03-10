@@ -1,5 +1,14 @@
 {% extends 'TheCommonsHomepageBundle:Default:base.html.twig' %}
 
+{% block styleblock %}
+    {{ parent() }}
+    {% stylesheets
+    'bundles/thecommonshomepage/css/thecommons-sidebar.css'
+    filter='cssrewrite' %}
+    <link rel="stylesheet" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+{% endblock %}
+
 {% block jsblock %}
     {{ parent() }}
     {% javascripts

@@ -1,0 +1,106 @@
+{% extends 'TheCommonsHomepageBundle:Default:base.html.twig' %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row" id="amor">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <i class="icon-commons-logo-mark"></i><i class="icon-commons-logo-horizontal"></i>
+                </div>
+                <div class="hero-text text-center">
+                    Help Us Build Hope
+                </div>
+                <p class="blurb text-center">
+                    The Commons is partnering with Amor Ministries to build a
+                    home in Tijuana for a family in need.
+                </p>
+                <p class="blurb text-center">
+                    TODO: We need your support
+                </p>
+
+                <div id="amor-signup-form" class="text-center">
+                    <div class="form-inline">
+                        <form action="https://www.paypal.com/cgi-bin/webscr"
+                              method="post" target="_blank">
+                            <input type="hidden" name="cmd" value="_s-xclick">
+                            <input type="hidden" name="hosted_button_id"
+                                   value="4DL6V2ASK9ERL">
+                            <button type="submit" class="btn btn-default" id="amor-signup-btn">
+                                Donate Online
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="row info-row row-same-height">
+                    <div class="col-sm-3 col-sm-height text-center">
+                        <div class="header-text">
+                            Release Forms
+                        </div>
+                        <p>
+                            Completed and signed medical
+                            and liability release forms
+                            are required for every individual
+                            attending.
+                        </p>
+
+                        <p>
+                            <a href="{{ asset('bundles/thecommonshomepage/docs/TC_Release_Form.pdf') }}"
+                               target="_blank">
+                                Download Release Form
+                            </a>
+                        </p>
+                    </div>
+                    <div class="col-sm-3 col-sm-height text-center">
+                        <div class="header-text">
+                            Trip Details
+                        </div>
+                        <p>
+                            Two night stay at campground and Three days of
+                            ministry. Fri. April 17 through Sun April 19.
+                            <br>$125 per person.
+                        </p>
+
+
+                    </div>
+                    <div class="col-sm-3 col-sm-height text-center">
+                        <div class="header-text">
+                            What's Included?
+                        </div>
+                        <p>
+                            Three meals a day & snacks<br>
+                            Clean water<br>
+                            Transportation<br>
+                            Tools for construction
+                        </p>
+
+                        <p>
+                            <a href="http://www.amor.org" target="_blank">
+                                Visit amor.org to learn more
+                            </a>
+                        </p>
+                    </div>
+                    <div class="col-sm-3 col-sm-height text-center">
+                        <div class="header-text">
+                            Required Items
+                        </div>
+                        <p>
+                            Tent<br>
+                            Sleeping bag<br>
+                            Passport/passport card<br>
+                            Extra snacks and bottle for water
+                        </p>
+
+                        <p>
+                            <a href="{{ asset('bundles/thecommonshomepage/docs/Mexico_Packg_List.pdf') }}"
+                               target="_blank">
+                                Download Packing List
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
