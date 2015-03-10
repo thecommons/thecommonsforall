@@ -38,6 +38,13 @@ class Builder
             )
         );
 
+
+        // short circuit here if not logged in at all.
+        // anything below here WILL NOT be visible to anon visitors
+        if (!$this->authorizationCheckerInterface->isGranted('ROLE_USER')) {
+            return $menu;
+        }
+
         $menu->addChild('attendance',
             array(
                 'route' => 'the_commons_common_folk',
@@ -77,6 +84,20 @@ class Builder
                     )
             )
         );
+
+
+        // protected links!
+        if ($this->authorizationCheckerInterface->isGranted('ROLE_ADMIN')) {
+            $menu->addChild('admin');
+            $menu['admin']->addChild('users',
+                array('route' => 'the_commons_security_admin',
+                    'routeParameters' =>
+                        array(
+                            'page' => 'users'
+                        )
+                )
+            );
+        }
 
         return $menu;
     }
