@@ -6,4 +6,6 @@ the_commons_security:
     resource: "@TheCommonsSecurityBundle/Resources/config/routing.yml"
     prefix:   /
 
-# todo: add the_commons_homepage here
+the_commons_homepage:
+    resource: "@TheCommonsHomepageBundle/Resources/config/routing.yml"
+    prefix:   /

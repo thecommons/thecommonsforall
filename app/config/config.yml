@@ -30,6 +30,7 @@ assetic:
     debug:          %kernel.debug%
     use_controller: false
     bundles:
+        - TheCommonsHomepageBundle
         - TheCommonsCommonFolkBundle
         - TheCommonsSecurityBundle
         - FOSUserBundle

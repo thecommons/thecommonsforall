@@ -1,0 +1,5 @@
+the_commons_homepage_homepage:
+    path:     /{page}
+    defaults:
+        _controller: TheCommonsHomepageBundle:Default:index
+        page: home

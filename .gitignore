@@ -19,6 +19,8 @@
 
 # Assets and user uploads
 /web/bundles/
+/web/css/
+/web/js/
 /web/uploads/
 
 # PHPUnit

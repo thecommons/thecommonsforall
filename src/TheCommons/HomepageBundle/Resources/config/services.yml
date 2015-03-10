@@ -1,0 +1,4 @@
+services:
+#    the_commons_homepage.example:
+#        class: TheCommons\HomepageBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
