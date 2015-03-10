@@ -20,6 +20,7 @@ set :keep_releases,  10
 set :shared_files,      ["app/config/parameters.yml"] # This stops us from having to recreate the parameters file on every deploy.
 set :shared_children,   [app_path + "/logs", web_path + "/uploads", "vendor"]
 set :use_composer, true
+set :composer_options, "--verbose --prefer-dist --optimize-autoloader --no-progress --no-interaction"
 set :dump_assetic_assets, true
 set :group_writable, false
 # do not remove app_dev.php
