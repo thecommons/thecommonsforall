@@ -60,10 +60,3 @@ DirectoryIndex app.php
         # RedirectTemp cannot be used instead
     </IfModule>
 </IfModule>
-
-AuthUserFile /home/wearethecommons/htaccess/thecommonsforall.com.htpasswd
-AuthGroupFile /dev/null
-AuthName "TheCommonsForAll - Testing"
-AuthType Basic
-
-require valid-user
