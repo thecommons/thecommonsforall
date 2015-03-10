@@ -29,7 +29,7 @@ twig:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    bundles:        [HopeChurchGreaterBundle]
+    bundles:        [TheCommonsCommonFolkBundle]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -53,7 +53,7 @@ doctrine:
         password: %database_password%
         charset:  UTF8
         types:
-          dbdate: HopeChurch\GreaterBundle\Type\DbDateType
+          dbdate: TheCommons\CommonFolkBundle\Type\DbDateType
         mapping_types:
             enum: string
             set: string

@@ -1,0 +1,88 @@
+{% extends 'TheCommonsCommonFolkBundle:Default:base.html.twig' %}
+
+{% block jsblock %}
+    {{ parent() }}
+    {% javascripts
+    'bundles/thecommonscommonfolk/libs/tablesorter/js/jquery.tablesorter.min.js'
+    'bundles/thecommonscommonfolk/libs/tablesorter/js/jquery.tablesorter.widgets.js'
+    '@TheCommonsCommonFolkBundle/Resources/public/js/person/index.js'
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+{% block body -%}
+    <div class="page-header">
+        <div class="pull-left">
+            <h1>Browse People</h1>
+        </div>
+        <div class="pull-right btn-header-sm">
+            <div class="btn-group">
+                <a class="btn btn-primary btn-sm" href="{{ path('person_new') }}">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </a>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    {% include 'TheCommonsCommonFolkBundle:Person:messages.html.twig' %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <ul id="people-tabs" class="nav nav-tabs">
+                <li id="active-tab" class="active">
+                    <a href="#active-tab-content" data-toggle="tab">Active</a>
+                </li>
+                <li id="inactive-tab">
+                    <a href="#inactive-tab-content"
+                       data-toggle="tab">Inactive</a>
+                </li>
+                <li id="moved-tab">
+                    <a href="#moved-tab-content" data-toggle="tab">Moved</a>
+                </li>
+                <li id="deceased-tab">
+                    <a href="#deceased-tab-content"
+                       data-toggle="tab">Deceased</a>
+                </li>
+            </ul>
+            <div id="people-content" class="tab-content">
+                <div class="tab-pane active" id="active-tab-content">
+                    <table id="people-table" class="table table-striped tablesorter">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Cell Phone</th>
+                            <th>Discipleship Stage</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for entity in entities %}
+                            <tr>
+                                <td>{{ entity.nameLast }}, {{ entity.nameFirst }}</a></td>
+                                <td>{{ entity.email }}</td>
+                                <td>{{ entity.phoneCell }}</td>
+                                <td>{{ entity.discipleshipStage }}</td>
+                                <td><ul class="list-inline" style="max-resolution: res;n-bottom: 0px;">
+                                        <li>
+                                            <a href="{{ path('person_show', { 'id': entity.id }) }}">
+                                                <span class="glyphicon glyphicon-eye-open"></span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('person_edit', { 'id': entity.id }) }}">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </a>
+                                        </li>
+                                    </ul></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

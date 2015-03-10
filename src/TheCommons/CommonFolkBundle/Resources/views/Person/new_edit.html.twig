@@ -1,0 +1,347 @@
+{% extends 'TheCommonsCommonFolkBundle:Default:base.html.twig' %}
+
+{% block styleblock %}
+    {{ parent() }}
+    {% stylesheets
+    'bundles/thecommonscommonfolk/libs/bootstrap-formhelpers/css/bootstrap-formhelpers.css'
+    'bundles/thecommonscommonfolk/libs/select2/select2.css'
+    'bundles/thecommonscommonfolk/libs/select2/select2-bootstrap.css'
+    filter='cssrewrite' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block head_js %}
+    {{ parent() }}
+    var mentorsByDStageUrl = "{{path('hope_church_backstage_get_mentor_by_dstage') }}";
+{% endblock %}
+
+{% block jsblock %}
+    {{ parent() }}
+
+    {% javascripts
+    'bundles/thecommonscommonfolk/libs/select2/select2.min.js'
+
+    'bundles/thecommonscommonfolk/libs/bootstrap-formhelpers/js/bootstrap-formhelpers-phone.js'
+    'bundles/thecommonscommonfolk/libs/bootstrap-formhelpers/js/bootstrap-formhelpers-phone.format.js'
+
+    'bundles/thecommonscommonfolk/libs/bootstrap-formhelpers/js/bootstrap-formhelpers-countries.js'
+    'bundles/thecommonscommonfolk/libs/bootstrap-formhelpers/js/bootstrap-formhelpers-countries.en_US.js'
+    'bundles/thecommonscommonfolk/libs/bootstrap-formhelpers/js/bootstrap-formhelpers-states.js'
+    'bundles/thecommonscommonfolk/libs/bootstrap-formhelpers/js/bootstrap-formhelpers-states.en_US.js'
+    'bundles/thecommonscommonfolk/libs/d3/js/d3.v3.min.js'
+    '@TheCommonsCommonFolkBundle/Resources/public/js/person/new_edit.js'
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+{% endblock %}
+
+{# style the elements in the form #}
+{% form_theme form _self %}
+{% block form_row %}
+    <div class="form-group">
+        {{
+        form_label(form, null, {'label_attr': {'class': 'col-md-2 control-label'}})
+        }}
+        <div class="col-md-10">
+            {{ form_widget(form, {'attr': {'placeholder': placeholder | default(label), 'class': 'form-control'}}) }}
+            {{ form_errors(form) }}
+            {% if help_blocks is defined %}
+                {% for help in help_blocks %}
+                    <p class="help-block">{{ help }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock form_row %}
+
+{% block choice_widget_expanded %}
+    {% spaceless %}
+        <div {% if id is defined %} id="{{ id }}" {% endif %}>
+            {% for child in form %}
+                {{ form_widget(child) }}
+            {% endfor %}
+        </div>
+    {% endspaceless %}
+{% endblock choice_widget_expanded %}
+
+{% block checkbox_widget %}
+    {% spaceless %}
+        <label class="checkbox">
+            <input type="checkbox" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %} />{{ form_label(form) }}
+        </label>
+    {% endspaceless %}
+{% endblock checkbox_widget %}
+
+{# form_errors.html.twig #}
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+            {% for error in errors %}
+                <span class="help-block"><p class="text-danger">
+                        {{
+                        error.messagePluralization is null
+                        ? error.messageTemplate|trans(error.messageParameters, 'validators')
+                        : error.messageTemplate|transchoice(error.messagePluralization, error.messageParameters, 'validators')
+                        }}
+                    </p></span>
+            {% endfor %}
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}
+
+{% block body %}
+    {% block body_header %}{% endblock %}
+
+    {% include 'TheCommonsCommonFolkBundle:Person:messages.html.twig' %}
+
+    {{ form_start(form, { 'attr': {'class': 'form-horizontal'}}) }}
+    <fieldset>
+        {# NAME #}
+        <legend>Basic Info</legend>
+        {{
+        form_row(form.nameFirst,
+        {'help_blocks':
+        [
+        'Even if you know nothing about this person, write the best description you can in here.',
+        'Once you find out who they are this can be updated.'
+        ]
+        }
+        )
+        }}
+
+        {{ form_row(form.nameLast) }}
+
+        {{ form_row(form.age) }}
+
+        {{
+        form_row(form.referrer,
+        {'help_blocks':
+        [
+        'How did this person hear about us?',
+        'If "Other", then please use the Notes field below to provide further info.'
+        ]
+        }
+        )
+        }}
+
+        <div class="form-group">
+            {{
+            form_label(form.notes, null, {'label_attr': {'class': 'col-md-2 control-label'}})
+            }}
+            <div class="col-md-10">
+                <textarea class="input-xxlarge form-control" rows="4"
+                          id="{{ form.notes.vars.id }}"
+                          name="{{ form.notes.vars.full_name }}"
+                          placeholder="Anything else?">{{-
+                    form.notes.vars.value
+                    -}}</textarea>
+            </div>
+        </div>
+
+        {% if show_all_fields == false %}
+        {# EXPAND/COLLAPSE ALL INFO #}
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="button" class="btn" id="btn-all-info"
+                        data-toggle="collapse" data-target="#all-info">
+                    <span id="btn-all-info-icon" class="glyphicon glyphicon-plus"></span>
+                    <span id="btn-all-info-text">More</span>
+                </button>
+                <p class="help-block">This is all we need, but if you have more
+                    details (like email, phone, etc.), please add them!</p>
+            </div>
+        </div>
+        {% endif %}
+    </fieldset>
+
+    {% if show_all_fields == false %}
+        <div id="all-info" class="collapse out">
+    {% endif %}
+
+    <fieldset>
+        <legend>Further Info</legend>
+
+        {{ form_row(form.status,
+        {'help_blocks':
+        [
+        'Only change status if adding an inactive person.',
+        'For example, family that may visit again but not permanently attend.',
+        ]
+        }
+        )
+        }}
+
+        {# TODO only show this if age is adult? #}
+        {{ form_row(form.roles,
+        {'help_blocks':
+        [
+        'What position(s) does this person hold?',
+        ]
+        }
+        )
+        }}
+    </fieldset>
+
+    <fieldset>
+        <legend>Discipleship Pathway</legend>
+        {{
+        form_row(form.discipleshipStage,
+        {'help_blocks':
+        [
+        'What Discipleship Stage is this person currently in?',
+        'If they have just started attending, then leave set to "Sunday Gathering."'
+        ]
+        }
+        )
+        }}
+
+        {{
+        form_row(form.mentor, {'help_blocks':
+        ['Who is responsible for mentoring this person toward their next Discipleship Stage?']
+        })
+        }}
+
+        {# BAPTIZED #}
+        <div class="form-group">
+            {{
+            form_label(form.baptized, null, {'label_attr': {'class': 'col-md-2 control-label'}})
+            }}
+            <div class="col-md-10">
+                <div class="checkbox">
+                    <input type="checkbox"
+                           id="{{ form.baptized.vars.id }}"
+                           name="{{ form.baptized.vars.full_name }}"
+                            {% if form.baptized.vars.checked %} checked="checked"{%
+                            endif %}
+                            >
+                    <p class="help-block">Has this person been baptized?</p>
+                </div>
+            </div>
+        </div>
+
+    </fieldset>
+
+    <fieldset>
+        <legend>Contact Details</legend>
+        {# EMAIL #}
+        {{ form_row(form.email) }}
+
+        {# PHONE #}
+        <div class="form-group">
+            {{
+            form_label(form.phoneCell, null, {'label_attr': {'class': 'col-md-2 control-label'}})
+            }}
+            <div class="col-md-10">
+                <input type="text"
+                       id="{{ form.phoneCell.vars.id }}"
+                       name="{{ form.phoneCell.vars.full_name }}"
+                       placeholder="{{ form.phoneCell.vars.label }}"
+                       class="bfh-phone form-control" data-country="US"
+                        {% if form.phoneCell.vars.value %} data-number="{{
+                form.phoneCell.vars.value }}"{% endif %}>
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{
+            form_label(form.phoneHome, null, {'label_attr': {'class': 'col-md-2 control-label'}})
+            }}
+            <div class="col-md-10">
+                <input type="text"
+                       id="{{ form.phoneHome.vars.id }}"
+                       name="{{ form.phoneHome.vars.full_name }}"
+                       placeholder="{{ form.phoneHome.vars.label }}"
+                       class="form-control bfh-phone" data-country="US"
+                        {% if form.phoneHome.vars.value %}
+                    data-number="{{ form.phoneHome.vars.value }}"
+                        {% endif %}>
+            </div>
+        </div>
+
+        {# FACEBOOK #}
+        <div class="form-group">
+            {{
+            form_label(form.facebook, null, {'label_attr': {'class': 'col-md-2 control-label'}})
+            }}
+            <div class="col-md-10">
+                <div class="checkbox">
+                    <input type="checkbox"
+                           id="{{ form.facebook.vars.id }}"
+                           name="{{ form.facebook.vars.full_name }}"
+                            {% if form.facebook.vars.checked %} checked="checked"{%
+                            endif %}
+                            >
+                    <p class="help-block">Does at least one leader have this person added
+                        as a friend on FB?</p>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Snail-Mail</legend>
+        {# ADDRESS #}
+        {{ form_row(form.addrFirst, {'placeholder': "Address #1"}) }}
+        {{ form_row(form.addrSecond, {'placeholder': "Address #2"}) }}
+        {{ form_row(form.addrCity) }}
+        {{ form_row(form.addrZip) }}
+        <div class="form-group">
+            {{
+            form_label(form.addrCountry, null, {'label_attr': {'class': 'col-md-2 control-label'}})
+            }}
+            <div class="col-md-10">
+                <select class="bfh-countries form-control"
+                        data-country="US"
+                        id="{{ form.addrCountry.vars.id }}"
+                        name="{{ form.addrCountry.vars.full_name }}"
+                        ></select>
+            </div>
+        </div>
+        <div class="form-group">
+            {{
+            form_label(form.addrState, null, {'label_attr': {'class': 'col-md-2 control-label'}})
+            }}
+            <div class="col-md-10">
+                <select class="bfh-states form-control"
+                        data-country="{{ form.addrCountry.vars.id }}"
+                        data-state="CA"
+                        id="{{ form.addrState.vars.id }}"
+                        name="{{ form.addrState.vars.full_name }}"
+                        ></select>
+            </div>
+        </div>
+    </fieldset>
+
+    {# RELATIONSHIPS #}
+    <fieldset>
+        <legend>Relationships</legend>
+
+        {# TODO - ADD THESE #}
+        <div class="form-group">
+            <label for="inputFamily" class="col-md-2 control-label">Family</label>
+            <div class="col-md-10">
+                <input class="form-control" type="text" id="inputSmallgroup"
+                       placeholder="Coming soon..." disabled/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputSmallgroup" class="col-md-2 control-label">Community Group</label>
+            <div class="col-md-10">
+                <input class="form-control" type="text" id="inputSmallgroup"
+                       placeholder="Coming soon..." disabled/>
+            </div>
+        </div>
+    </fieldset>
+
+    {% if show_all_fields == false %}
+        </div> {# end all-info div #}
+    {% endif %}
+
+    {% block body_footer %}{% endblock %}
+
+    {{ form_row(form._token) }}
+    </form>
+{% endblock %}

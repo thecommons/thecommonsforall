@@ -1,4 +1,4 @@
 hope_church_greater:
-    resource: "@HopeChurchGreaterBundle/Resources/config/routing.yml"
+    resource: "@TheCommonsCommonFolkBundle/Resources/config/routing.yml"
     prefix:   /commonfolk/
 

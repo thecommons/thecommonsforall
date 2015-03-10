@@ -1,0 +1,16 @@
+{% extends 'TheCommonsCommonFolkBundle:Person:new_edit.html.twig' %}
+
+{% set show_all_fields = false %}
+
+{% block body_header %}
+    <div class="page-header">
+        <h1>Add a new person</h1>
+    </div>
+{% endblock %}
+
+{% block body_footer %}
+  <div class="form-actions">
+    <button type="submit" class="btn btn-primary">Create Person</button>
+    <button type="button" class="btn" id="btn-reset">Reset</button>
+  </div>
+{% endblock %}

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping
+    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+			http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+  <entity name="TheCommons\CommonFolkBundle\Entity\Role" table="role"
+	  repository-class="TheCommons\CommonFolkBundle\Entity\RoleRepository">
+
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+
+    <field name="roleName" type="string" column="role_name" length="128"
+	   nullable="true"/>
+
+    <many-to-many field="people" target-entity="Person" mapped-by="roles" />
+
+    <many-to-many field="discipleshipStages"
+		  target-entity="DiscipleshipStage"
+		  mapped-by="mentorRoles" />
+
+  </entity>
+
+</doctrine-mapping>

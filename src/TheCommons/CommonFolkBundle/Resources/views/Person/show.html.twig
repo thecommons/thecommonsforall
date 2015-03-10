@@ -1,0 +1,187 @@
+{% extends 'TheCommonsCommonFolkBundle:Default:base.html.twig' %}
+
+{% block styleblock %}
+{{ parent() }}
+{% stylesheets
+'@TheCommonsCommonFolkBundle/Resources/public/css/person/show.css'
+filter='cssrewrite' %}
+<link rel="stylesheet" href="{{ asset_url }}" />
+{% endstylesheets %}
+{% endblock %}
+
+{% block jsblock %}
+{{ parent() }}
+{% javascripts
+'@TheCommonsCommonFolkBundle/Resources/public/js/person/show.js'
+%}
+<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+{% endblock %}
+
+{% block body -%}
+    <div class="page-header">
+        <div class="pull-left">
+            <h1>{{ entity.nameFirst }} {{ entity.nameLast }}</h1>
+        </div>
+        <div class="pull-right btn-header-sm">
+            <div class="btn-group">
+                <a class="btn btn-primary btn-sm" href="{{ path('person') }}">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                {% include 'TheCommonsCommonFolkBundle:Person:delete.html.twig' %}
+                <a class="btn btn-primary btn-sm"
+                   href="{{ path('person_edit', { 'id': entity.id }) }}">
+                    <span class="glyphicon glyphicon-edit"></span>
+                </a>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    {% include 'TheCommonsCommonFolkBundle:Person:messages.html.twig' %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <form class="form-horizontal" role="form">
+
+                <fieldset>
+                    <legend>Personal Info</legend>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Status</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static">{{ entity.status }}</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Age Group</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static">{{ entity.age }}</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static">{{ entity.email }}</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Cell Phone</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static">{{ entity.phoneCell }}</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Home Phone</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static">{{ entity.phoneHome }}</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Address</label>
+                        <div class="col-sm-10">
+                            <address class="form-control-static">
+                                {{ entity.addrFirst }} {{ entity.addrSecond }}<br>
+                                {{entity.addrCity}} {{entity.addrState}} {{entity.addrZip}}<br>
+                                {{entity.addrCountry}}
+                            </address>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Facebook Friend</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static">
+                                {%- if entity.facebook -%}
+                                    Yes
+                                {%- else -%}
+                                    No
+                                {%- endif -%}
+                            </p>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Discipleship Pathway</legend>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Discipleship Stage</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static">{{ entity.discipleshipStage }}</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Mentor</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static">{{ entity.mentor }}</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Baptized</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static">
+                                {%- if entity.baptized -%}
+                                    Yes
+                                {%- else -%}
+                                    No
+                                {%- endif -%}
+                            </p>
+                        </div>
+                    </div>
+
+                </fieldset>
+
+                <fieldset>
+                    <legend>Relationships</legend>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Family</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static">Coming soon...</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Community Group</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static">Coming soon...</p>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Genesis</legend>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Referrer</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static">{{ entity.referrer }}</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Notes</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static">{{ entity.notes|nl2br }}</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Date Added</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static">{{ entity.dateCreated|date('Y-m-d') }}</p>
+                        </div>
+                    </div>
+                </fieldset>
+
+
+            </form>
+        </div>
+    </div>
+{% endblock %}

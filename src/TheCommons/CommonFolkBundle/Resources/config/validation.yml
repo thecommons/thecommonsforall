@@ -1,0 +1,15 @@
+TheCommons\CommonFolkBundle\Entity\Person:
+  properties:
+    nameFirst:
+      - NotBlank:
+          message: "A first name must be given"
+    age:
+      - NotBlank:
+          message: "An age group must be selected"
+    discipleshipStage:
+      - NotBlank:
+          message: "A Discipleship Stage must be selected"
+#    roles:
+#      - Count:
+#          min: 0
+#          minMessage: "At least one role must be specified"

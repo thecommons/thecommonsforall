@@ -1,0 +1,40 @@
+{% extends 'TheCommonsCommonFolkBundle:Default:base.html.twig' %}
+
+{% block jsblock %}
+{{ parent() }}
+
+{% javascripts
+'bundles/thecommonscommonfolk/libs/d3/js/d3.v3.min.js'
+'bundles/thecommonscommonfolk/libs/highcharts/js/highcharts.js'
+'bundles/thecommonscommonfolk/libs/highcharts/js/grid-light.js'
+'@TheCommonsCommonFolkBundle/Resources/public/js/home.js'
+%}
+<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+{% endblock %}
+
+{% block head_js %}
+    {{ parent() }}
+    var overallAttendanceUrl = "{{ path('hope_church_backstage_get_overall_attendees') }}";
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>
+                    Welcome to Common Folk
+                    <br>
+                    <small>
+                        The people of The Commons
+                    </small>
+                </h1>
+            </div>
+        </div>
+    </div>
+<div class="row">
+    <div class="col-md-12">
+        <div id="attendance-chart"></div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,133 @@
+{% extends 'TheCommonsCommonFolkBundle:Default:base.html.twig' %}
+
+{% block styleblock %}
+{{ parent() }}
+{% stylesheets
+'bundles/thecommonscommonfolk/libs/datepicker/css/datepicker3.css'
+'@TheCommonsCommonFolkBundle/Resources/public/css/attendance.css'
+filter='cssrewrite' %}
+<link rel="stylesheet" href="{{ asset_url }}" />
+{% endstylesheets %}
+{% endblock %}
+
+{% block head_js %}
+{{ parent() }}
+var overallAttendanceUrl = "{{path('hope_church_backstage_get_overall_attendees') }}";
+var overallUpdateUrl = "{{ path('hope_church_backstage_update_overall_attendees')  }}";
+var attendanceUrl = "{{ path('hope_church_backstage_get_attendees') }}";
+var attendanceUpdateUrl = "{{ path('hope_church_backstage_update_attendees') }}";
+{% endblock %}
+
+{% block jsblock %}
+{{ parent() }}
+
+{% javascripts
+'bundles/thecommonscommonfolk/libs/moment/js/moment.min.js'
+'bundles/thecommonscommonfolk/libs/datepicker/js/bootstrap-datepicker.js'
+'bundles/thecommonscommonfolk/libs/d3/js/d3.v3.min.js'
+'@TheCommonsCommonFolkBundle/Resources/public/js/attendance.js' %}
+<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
+{% endblock %}
+
+{% block body %}
+<div class="row">
+  <div class="col-md-12">
+    <div class="page-header">
+      <h1>Attendance</h1>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="input-group date datepicker">
+      <span class="input-group-addon">Date</span>
+      <input type="text" id="date" class="form-control">
+      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+    </div>
+  </div>
+  <div class="col-md-6"></div>
+</div>
+<div class="row top-padding">
+    <div class="col-md-12">
+    <ul id="attendance-tabs" class="nav nav-tabs">
+    <li id="total-tab">
+      <a href="#total-tab-content" data-toggle="tab">Total</a>
+    </li>
+    </ul>
+    <div id="attendance-content" class="tab-content">
+
+      <div class="tab-pane" id="total-tab-content">
+          <div class="row top-padding">
+              <div class="col-md-12">
+                 <h1 id="marked-cnt">0</h1><p>people are marked as coming.</p>
+              </div>
+          </div>
+          <div class="row top-padding">
+            <div class="col-md-12">
+                <div class="total-group">
+                    <div class="input-group input-group-lg">
+                        <div class="input-group-btn">
+                            <button type="button" id="total-btn-down"
+                                    class="btn btn-default">
+                                <span class="glyphicon glyphicon-chevron-down"></span>
+                            </button>
+                        </div>
+
+                        <input type="number" pattern="[0-9]*" id="total-cnt"
+                               class="form-control text-center"
+                               placeholder="0">
+
+                        <div class="input-group-btn">
+                            <button type="button" id="total-btn-up"
+                                    class="btn btn-default">
+                                <span class="glyphicon glyphicon-chevron-up"></span>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <p>Enter count of total attendance, including visitors.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+{#
+<div class="row">
+  <div class="span12">
+    <h4 class="attendance-title"></h4>
+    <table class="table table-bordered table-striped table-hover">
+      <thead id="attendance-head">
+	<tr>
+	</tr>
+      </thead>
+      <tbody id="attendance-body">
+      </tbody>
+    </table>
+  </div>
+</div>
+#}
+<div class="row top-padding">
+  <div class="col-md-2 col-xs-2">
+    <button class="btn" id="prev-btn"><span class="glyphicon glyphicon-chevron-left"></span> Prev</button>
+  </div>
+  <div class="col-xs-8 col-md-4 col-md-offset-2 text-center">
+    <button class="btn btn-primary" id="update-btn"
+	    data-loading-text="Loading..."
+	    data-saving-text="Saving...">Save</button>
+    <button class="btn" id="reset-btn">Reset</button>
+  </div>
+  <div class="col-xs-2 col-md-2 col-md-offset-2 text-right">
+    <button class="btn" id="next-btn">Next <span class="glyphicon glyphicon-chevron-right"></span></button>
+  </div>
+</div>
+{% endblock %}
