@@ -1,0 +1,46 @@
+{% extends 'TheCommons\CommonFolkBundle:Default:base.html.twig' %}
+
+{% set title = ['Password Reset'] %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block styleblock %}
+{{ parent() }}
+{% stylesheets
+'@TheCommonsSecurityBundle/Resources/public/css/login.css'
+filter='cssrewrite' %}
+<link rel="stylesheet" href="{{ asset_url }}" />
+{% endstylesheets %}
+{% endblock %}
+
+{% block body %}
+<form class="form-signin"
+   action="{{ path('fos_user_resetting_send_email') }}"
+      method="POST">
+
+  <h2 class="form-signin-heading">Reset Password</h2>
+
+  {% if invalid_username is defined %}
+  <div class="alert alert-error">
+    {{ 'resetting.request.invalid_username'|trans({'%username%':
+    invalid_username}) }}
+  </div>
+  {% endif %}
+
+    <input type="text"
+           class="input-block-level"
+           id="username"
+           name="username"
+           placeholder="Username"
+           required="required"
+            />
+
+    <button class="btn btn-primary"
+            id = "submit"
+            name="submit"
+            type="submit">
+        Submit
+    </button>
+
+</form>
+{% endblock %}

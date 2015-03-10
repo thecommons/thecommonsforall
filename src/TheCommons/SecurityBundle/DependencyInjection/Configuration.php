@@ -1,6 +1,6 @@
 <?php
 
-namespace TheCommons\CommonFolkBundle\DependencyInjection;
+namespace TheCommons\SecurityBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -13,12 +13,12 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 class Configuration implements ConfigurationInterface
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('the_commons_common_folk');
+        $rootNode = $treeBuilder->root('the_commons_security');
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for

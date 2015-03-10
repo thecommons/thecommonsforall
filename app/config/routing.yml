@@ -1,4 +1,9 @@
-hope_church_greater:
+the_commons_common_folk:
     resource: "@TheCommonsCommonFolkBundle/Resources/config/routing.yml"
     prefix:   /commonfolk/
 
+the_commons_security:
+    resource: "@TheCommonsSecurityBundle/Resources/config/routing.yml"
+    prefix:   /
+
+# todo: add the_commons_homepage here

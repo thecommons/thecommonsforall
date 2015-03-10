@@ -1,0 +1,15 @@
+{% extends 'TheCommons\CommonFolkBundle:Default:base.html.twig' %}
+
+{% set title = ['New User'] %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body %}
+<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register">
+    {{ form_widget(form) }}
+    <button class="btn btn-primary"
+	    type="submit">
+      Register
+    </button>
+</form>
+{% endblock %}

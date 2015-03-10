@@ -1,0 +1,44 @@
+{% extends 'TheCommons\CommonFolkBundle:Default:base.html.twig' %}
+
+{% set title = ['Users', 'Admin'] %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-3">
+            <p></p>
+            <div class="list-group">
+                <a class="list-group-item active" href="{{ path('the_commons_security_admin',
+                    {'page': 'users'}) }}">
+                        Main User Page
+                </a>
+                <a class="list-group-item" href="#">List Users</a>
+                <a class="list-group-item" href="{{ path('fos_user_registration_register') }}">Add User</a>
+                <a class="list-group-item" href="{{ path('fos_user_registration_register') }}">Edit User</a>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>
+                        User Admin
+                    </h1>
+                    <p>
+                        Content will go here when I integrate it properly. And fix this awful page.
+                    </p>
+                    <form class="form-inline"
+                          action="{{ path('the_commons_common_folk') }}"
+                          method="get">
+                        <input type="text" class="form-control"
+                               name="_switch_user"
+                               placeholder="username"
+                               required="required"
+                                />
+                        <button class="btn btn-primary">
+                            Impersonate
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

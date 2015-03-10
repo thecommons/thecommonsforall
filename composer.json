@@ -22,7 +22,8 @@
         "jms/security-extra-bundle": "1.5.*",
         "jms/di-extra-bundle": "1.4.*",
         "knplabs/knp-menu": "@stable",
-        "knplabs/knp-menu-bundle":"@stable"
+        "knplabs/knp-menu-bundle":"@stable",
+        "friendsofsymfony/user-bundle": "~2.0@dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

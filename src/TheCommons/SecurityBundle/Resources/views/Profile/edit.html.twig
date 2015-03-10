@@ -1,0 +1,50 @@
+{% extends 'TheCommonsCommonFolkBundle:Default:base.html.twig' %}
+
+{% set title = ['Edit Profile'] %}
+
+{# style the elements in the form #}
+{% form_theme form _self %}
+{% block form_row %}
+    <div class="row">
+        <div class="form-group col-md-3">
+            {{ form_label(form, null, {'label_attr': {'class': 'control-label' }}
+            )
+            }}
+            {{ form_widget(form, {'attr': {'placeholder': placeholder | default(label), 'class': 'form-control' }}
+            ) }}
+            {{ form_errors(form) }}
+        </div>
+    </div>
+{% endblock form_row %}
+
+{# form_errors.html.twig #}
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+            {% for error in errors %}
+                <p class="help-block text-danger">
+                        {{ error.messagePluralization is null
+                        ? error.messageTemplate|trans(error.messageParameters, 'validators')
+                        : error.messageTemplate|transchoice(error.messagePluralization, error.messageParameters, 'validators') }}
+                </p>
+            {% endfor %}
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}
+
+{% block body %}
+    <h2>Edit User Profile</h2>
+    <form class="form"
+          action="{{ path('fos_user_profile_edit') }}"
+            {{ form_enctype(form) }}
+          method="POST">
+        {{ form_widget(form) }}
+        <button type="submit" class="btn btn-primary">
+            Save
+        </button>
+        <a class="btn btn-default"
+           href="{{ path('fos_user_profile_show') }}">
+           Cancel
+        </a>
+    </form>
+{% endblock %}

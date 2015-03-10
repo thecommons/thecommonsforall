@@ -1,0 +1,8 @@
+TheCommons\SecurityBundle\Entity\User:
+    type:  entity
+    table: auth_user
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO

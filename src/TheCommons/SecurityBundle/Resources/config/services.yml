@@ -1,0 +1,4 @@
+services:
+#    the_commons_security.example:
+#        class: TheCommons\SecurityBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

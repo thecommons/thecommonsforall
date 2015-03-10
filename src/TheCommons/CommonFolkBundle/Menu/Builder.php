@@ -30,7 +30,7 @@ class Builder
 
         $menu->addChild('home',
             array(
-                'route' => 'hope_church_greater',
+                'route' => 'the_commons_common_folk',
                 'routeParameters' =>
                     array(
                         'page' => 'home'
@@ -40,7 +40,7 @@ class Builder
 
         $menu->addChild('attendance',
             array(
-                'route' => 'hope_church_greater',
+                'route' => 'the_commons_common_folk',
                 'routeParameters' =>
                     array(
                         'page' => 'attendance'
@@ -57,7 +57,7 @@ class Builder
         $menu->addChild('families');
         $menu['families']->addChild('add',
             array(
-                'route' => 'hope_church_greater',
+                'route' => 'the_commons_common_folk',
                 'routeParameters' =>
                     array(
                         'page' => 'add',
@@ -69,7 +69,7 @@ class Builder
         $menu->addChild('community groups');
         $menu['community groups']->addChild('add',
             array(
-                'route' => 'hope_church_greater',
+                'route' => 'the_commons_common_folk',
                 'routeParameters' =>
                     array(
                         'page' => 'add',

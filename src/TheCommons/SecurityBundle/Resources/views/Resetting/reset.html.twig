@@ -1,0 +1,59 @@
+{% extends 'TheCommons\CommonFolkBundle:Default:base.html.twig' %}
+
+{% set title = ['Password Reset'] %}
+
+{% block styleblock %}
+{{ parent() }}
+{% stylesheets
+'@TheCommonsSecurityBundle/Resources/public/css/login.css'
+filter='cssrewrite' %}
+<link rel="stylesheet" href="{{ asset_url }}" />
+{% endstylesheets %}
+{% endblock %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% form_theme form _self %}
+
+{% block form_row %}
+  {% spaceless %}
+    {{ form_errors(form) }}
+    {{ form_widget(form) }}
+  {% endspaceless %}
+{% endblock %}
+
+{% block form_errors %}
+  {% spaceless %}
+    {% if errors|length > 0 %}
+      {% for error in errors %}
+        <div class="alert alert-error">{{ error.message }}</div>
+      {% endfor %}
+    {% endif %}
+  {% endspaceless %}
+{% endblock form_errors %}
+
+{% block password_widget %}
+  {% spaceless %}
+    <input type="password" class="input-block-level"
+	   placeholder="{{ label|trans({}, translation_domain) }}"
+	   {{ block('widget_attributes') }}
+	   {% if value is not empty %}value="{{ value }}" {% endif %}
+	   />
+  {% endspaceless %}
+{% endblock %}
+
+{% block body %}
+<form action="{{ path('fos_user_resetting_reset', {'token': token}) }}"
+      {{ form_enctype(form) }}
+      method="POST"
+      class="form-signin">
+
+  <h2 class="form-signin-heading">Reset Password</h2>
+
+  {{ form_widget(form) }}
+  <button class="btn btn-primary"
+	  type="submit">
+    Submit
+  </button>
+</form>
+{% endblock %}
