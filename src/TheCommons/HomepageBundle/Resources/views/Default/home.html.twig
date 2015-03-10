@@ -2,7 +2,10 @@
 
 {% block jsblock %}
     {{ parent() }}
-    {# custom js includes here #}
+    {% javascripts
+    'bundles/thecommonshomepage/js/thecommons.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}
 
 {% block head_js %}
@@ -11,5 +14,95 @@
 {% endblock %}
 
 {% block body %}
-{# include subpages here #}
+    <div class="tc-topbar visible-xs text-right">
+        <div class="tc-sidebar-toggle">
+            <span class="tc-sidebar-toggle-icon glyphicon glyphicon-menu-hamburger"></span>
+        </div>
+    </div>
+    <div class="tc-topbar-pad visible-xs"></div>
+    <div class="tc-sidebar tc-sidebar-hidden">
+        <ul class="nav nav-pills nav-stacked">
+            <li class="brand">
+                <a href="#home">
+                    <div class="icon">
+                        <i class="icon-commons-logo-mark"></i>
+                    </div>
+                    <div class="text">
+                        <i class="icon-commons-logo-horizontal"></i>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="#sundays">
+                    <div class="icon">
+                        <i class="icon icon-commons-gathering"></i>
+                    </div>
+                    <div class="text">
+                        Our Gathering
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="#mission">
+                    <div class="icon">
+                        <i class="icon icon-commons-mission"></i>
+                    </div>
+                    <div class="text">
+                        Our Mission
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="#amor">
+                    <div class="icon">
+                        <span class="glyphicon glyphicon-tent"></span>
+                    </div>
+                    <div class="text">
+                        Amor Trip
+                    </div>
+                </a>
+            </li>
+            {#
+            <li>
+                <a href="#sermons">
+                    <div class="icon">
+                        <i class="icon icon-commons-sermons"></i>
+                    </div>
+                    <div class="text">
+                        Sermons
+                    </div>
+                </a>
+            </li>
+            #}
+            <li>
+                <a href="#give" data-toggle="modal">
+                    <div class="icon">
+                        <i class="icon icon-commons-giving"></i>
+                    </div>
+                    <div class="text">
+                        Give Online
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container-fluid">
+        {% include '@TheCommonsHomepage/Default/home/landing.html.twig' %}
+        <div class="clearfix"></div>
+        {% include '@TheCommonsHomepage/Default/home/sundays.html.twig' %}
+        <div class="clearfix"></div>
+        {% include '@TheCommonsHomepage/Default/home/mission.html.twig' %}
+        <div class="clearfix"></div>
+        {% include '@TheCommonsHomepage/Default/home/temporary/amor-apr-2015.html.twig' %}
+        <div class="clearfix"></div>
+        {#
+          {% include '@TheCommonsHomepage/Default/home/sermons.html.twig' %}
+          <div class="clearfix"></div>
+        #}
+        {% include '@TheCommonsHomepage/Default/home/footer.html.twig' %}
+    </div>
+    </div>
+
+    {% include '@TheCommonsHomepage/Default/home/give-modal.html.twig' %}
 {% endblock %}

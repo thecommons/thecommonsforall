@@ -15,7 +15,11 @@ class DefaultController extends Controller
 
         $twig = "TheCommonsHomepageBundle:Default:$page.html.twig";
 
-        $result = $this->render($twig, ['route' => $_route]);
+        try {
+            $result = $this->render($twig, ['route' => $_route]);
+        } catch (\InvalidArgumentException $ex) {
+            throw $this->createNotFoundException('Page \'' . $page . '\' does not exist');
+        }
 
         return $result;
     }
