@@ -1,12 +1,22 @@
 {% extends 'TheCommonsHomepageBundle:Default:base.html.twig' %}
 
+{% block styleblock %}
+    {{ parent() }}
+    {% stylesheets
+    '@TheCommonsHomepageBundle/Resources/public/css/amor-support.css'
+    filter='cssrewrite' %}
+    <link rel="stylesheet" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+{% endblock %}
+
 {% block body %}
 <div class="container-fluid">
     <div class="row" id="amor">
         <div class="row">
             <div class="col-sm-12">
-                <div class="text-center">
-                    <i class="icon-commons-logo-mark"></i><i class="icon-commons-logo-horizontal"></i>
+                <div class="logo-banner text-center">
+                    <i class="icon-commons-logo-mark"></i>
+                    <i class="icon-commons-logo-horizontal"></i>
                 </div>
                 <div class="hero-text text-center">
                     Help Us Build Hope
