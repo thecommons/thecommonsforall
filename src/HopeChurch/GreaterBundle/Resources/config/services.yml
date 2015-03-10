@@ -4,7 +4,7 @@ parameters:
 services:
   hope_church_greater.menu_builder:
     class: HopeChurch\GreaterBundle\Menu\Builder
-    arguments: ["@knp_menu.factory"]
+    arguments: ['@knp_menu.factory', '@security.authorization_checker']
 
   hope_church_greater.menu.topNav:
     class: Knp\Menu\MenuItem
