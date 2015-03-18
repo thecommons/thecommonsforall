@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new TheCommons\CommonFolkBundle\TheCommonsCommonFolkBundle(),
             new TheCommons\SecurityBundle\TheCommonsSecurityBundle(),
             new TheCommons\HomepageBundle\TheCommonsHomepageBundle(),
+            new TheCommons\SermonBundle\TheCommonsSermonBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

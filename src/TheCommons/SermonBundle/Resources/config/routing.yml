@@ -1,0 +1,3 @@
+the_commons_sermon_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: TheCommonsSermonBundle:Default:index }
