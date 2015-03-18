@@ -1,6 +1,6 @@
 the_commons_sermon:
     resource: "@TheCommonsSermonBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /sermons
 
 the_commons_common_folk:
     resource: "@TheCommonsCommonFolkBundle/Resources/config/routing.yml"

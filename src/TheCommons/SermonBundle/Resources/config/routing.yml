@@ -1,3 +1,7 @@
-the_commons_sermon_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: TheCommonsSermonBundle:Default:index }
+the_commons_sermon:
+    path:     /{format}
+    defaults:
+        _controller: TheCommonsSermonBundle:Default:get
+        format: xml
+    requirements:
+        format: xml|json
