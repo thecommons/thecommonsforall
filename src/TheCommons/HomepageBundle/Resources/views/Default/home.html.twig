@@ -12,7 +12,8 @@
 {% block jsblock %}
     {{ parent() }}
     {% javascripts
-    'bundles/thecommonshomepage/js/thecommons.js' %}
+    'bundles/thecommonshomepage/js/thecommons.js'
+    'bundles/thecommonshomepage/js/sermonbrowser.js'%}
     <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 {% endblock %}
@@ -71,7 +72,6 @@
                     </div>
                 </a>
             </li>
-            {#
             <li>
                 <a href="#sermons">
                     <div class="icon">
@@ -82,7 +82,6 @@
                     </div>
                 </a>
             </li>
-            #}
             <li>
                 <a href="#give" data-toggle="modal">
                     <div class="icon">
@@ -105,10 +104,8 @@
         <div class="clearfix"></div>
         {% include '@TheCommonsHomepage/Default/home/temporary/amor-apr-2015.html.twig' %}
         <div class="clearfix"></div>
-        {#
-          {% include '@TheCommonsHomepage/Default/home/sermons.html.twig' %}
-          <div class="clearfix"></div>
-        #}
+        {% include '@TheCommonsHomepage/Default/home/sermons.html.twig' %}
+        <div class="clearfix"></div>
         {% include '@TheCommonsHomepage/Default/home/footer.html.twig' %}
     </div>
     </div>

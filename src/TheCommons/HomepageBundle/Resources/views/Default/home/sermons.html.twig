@@ -8,6 +8,7 @@
                     </p>
                 </div>
             </div>
+            {#
             <div class="col-sm-6 no-pad text-right header-text">
                 <a class="series-nav" href="#series-prev">
                     <i class="icon icon-angle-left"></i>
@@ -16,6 +17,7 @@
                     <i class="icon icon-angle-right"></i>
                 </a>
             </div>
+            #}
         </div>
         <div class="row">
             <div class="col-sm-12 no-pad">
@@ -23,12 +25,11 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-6 invert-bg">
+    <div class="col-sm-6 invert-bg" id="sermon-browser">
         <div class="header-text invert-text underline full invert">
-            <p>
-                EVOL: A Message Series at The Commons
-            </p>
+            <p id="sermon-series-title">Loading Sermons...</p>
         </div>
+        {#
         <div class="sermon">
             <div class="sermon-left">
                 <div class="cal-icon">
@@ -53,5 +54,6 @@
                 </div>
             </div>
         </div>
+        #}
     </div>
 </div>
