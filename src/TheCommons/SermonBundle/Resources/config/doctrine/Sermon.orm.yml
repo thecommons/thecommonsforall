@@ -1,0 +1,42 @@
+TheCommons\SermonBundle\Entity\Sermon:
+    type: entity
+    table: sermon
+    repositoryClass: TheCommons\SermonBundle\Entity\SermonRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 255
+            column: title
+            nullable: false
+        author:
+            type: string
+            length: 255
+            column: author
+            nullable: false
+        time:
+            type: datetime
+            column: tile
+            nullable: false
+        audio:
+            type: string
+            length: 255
+            column: audio
+            nullable: true
+        description:
+            type: text
+            column: description
+            nullable: true
+    manyToOne:
+        series:
+            targetEntity: SermonSeries
+            inversedBy: sermons
+            joinColumn:
+                name: series_id
+                referencedColumnName: id
+    lifecycleCallbacks: {  }

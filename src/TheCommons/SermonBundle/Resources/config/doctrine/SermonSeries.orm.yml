@@ -1,0 +1,44 @@
+TheCommons\SermonBundle\Entity\SermonSeries:
+    type: entity
+    table: sermonseries
+    repositoryClass: TheCommons\SermonBundle\Entity\SermonSeriesRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 255
+            column: title
+            nullable: false
+        startDate:
+            type: datetime
+            column: start_date
+            nullable: false
+        backgroundImg:
+            type: string
+            length: 255
+            column: background_img
+            nullable: false
+        foregroundImg:
+            type: string
+            length: 255
+            column: foreground_img
+            nullable: false
+        description:
+            type: text
+            column: description
+            nullable: true
+        videoURL:
+            type: string
+            length: 255
+            column: video_url
+            nullable: true
+    oneToMany:
+        sermons:
+            targetEntity: Sermon
+            mappedBy: series
+    lifecycleCallbacks: {  }
