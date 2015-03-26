@@ -16,6 +16,7 @@ if (isset($_SERVER['HTTP_CLIENT_IP'])
             'fe80::1', '::1',
             '192.172.226.97', // gibi.caida.org
             '68.8.31.76', // whyte.bellstreet.co.nz
+            '72.207.26.180', // jon's house
         ))
 ) {
     header('HTTP/1.0 403 Forbidden');
