@@ -1,0 +1,30 @@
+sermon:
+    path:     /
+    defaults: { _controller: "TheCommonsSermonBundle:Sermon:index" }
+
+sermon_show:
+    path:     /{id}/show
+    defaults: { _controller: "TheCommonsSermonBundle:Sermon:show" }
+
+sermon_new:
+    path:     /new
+    defaults: { _controller: "TheCommonsSermonBundle:Sermon:new" }
+
+sermon_create:
+    path:     /create
+    defaults: { _controller: "TheCommonsSermonBundle:Sermon:create" }
+    methods:  POST
+
+sermon_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "TheCommonsSermonBundle:Sermon:edit" }
+
+sermon_update:
+    path:     /{id}/update
+    defaults: { _controller: "TheCommonsSermonBundle:Sermon:update" }
+    methods:  [POST, PUT]
+
+sermon_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "TheCommonsSermonBundle:Sermon:delete" }
+    methods:  [POST, DELETE]

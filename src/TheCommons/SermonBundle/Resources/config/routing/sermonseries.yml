@@ -1,0 +1,30 @@
+series:
+    path:     /
+    defaults: { _controller: "TheCommonsSermonBundle:SermonSeries:index" }
+
+series_show:
+    path:     /{id}/show
+    defaults: { _controller: "TheCommonsSermonBundle:SermonSeries:show" }
+
+series_new:
+    path:     /new
+    defaults: { _controller: "TheCommonsSermonBundle:SermonSeries:new" }
+
+series_create:
+    path:     /create
+    defaults: { _controller: "TheCommonsSermonBundle:SermonSeries:create" }
+    methods:  POST
+
+series_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "TheCommonsSermonBundle:SermonSeries:edit" }
+
+series_update:
+    path:     /{id}/update
+    defaults: { _controller: "TheCommonsSermonBundle:SermonSeries:update" }
+    methods:  [POST, PUT]
+
+series_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "TheCommonsSermonBundle:SermonSeries:delete" }
+    methods:  [POST, DELETE]
