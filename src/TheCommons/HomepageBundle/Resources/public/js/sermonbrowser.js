@@ -20,11 +20,10 @@ var months = [
     ];
 
 $(function () {
-
     $.getJSON("/sermons/json", function(data) {
         data.series.forEach(function(series) {
             if(series.id == current_series_id) {
-                console.log(series);
+                $('#sermon-title').html('Current Sermon Series');
 
                 $('#sermon-series-title').html(series.title);
 
@@ -34,33 +33,31 @@ $(function () {
                     date.setUTCSeconds(sermon.time);
 
                     $('#sermon-browser').append(
-                    '<div class="sermon">' +
-                        '<div class="sermon-left">' +
-                        '<div class="cal-icon">' +
-                        '<strong>' + months[date.getMonth()] + '</strong>' +
-                        '<span>' + date.getDate() + '</span>' +
-                        '</div>' +
-                        '</div>' +
+                        '<div class="sermon">' +
                         '<div class="sermon-info">' +
                         '<div class="row">' +
                         '<div class="title">' +
-                        '<p>' +
+                        '<div class="date">' +
+                        months[date.getMonth()] + ' ' + date.getDate() +
+                        '</div>' +
                         sermon.title +
-                        ' <i class="icon-youtube-play" href="'+ sermon.audio + '"></i>' +
-                        '</p>' +
+                        //'<a href="' + sermon.audio + '" target="_blank">' +
+                        //'<i class="icon-youtube-play" href="'+ sermon.audio + '"></i>' +
+                        //'</a>' +
                         '</div>' +
                         '</div>' +
                         '<div class="row">' +
                         '<div class="description">' +
                         sermon.desc +
                         '</div>' +
+                        '<audio src="' + sermon.audio + '" preload="metadata" controls></audio>' +
                         '</div>' +
                         '</div>' +
                         '</div>'
                     );
+
                 });
             }
         });
     });
-
 });
